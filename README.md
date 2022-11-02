@@ -1,7 +1,7 @@
 IF2111 Algoritma dan Struktur Data
 Tugas Besar 1 
 
-Dibuat oleh kelompok 7 dengan anggota:
+Dibuat oleh kelompok 7 K02 dengan anggota:
 1. Gevyndo Gunawan            (18221076)
 2. Imam Rusydi Ibrahim        (18221140)
 3. Yasmin Arum Sari           (18221142)

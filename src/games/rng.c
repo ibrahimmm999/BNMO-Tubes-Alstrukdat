@@ -1,29 +1,31 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "rng.h"
 
-#include "boolean.h"
-
-void rng()
+void RNG()
 {
     srand(time(NULL));
     int x = rand();
-    int tebakan;
-    boolean cek = false;
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     printf("Tebakan: ");
-    scanf("%d", &tebakan);
-    while (tebakan != x)
+    STARTSTDIN();
+    while (WordToInt(currentWord) != x)
     {
-        if (tebakan > x)
+        if (WordToInt(currentWord) > x)
         {
             printf("Lebih kecil\n");
         }
-        else if (tebakan < x)
+        else if (WordToInt(currentWord) < x)
         {
             printf("Lebih besar\n");
         }
         printf("Tebakan: ");
-        scanf("%d", &tebakan);
+        STARTSTDIN();
     }
     printf("\nYa, X adalah %d.\n", x);
 }
+
+/*
+int main()
+{
+    RNG();
+}
+*/

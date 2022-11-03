@@ -4,6 +4,21 @@ void RNG()
 {
     srand(time(NULL));
     int x = rand();
+    int y = rand();
+    if (x > y)
+    {
+        x -= y;
+    }
+    else
+    {
+        int temp = x;
+        x = y - temp;
+    }
+    while (x > 1000)
+    {
+        x /= 10;
+    }
+    printf("%d\n", x);
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     printf("Tebakan: ");
     STARTSTDIN();
@@ -23,9 +38,7 @@ void RNG()
     printf("\nYa, X adalah %d.\n", x);
 }
 
-/*
 int main()
 {
     RNG();
 }
-*/

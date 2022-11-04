@@ -22,7 +22,7 @@ void STARTINPUT()
 void ADV()
 {
     retval = fscanf(pita, "%c", &currentChar);
-    EOP = (currentChar == MARK || feof(pita));
+    EOP = feof(pita);
     if (EOP)
     {
         fclose(pita);
@@ -32,9 +32,4 @@ void ADV()
 char GetCC()
 {
     return currentChar;
-}
-
-boolean IsEOP()
-{
-    return (currentChar == MARK);
 }

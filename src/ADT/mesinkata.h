@@ -57,4 +57,10 @@ int WordToInt(Word word);
    I.S. : CurrentWord bertipe Word
    F.S. : CurrentWord bertipe Integer */
 
+boolean IsWordEqual(Word k1, char *k2);
+
+Word akuisisiCommandWord(Word command, int kataKe);
+
+char *wordToString(Word w, boolean isLoadOrSave);
+
 #endif

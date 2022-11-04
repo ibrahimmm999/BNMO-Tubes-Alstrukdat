@@ -6,7 +6,6 @@
 
 #include "../boolean.h"
 
-#define MARK '.'
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
@@ -30,8 +29,5 @@ void ADV();
 
 char GetCC();
 /* Mengirimkan currentChar */
-
-boolean IsEOP();
-/* Mengirimkan true jika currentChar = MARK */
 
 #endif

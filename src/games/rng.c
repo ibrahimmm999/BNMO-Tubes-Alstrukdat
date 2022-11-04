@@ -18,7 +18,6 @@ void RNG()
     {
         x /= 10;
     }
-    printf("%d\n", x);
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     printf("Tebakan: ");
     STARTSTDIN();
@@ -37,8 +36,9 @@ void RNG()
     }
     printf("\nYa, X adalah %d.\n", x);
 }
-
+/*
 int main()
 {
     RNG();
 }
+*/

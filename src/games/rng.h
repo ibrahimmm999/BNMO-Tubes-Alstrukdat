@@ -5,4 +5,9 @@
 #include "../boolean.h"
 #include "../ADT/mesinkata.h"
 
+#ifndef RNG_H
+#define RNG_H
+
 void RNG();
+
+#endif

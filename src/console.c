@@ -20,7 +20,9 @@ void DISPLAYBANNER()
 void MAINMENU()
 
 {
-    Arr arrgame;
+    Arr arrGame;
+    Queue queueGame;
+    CreateQueue(&queueGame);
     boolean cek = true;
     while (cek)
     {
@@ -34,13 +36,13 @@ void MAINMENU()
         STARTSTDIN();
         if (IsWordEqual(currentWord, "START"))
         {
-            STARTGAME(&arrgame);
+            STARTGAME(&arrGame);
             cek = false;
         }
         else if (IsWordEqual(akuisisiCommandWord(currentWord, 1), "LOAD"))
         {
             Word x = akuisisiCommandWord(currentWord, 2);
-            LOAD(wordToString(x, true), &arrgame);
+            LOAD(wordToString(x, true), &arrGame);
             cek = false;
         }
         else
@@ -74,6 +76,11 @@ void MAINMENU()
         else if (IsWordEqual(currentWord, "HELP"))
         {
             DISPLAYHELP();
+        }
+        else if (IsWordEqual(currentWord, "PLAY GAME"))
+        {
+            PLAYGAME(queueGame);
+            dequeue(&queueGame, &(HEAD(queueGame)));
         }
     }
 }

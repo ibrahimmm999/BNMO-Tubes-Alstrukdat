@@ -4,26 +4,26 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "boolean.h"
+#include "../boolean.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
 /* Definisi elemen dan address */
 typedef int ElType;
-typedef struct {
-	ElType buffer[CAPACITY]; 
+typedef struct
+{
+	ElType buffer[CAPACITY];
 	int idxHead;
 	int idxTail;
 } Queue;
-
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah Queue, maka akses elemen : */
 #define IDX_HEAD(q) (q).idxHead
 #define IDX_TAIL(q) (q).idxTail
-#define     HEAD(q) (q).buffer[(q).idxHead]
-#define     TAIL(q) (q).buffer[(q).idxTail]
+#define HEAD(q) (q).buffer[(q).idxHead]
+#define TAIL(q) (q).buffer[(q).idxTail]
 
 /* *** Kreator *** */
 void CreateQueue(Queue *q);
@@ -53,6 +53,6 @@ void dequeue(Queue *q, ElType *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
-        q mungkin kosong */
-        
+		q mungkin kosong */
+
 #endif

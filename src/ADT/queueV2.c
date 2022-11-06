@@ -77,26 +77,18 @@ void dequeue(Queue *q, ElType *val)
     /* I.S. q tidak mungkin kosong */
     /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
             q mungkin kosong */
-    *val = HEAD(*q);
-    if (IDX_HEAD(*q) == IDX_TAIL(*q))
+    *val = (*q).buffer[(*q).idxHead];
+    if ((*q).idxHead == (*q).idxTail)
     {
-        IDX_HEAD(*q) = IDX_UNDEF;
-        IDX_TAIL(*q) = IDX_UNDEF;
+        (*q).idxHead = IDX_UNDEF;
+        (*q).idxTail = IDX_UNDEF;
     }
     else
     {
-        if (IDX_HEAD(*q) == CAPACITY - 1)
-        {
-            IDX_HEAD(*q) = 0;
-        }
-        else
-        {
-            IDX_HEAD(*q)
-            ++;
-        }
+        (*q).idxHead += 1;
+        (*q).idxHead %= CAPACITY;
     }
 }
-
 void displayQueue(Queue T)
 {
     if (length(T) == 0)
@@ -105,19 +97,19 @@ void displayQueue(Queue T)
     }
     else
     {
-        int i;
-        for (i = 0; i < length(T); i++)
+        int k = 0;
+        int i = IDX_HEAD(T);
+        while (i <= IDX_TAIL(T))
         {
-            // printf("%s", T.A[i].TabWord);
-
-            printf("%d. ", i + 1);
+            printf("%d. ", k + 1);
             int j;
             for (j = 0; j < T.buffer[i].Length; j++)
             {
                 printf("%c", T.buffer[i].TabWord[j]);
             }
-
             printf("\n");
+            k++;
+            i++;
         }
     }
 }

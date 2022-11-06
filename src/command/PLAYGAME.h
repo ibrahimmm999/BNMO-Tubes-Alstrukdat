@@ -6,6 +6,6 @@
 #ifndef PLAYGAME_H
 #define PLAYGAME_H
 
-void PLAYGAME(Queue queueGame);
+void PLAYGAME(Queue *queueGame);
 
 #endif

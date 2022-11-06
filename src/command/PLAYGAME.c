@@ -1,4 +1,4 @@
-#include "playgame2.h"
+#include "playgame.h"
 
 void displayCurrentGame(Word CurrentGame)
 {
@@ -9,17 +9,17 @@ void displayCurrentGame(Word CurrentGame)
     }
 }
 
-void PLAYGAME(Queue queueGame)
+void PLAYGAME(Queue *queueGame)
 {
     printf("Berikut adalah daftar Game-mu\n");
-    displayQueue(queueGame);
-    if (length(queueGame) == 0)
+    displayQueue(*queueGame);
+    if (length(*queueGame) == 0)
     {
         printf("Tidak ada game di dalam antrian\n");
     }
     else
     {
-        Word currentGame = HEAD(queueGame);
+        Word currentGame = HEAD(*queueGame);
         printf("Loading ");
         displayCurrentGame(currentGame);
         printf(" ...\n\n");
@@ -35,5 +35,7 @@ void PLAYGAME(Queue queueGame)
         {
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));
         }
+
+        dequeue(queueGame, &currentGame);
     }
 }

@@ -3,7 +3,7 @@
 
 /*
 RUN :
-gcc main.c console.c ADT/queueV2.c ADT/mesinkata.c ADT/mesinkarakter.c command/help.c ADT/array.c command/start.c command/load.c command/playgame2.c games/rng.c -o main
+gcc main.c console.c ADT/queueV2.c ADT/mesinkata.c ADT/mesinkarakter.c command/help.c ADT/array.c command/start.c command/load.c command/playgame.c command/queuegame.c games/rng.c -o main
 
 .\main
 */

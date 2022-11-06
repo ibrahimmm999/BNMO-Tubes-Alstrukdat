@@ -7,7 +7,8 @@
 #include "./command/help.h"
 #include "./command/start.h"
 #include "./command/load.h"
-#include "./command/playgame2.h"
+#include "./command/playgame.h"
+#include "./command/queuegame.h"
 
 #ifndef CONSOLE_H
 #define CONSOLE_H

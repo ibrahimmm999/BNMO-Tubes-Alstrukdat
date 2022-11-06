@@ -79,8 +79,11 @@ void MAINMENU()
         }
         else if (IsWordEqual(currentWord, "PLAY GAME"))
         {
-            PLAYGAME(queueGame);
-            dequeue(&queueGame, &(HEAD(queueGame)));
+            PLAYGAME(&queueGame);
+        }
+        else if (IsWordEqual(currentWord, "QUEUE GAME"))
+        {
+            QUEUEGAME(&queueGame, arrGame);
         }
     }
 }

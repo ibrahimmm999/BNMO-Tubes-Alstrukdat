@@ -1,7 +1,7 @@
 #include "creategame.h"
 #include <stdio.h>
 
-void creategame(Arr *arrgame){
+void CREATEGAME(Arr *arrgame){
     char *newgame = "";
     boolean exist = false;
     int count = 0;

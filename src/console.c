@@ -85,5 +85,13 @@ void MAINMENU()
         {
             QUEUEGAME(&queueGame, arrGame);
         }
+        else if (IsWordEqual(currentWord, "LIST GAME"))
+        {
+            LISTGAME(arrGame);
+        }
+        else if (IsWordEqual(currentWord, "CREATE GAME"))
+        {
+            CREATEGAME(&arrGame);
+        }
     }
 }

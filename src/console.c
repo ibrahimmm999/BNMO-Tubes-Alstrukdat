@@ -93,5 +93,9 @@ void MAINMENU()
         {
             CREATEGAME(&arrGame);
         }
+        else if (IsWordEqual(currentWord, "DELETE GAME"))
+        {
+            DELETEGAME(&arrGame, queueGame);
+        }
     }
 }

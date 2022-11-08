@@ -6,6 +6,6 @@
 /*
 Menambahkan game baru pada daftar game
 */
-void creategame(Arr *arrgame);
+void CREATEGAME(Arr *arrgame);
 
 #endif

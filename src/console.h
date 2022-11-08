@@ -11,6 +11,7 @@
 #include "./command/queuegame.h"
 #include "./command/listgame.h"
 #include "./command/creategame.h"
+#include "./command/deletegame.h"
 
 #ifndef CONSOLE_H
 #define CONSOLE_H

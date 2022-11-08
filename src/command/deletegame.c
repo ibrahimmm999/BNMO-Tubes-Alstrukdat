@@ -19,6 +19,7 @@ void DELETEGAME(Arr *arrgame, Queue queueGame){
                 (*arrgame).A[j-1] = (*arrgame).A[j];
             }
             SetNeff(arrgame, NbElmt(*arrgame)-1);
+            printf("Game berhasil dihapus");
         } else {
             printf("Game yang masih terdapat dalam queue game tidak dapat dihapus");
         }

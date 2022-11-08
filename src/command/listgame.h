@@ -6,5 +6,5 @@
 /*
 Menampilkan daftar game yang disediakan oleh sistem
 */
-void listgame();
+  void LISTGAME();
 #endif

@@ -59,7 +59,7 @@ int WordToInt(Word word);
 
 boolean IsWordEqual(Word k1, char *k2);
 
-Word akuisisiCommandWord(Word command, int kataKe);
+Word accessIndexWord(Word command, int indexWord);
 
 char *wordToString(Word w, boolean isLoadOrSave);
 

@@ -108,17 +108,16 @@ boolean IsWordEqual(Word k1, char *k2)
     return sama;
 }
 
-Word akuisisiCommandWord(Word command, int kataKe)
+Word accessIndexWord(Word command, int indexWord)
 {
-    /*Mengakuisisi command terkhusus untuk LOAD and SAVE
-       I.S. pita kata terdefinisi
-       F.S. diakuisisi ke dalam w
+    /*Mengakses kata dalam kalimat
+    I.S. pita kata terdefinisi
+    F.S. diakuisisi ke dalam w
     */
-    Word w;
+    Word word;
+    boolean cek = false;
     int i = 0, counter = 0, length = 0;
-    boolean stop = false;
-
-    while (counter != kataKe - 1 && i < command.Length)
+    while (counter != indexWord - 1 && i < command.Length)
     {
         if (command.TabWord[i] == ' ')
         {
@@ -132,23 +131,21 @@ Word akuisisiCommandWord(Word command, int kataKe)
         }
     }
 
-    while (!stop && i < command.Length)
+    while (!cek && i < command.Length)
     {
         if (command.TabWord[i] == ' ')
         {
-            stop = true;
+            cek = true;
         }
         else
         {
-            w.TabWord[length] = command.TabWord[i];
+            word.TabWord[length] = command.TabWord[i];
             i++;
             length++;
         }
     }
-    w.Length = length;
-    // printf("%d\n", w.Length);
-    // printf("%s\n", w.TabWord);
-    return w;
+    word.Length = length;
+    return word;
 }
 
 char *wordToString(Word w, boolean isLoadOrSave)
@@ -171,6 +168,19 @@ char *wordToString(Word w, boolean isLoadOrSave)
             k++;
         }
         c[k] = '\0';
+        // printf("%s\n", c);
+        return c;
+    }
+    else
+    {
+        char *c = malloc((w.Length) * sizeof(char));
+        int i;
+        for (i = 0; i < w.Length; i++)
+        {
+
+            c[i] = w.TabWord[i];
+        }
+        c[i] = '\0';
         // printf("%s\n", c);
         return c;
     }

@@ -39,9 +39,9 @@ void MAINMENU()
             STARTGAME(&arrGame);
             cek = false;
         }
-        else if (IsWordEqual(akuisisiCommandWord(currentWord, 1), "LOAD"))
+        else if (IsWordEqual(accessIndexWord(currentWord, 1), "LOAD"))
         {
-            Word x = akuisisiCommandWord(currentWord, 2);
+            Word x = accessIndexWord(currentWord, 2);
             LOAD(wordToString(x, true), &arrGame);
             cek = false;
         }
@@ -84,6 +84,10 @@ void MAINMENU()
         else if (IsWordEqual(currentWord, "QUEUE GAME"))
         {
             QUEUEGAME(&queueGame, arrGame);
+        }
+        else
+        {
+            printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
         }
     }
 }

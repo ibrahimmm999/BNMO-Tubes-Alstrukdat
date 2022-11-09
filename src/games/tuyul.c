@@ -19,5 +19,16 @@ void gbk()
     gunting.TabWord[6]='g'; 
     gunting.Length=7;
     SetEl(&board, 0, gunting);
+
+    Word kertas;
+    kertas.TabWord[0]='k';
+    kertas.TabWord[1]='e';
+    kertas.TabWord[2]='r';
+    kertas.TabWord[3]='t';
+    kertas.TabWord[4]='a';
+    kertas.TabWord[5]='s';  
+    kertas.Length=6;      
+    SetEl(&board, 1, kertas);
+ 
 }    
 

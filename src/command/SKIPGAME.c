@@ -39,6 +39,10 @@ void SKIPGAME(Queue *queueGame, int numSkip)
         {
             printf("diner dash");
         }
+        else if (IsWordEqual(currentGame, "tictactoe"))
+        {
+            tictactoe();
+        }
         else
         {
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silakan pilih game lain.", wordToString(currentGame, false));

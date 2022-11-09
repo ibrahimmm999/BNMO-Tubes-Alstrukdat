@@ -33,7 +33,7 @@ void PLAYGAME(Queue *queueGame)
         }
         else if (IsWordEqual(currentGame, "tictactoe"))
         {
-            // tictactoe();
+            tictactoe();
         }
         else
         {

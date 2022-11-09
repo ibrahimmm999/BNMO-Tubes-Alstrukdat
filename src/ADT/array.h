@@ -103,32 +103,4 @@ void TulisIsi(Arr T);
 */
 /* Jika T kosong : Hanya menulis "Tabel kosong" */
 
-/* ********** OPERATOR ARITMATIKA ********** */
-/* *** Aritmatika tabel : Penjumlahan, pengurangan, perkalian, ... *** */
-Arr PlusTab(Arr T1, Arr T2);
-/* Prekondisi : T1 dan T2 berukuran sama dan tidak kosong */
-/* Mengirimkan T1 + T2 */
-Arr MinusTab(Arr T1, Arr T2);
-/* Prekondisi : T1 dan T2 berukuran sama dan tidak kosong */
-/* Mengirimkan T1 - T2 */
-
-/* ********** NILAI EKSTREM ********** */
-ElType ValMax(Arr T);
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan nilai maksimum tabel */
-
-ElType ValMin(Arr T);
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan nilai minimum tabel */
-
-/* *** Mengirimkan indeks elemen bernilai ekstrem *** */
-IdxType IdxMaxTab(Arr T);
-/* Prekondisi : Tabel T tidak kosong */
-/* Mengirimkan indeks i dengan elemen ke-i adalah nilai maksimum pada tabel */
-
-IdxType IdxMinTab(Arr T);
-/* Prekondisi : Tabel tidak kosong */
-/* Mengirimkan indeks i */
-/* dengan elemen ke-i nilai minimum pada tabel */
-
 #endif

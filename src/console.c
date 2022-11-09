@@ -85,6 +85,18 @@ void MAINMENU()
         {
             QUEUEGAME(&queueGame, arrGame);
         }
+        else if (IsWordEqual(currentWord, "LIST GAME"))
+        {
+            LISTGAME(arrGame);
+        }
+        else if (IsWordEqual(currentWord, "CREATE GAME"))
+        {
+            CREATEGAME(&arrGame);
+        }
+        else if (IsWordEqual(currentWord, "DELETE GAME"))
+        {
+            DELETEGAME(&arrGame, queueGame);
+        }
         else
         {
             printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");

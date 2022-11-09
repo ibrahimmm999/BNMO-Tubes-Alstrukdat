@@ -12,7 +12,7 @@ void SKIPGAME(Queue *queueGame, int numSkip)
     displayQueue(*queueGame);                  // Menampilkan Game-Game dalam antrean pemain secara vertikal
     if (numSkip > 0)
     { // Percabangan untuk memastikan parameter input numSkip valid (bukan nol dan bukan pula bilangan negatif)
-        while (i <= numSkip && notEmpty == false)
+        while (i < numSkip && notEmpty == false)
         {                                     // Pengulangan untuk 'menghapus' numSkip buah Game pada antrean awal
             dequeue(queueGame, &currentGame); // 'Menghapus' Game pada antrean pertama
             if (length(*queueGame) == 0)
@@ -28,6 +28,7 @@ void SKIPGAME(Queue *queueGame, int numSkip)
     }
     else
     { // length(*queueGame) != 0 -> memulai permainan pada antrean teratas
+        dequeue(queueGame, &currentGame);
         printf("Loading ");
         displayCurrentGame(currentGame);
         printf(" ...\n");

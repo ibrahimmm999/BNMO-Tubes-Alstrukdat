@@ -4,6 +4,8 @@
         "mesinkarakter.h": "c",
         "mesinkata.h": "c",
         "console.h": "c",
-        "deletegame.h": "c"
+        "deletegame.h": "c",
+        "array.h": "c",
+        "stdio.h": "c"
     }
 }

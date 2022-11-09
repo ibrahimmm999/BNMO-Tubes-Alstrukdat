@@ -5,5 +5,24 @@ int main()
 {
     Arr bocol;
     MakeEmpty(&bocol);
+    //buat array kosong
+
+
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

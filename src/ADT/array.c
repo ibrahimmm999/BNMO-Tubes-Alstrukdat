@@ -33,16 +33,6 @@ ElType GetElmt(Arr T, IdxType i)
     return T.A[i];
 }
 
-void SetTab(Arr Tin, Arr *Tout)
-{
-    int i = 0;
-    for (i = 0; i < Tin.Neff; i++)
-    {
-        (*Tout).A[i] = Tin.A[i];
-    }
-    (*Tout).Neff = Tin.Neff;
-}
-
 void SetEl(Arr *T, IdxType i, ElType v)
 {
     int j;

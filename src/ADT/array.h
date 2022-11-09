@@ -60,10 +60,6 @@ ElType GetElmt(Arr T, IdxType i);
 
 /* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
 /* Untuk type private/limited private pada bahasa tertentu */
-void SetTab(Arr Tin, Arr *Tout);
-/* I.S. Tin terdefinisi, sembarang */
-/* F.S. Tout berisi salinan Tin */
-/* Assignment THsl -> Tin */
 void SetEl(Arr *T, IdxType i, ElType v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */

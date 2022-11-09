@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#include "queueV2.h"
-#include "mesinkata.h"
-#include "boolean.h"
+#include "../ADT/queueV2.h"
+#include "../ADT/mesinkata.h"
+#include "../boolean.h"
 #include "PLAYGAME.h"
 
 #ifndef _SKIPGAME_H_

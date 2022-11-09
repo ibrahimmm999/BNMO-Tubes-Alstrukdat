@@ -3,6 +3,7 @@
         "boolean.h": "c",
         "mesinkarakter.h": "c",
         "mesinkata.h": "c",
-        "console.h": "c"
+        "console.h": "c",
+        "deletegame.h": "c"
     }
 }

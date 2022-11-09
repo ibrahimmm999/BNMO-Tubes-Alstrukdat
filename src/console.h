@@ -12,6 +12,9 @@
 #include "./command/listgame.h"
 #include "./command/creategame.h"
 #include "./command/deletegame.h"
+#include "./command/save.h"
+#include "./command/quit.h"
+#include "./command/SKIPGAME.h"
 
 #ifndef CONSOLE_H
 #define CONSOLE_H

@@ -71,7 +71,7 @@ void MAINMENU()
         STARTSTDIN();
         if (IsWordEqual(currentWord, "QUIT"))
         {
-            cek = false;
+            quit(&cek);
         }
         else if (IsWordEqual(currentWord, "HELP"))
         {
@@ -96,6 +96,16 @@ void MAINMENU()
         else if (IsWordEqual(currentWord, "DELETE GAME"))
         {
             DELETEGAME(&arrGame, queueGame);
+        }
+        else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME"))
+        {
+            Word x = accessIndexWord(currentWord, 2);
+            SKIPGAME(&queueGame, WordToInt(x));
+        }
+        else if (IsWordEqual(accessIndexWord(currentWord, 1), "SAVE"))
+        {
+            Word x = accessIndexWord(currentWord, 2);
+            save(wordToString(x, true), arrGame);
         }
         else
         {

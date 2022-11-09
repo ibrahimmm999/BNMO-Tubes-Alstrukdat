@@ -1,8 +1,8 @@
-#include "queue.h"
+#include "../boolean.h"
 
 #ifndef QUIT_H
 #define QUIT_H
 
-void quit(Queue your_games);
+void quit(boolean *isQuit);
 
 #endif

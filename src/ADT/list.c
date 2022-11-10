@@ -28,7 +28,6 @@ void Set(List *L, IdxType i, ElType v)
 {
     (*L).A[i] = v;
 }
-/*
 int Length(List L)
 {
     int i;
@@ -57,7 +56,7 @@ IdxType LastIdx(List L)
     }
     return i - 1;
 }
-
+/*
 boolean IsIdxValid(List L, IdxType i)
 {
     return (i >= 0 && i <= (MaxEl - 1));
@@ -82,6 +81,7 @@ boolean Search(List L, ElType X)
     return cond;
 }
 
+*/
 void InsertFirst(List *L, ElType X)
 {
     InsertAt(L, X, 0);
@@ -125,6 +125,7 @@ void DeleteLast(List *L)
     DeleteAt(L, LastIdx(*L));
 }
 
+/*
 List Concat(List L1, List L2)
 {
     List L3 = MakeList();

@@ -31,6 +31,8 @@ int main()
     printf("%d\n", MaxNbEl(testArr));
     printf("%d\n", GetFirstIdx(testArr));
     printf("%d\n", GetLastIdx(testArr));
+    
+    
     Word testGetElmt = GetElmt(testArr, 1);
     printf("%d\n", testGetElmt.Length);
     int i;
@@ -40,6 +42,7 @@ int main()
     }
     printf("\n");
 
+    
     if (IsIdxValid(testArr, 1))
     {
         printf("true\n");

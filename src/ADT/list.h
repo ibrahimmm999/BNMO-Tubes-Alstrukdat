@@ -9,7 +9,7 @@
 
 /* Kamus Umum */
 #define MaxEl 100
-#define Mark 'P'      /* Nilai tak terdefinisi */
+#define Mark '.'      /* Nilai tak terdefinisi */
 #define InvalidIdx -1 /* Indeks tak terdefinisi */
 
 /* Definisi elemen dan koleksi objek */
@@ -53,16 +53,16 @@ void Set(List *L, IdxType i, ElType v);
 
 /* ********** SELEKTOR ********** */
 /* *** Banyaknya elemen *** */
-// int Length(List L);
+int Length(List L);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
 
 /* *** Selektor INDEKS *** */
-// IdxType FirstIdx(List L);
+IdxType FirstIdx(List L);
 /* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen pertama */
 
-// IdxType LastIdx(List L);
+IdxType LastIdx(List L);
 /* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen terakhir */
 
@@ -83,27 +83,27 @@ void Set(List *L, IdxType i, ElType v);
 /* Mengirimkan true jika terdapat elemen X di dalam list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
-// void InsertFirst(List *L, ElType X);
+void InsertFirst(List *L, ElType X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen pertama L. */
 
-// void InsertAt(List *L, ElType X, IdxType i);
+void InsertAt(List *L, ElType X, IdxType i);
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
 
-// void InsertLast(List *L, ElType X);
+void InsertLast(List *L, ElType X);
 /* I.S. L terdefinisi, mungkin kosong. */
 /* F.S. v menjadi elemen terakhir L. */
 
-// void DeleteFirst(List *L);
+void DeleteFirst(List *L);
 /* I.S. L terdefinisi, tidak kosong. */
 /* F.S. F diset dengan elemen pertama L, elemen pertama L dihapus dari L. */
 
-// void DeleteAt(List *L, IdxType i);
+void DeleteAt(List *L, IdxType i);
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. Elemen L pada indeks ke-i dihapus dari L. */
 
-// void DeleteLast(List *L);
+void DeleteLast(List *L);
 /* I.S. L terdefinisi, tidak kosong. */
 /* F.S. F diset dengan elemen terakhir L, elemen terakhir L dihapus dari L. */
 

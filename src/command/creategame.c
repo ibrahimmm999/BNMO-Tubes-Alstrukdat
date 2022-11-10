@@ -2,9 +2,7 @@
 #include <stdio.h>
 
 void CREATEGAME(Arr *arrgame){
-    char *newgame = "";
     boolean exist = false;
-    int count = 0;
 
     printf("Masukkan nama game yang akan ditambahkan: ");
     STARTSTDIN();
@@ -16,5 +14,7 @@ void CREATEGAME(Arr *arrgame){
     if (!exist){
         SetEl(arrgame, (*arrgame).Neff, currentWord);
         printf("Game berhasil ditambahkan");
+    } else {
+        printf("Game sudah terdapat di daftar game");
     }
 }

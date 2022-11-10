@@ -29,6 +29,47 @@ void gbk()
     kertas.TabWord[5]='s';  
     kertas.Length=6;      
     SetEl(&board, 1, kertas);
- 
+
+    Word batu;
+    batu.TabWord[0]='b';
+    batu.TabWord[1]='a';
+    batu.TabWord[2]='t';
+    batu.TabWord[3]='u';
+    batu.Length=4; 
+    SetEl(&board, 2, batu); 
+
+    int playerwin = 0;
+    int i;
+    STARTSTDIN();
+    srand(time(NULL));
+    int x=rand()%3;
+
+    if (x==0 && IsWordEqual(currentWord,"gunting")){
+        printf("yah seri\n");
+    }
+    else if (x==0 && IsWordEqual(currentWord,"kertas")){
+        printf("kamu kalah\n");
+    }
+    else if (x==0 && IsWordEqual(currentWord,"batu")){
+        printf("kamu menang\n");
+    }   
+    else if (x==1 && IsWordEqual(currentWord,"kertas")){
+        printf("yah seri\n");
+    }
+    else if (x==1 && IsWordEqual(currentWord,"batu")){
+        printf("kamu kalah\n");
+    }
+    else if (x==1 && IsWordEqual(currentWord,"gunting")){
+        printf("kamu menang\n");
+    }
+    else if (x==2 && IsWordEqual(currentWord,"batu")){
+        printf("yah seri\n");
+    } 
+    else if (x==2 && IsWordEqual(currentWord,"gunting")){
+        printf("kamu kalah\n");
+    } 
+    else if (x==2 && IsWordEqual(currentWord,"kertas")){
+        printf("kamu menang\n");
+    }
 }    
 

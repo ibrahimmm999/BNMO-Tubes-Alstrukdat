@@ -63,4 +63,6 @@ Word accessIndexWord(Word command, int indexWord);
 
 char *wordToString(Word w, boolean isLoadOrSave);
 
+Word stringToWord(char *string);
+
 #endif

@@ -1,102 +1,28 @@
-/* file: DINERDASH.h */
-
-#ifndef _DINER_DASH_H_
-#define _DINER_DASH_H_
+#ifndef __DINER_DASH_H__
+#define __DINER_DASH_H__
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-#include "queueV2.h"
-#include "array.h"
-#include "mesinkata.h"
-#include "boolean.h"
-#include "converter.h"
+#include "../boolean.h"
+#include "../ADT/mesinkata.h"
+#include "../ADT/prioqueue.h"
+#include "../ADT/array.h"
+// boolean isSame(char str1[], char str2[]);
+// mengembalikan true jika str1 sama dengan str2
 
-#define SPACE ' '
-/* gcc DINERDASH.c queueV2.c array.c mesinkata.c mesinkarakter.c converter.c */
-
-typedef struct {
-    Queue order;
-    Queue time;
-    Queue exp;
-    Queue price;
-    int length;
-    int totalCust;
-} QueueDD;
-
-typedef struct {
-    Arr order;
-    Arr time;
-    int length;
-} IsBeingCooked;
-
-typedef struct {
-    Arr order;
-    Arr exp;
-    int length;
-} ReadyToServe;
-
-QueueDD createEmptyQueueDD (QueueDD *q);
-
-IsBeingCooked createEmptyIsBeingCooked (IsBeingCooked *c);
-
-ReadyToServe createEmptyReadyToServe (ReadyToServe *s);
-
-int randNumber(int max, int min);
-
-int randPrice();
-
-int randTime();
-
-int randExp();
-
-void newOrder(QueueDD q, Word *w);
-
-void custComing(QueueDD *q);
-
-void openRestaurant(QueueDD *q);
-
-boolean commandValid(Word currentWord);
-
-Word getCommand(Word currentWord, Word *com);
-
-Word getOrder(Word currentWord, Word *ord);
-
-void oneRound(QueueDD *q, IsBeingCooked *c, ReadyToServe *s); // include =========== (border)
-
-void displayQueueDD(QueueDD q);
-
-void displayCook(IsBeingCooked c);
-
-void displayServe(ReadyToServe s);
-
-void displayAll(QueueDD q, IsBeingCooked c, ReadyToServe s, int saldo);
-
-boolean isFirstQueue(QueueDD q, Word currentWord);
-
-boolean isInServe(ReadyToServe s, Word currentword);
-
-boolean isInCook(IsBeingCooked c, Word currentword);
-
-boolean isInQueueDD(QueueDD q, Word currentword);
-
-boolean canBeServed(QueueDD q, ReadyToServe s, Word currentword);
-
-boolean canCook(QueueDD q, IsBeingCooked c, Word currentWord);
-
-void searchInQueue(QueueDD q, Word currentWord, int *idx);
-
-void searchInServe(ReadyToServe s, Word currentWord, int *idx);
-
-void COOK(QueueDD q, IsBeingCooked *c, Word currentWord);
-
-void SERVE(QueueDD *q, ReadyToServe *s, Word currentWord, int *payment);
-
-void delServeAt(ReadyToServe *s, int x);
-
-void moveFoodAt(QueueDD q, IsBeingCooked *c, ReadyToServe *s, Word currentWord, int y);
-
-void DINERDASH();
+void DinerDash();
+// -	Terdapat 2 command yang dapat dilakukan pada game, yaitu COOK dan SERVE
+// -	COOK merupakan command yang bertujuan untuk memasak makanan
+// -	SERVE merupakan command yang bertujuan untuk menyajikan makanan kepada pelanggan.
+// -	Permainan akan dimulai dengan 3 pelanggan. Setiap pelanggan hanya dapat memesan satu makanan. Untuk setiap makanan, terdapat informasi tentang ID makanan yang dihasilkan secara increment (M01, M02, M03, dst), durasi memasak, harga makanan, serta ketahanan makanan. Semua informasi tersebut akan didapatkan secara random dengan menggunakan random number generator. Durasi dan ketahanan makanan akan berkisar diantara 1-5. Sedangkan, harga makanan akan berkisar diantara 10000 - 50000.
+// -	Kapasitas dari pemain adalah memasak 5 makanan dalam waktu yang sama. Pelanggan yang dilayani adalah pelanggan yang duluan memasuki antrian.
+// -	Permainan selesai apabila antrian melebihi 7 pelanggan atau jumlah pelanggan yang sudah dilayani mencapai 15 pelanggan.
+// -	Pada setiap putaran, akan terdapat 1 pelanggan baru.
+// -	Pada setiap putaran, seluruh durasi dari makanan yang sedang dimasak akan berkurang 1. Ketika durasi makanan mencapai 0, maka makanan sudah dapat di SERVE.
+// -	Ketika makanan sudah di SERVE, maka makanan dapat diantar kepada pelanggan dan pelanggan dapat meninggalkan antrian. Setelah pelanggan meninggalkan antrian, maka pemain akan menerima uang
+// -	SERVE hanya dapat digunakan untuk pesanan yang berada di paling depan.
+// -	Skor akhir dari pemain adalah total uang yang diterima oleh pemain.
 
 #endif

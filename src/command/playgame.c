@@ -1,3 +1,4 @@
+
 #include "playgame.h"
 
 void displayCurrentGame(Word CurrentGame)
@@ -29,11 +30,15 @@ void PLAYGAME(Queue *queueGame)
         }
         else if (IsWordEqual(currentGame, "Diner DASH"))
         {
-            printf("dinner dash\n");
+            DinerDash();
         }
         else if (IsWordEqual(currentGame, "tictactoe"))
         {
             tictactoe();
+        }
+        else if (IsWordEqual(currentGame, "gbk"))
+        {
+            gbk();
         }
         else
         {

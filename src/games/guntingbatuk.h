@@ -6,8 +6,8 @@
 #include "../ADT/list.h"
 #include "../boolean.h"
 
-#ifndef TICTACTOE_H
-#define TICTACTOE_H
+#ifndef GBK_H
+#define GBK_H
 
 void gbk();
 

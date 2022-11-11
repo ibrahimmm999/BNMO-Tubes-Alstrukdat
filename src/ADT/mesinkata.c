@@ -185,3 +185,16 @@ char *wordToString(Word w, boolean isLoadOrSave)
         return c;
     }
 }
+
+Word stringToWord(char *string)
+{
+    Word res;
+    int i = 0;
+    while (string[i] != '\0')
+    {
+        res.TabWord[i] = string[i];
+        i++;
+    }
+    res.Length = i;
+    return res;
+}

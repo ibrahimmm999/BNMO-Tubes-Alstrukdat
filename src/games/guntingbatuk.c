@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../ADT/mesinkata.h"
 #include "guntingbatuk.h"
-#include "../boolean.h"
 #include <time.h>
 
 void gbk()
 {
-    List board;
+    Arr board;
     Word gunting;
     MakeEmpty(&board);
     gunting.TabWord[0] = 'g';

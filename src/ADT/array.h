@@ -11,13 +11,13 @@
 #define IdxUndef -999 /* indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
-typedef int IdxType;
-typedef Word ElType;
+typedef int IdxTypeArr;
+typedef Word ElTypeArr;
 
 typedef struct
 {
-    ElType A[101]; /* memori tempat penyimpan elemen (container) */
-    int Neff;      /* banyaknya elemen efektif */
+    ElTypeArr A[101]; /* memori tempat penyimpan elemen (container) */
+    int Neff;         /* banyaknya elemen efektif */
 } Arr;
 
 /* Indeks yang digunakan [IdxMin..IdxMax] */
@@ -47,34 +47,34 @@ int NbElmt(Arr T);
 int MaxNbEl(Arr T);
 /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
 /* *** Selektor INDEKS *** */
-IdxType GetFirstIdx(Arr T);
+IdxTypeArr GetFirstIdx(Arr T);
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen pertama */
-IdxType GetLastIdx(Arr T);
+IdxTypeArr GetLastIdx(Arr T);
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen terakhir */
 /* *** Menghasilkan sebuah elemen *** */
-ElType GetElmt(Arr T, IdxType i);
+ElTypeArr GetElmt(Arr T, IdxTypeArr i);
 /* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
 /* Mengirimkan elemen tabel yang ke-i */
 
 /* *** Selektor SET : Mengubah nilai TABEL dan elemen tabel *** */
 /* Untuk type private/limited private pada bahasa tertentu */
-void SetEl(Arr *T, IdxType i, ElType v);
+void SetEl(Arr *T, IdxTypeArr i, ElTypeArr v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen tabel yang ke-i sehingga bernilai v */
-void SetNeff(Arr *T, IdxType N);
+void SetNeff(Arr *T, IdxTypeArr N);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid(Arr T, IdxType i);
+boolean IsIdxValid(Arr T, IdxTypeArr i);
 /* Prekondisi : i sembarang */
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
-boolean IsIdxEff(Arr T, IdxType i);
+boolean IsIdxEff(Arr T, IdxTypeArr i);
 /* Prekondisi : i sembarang*/
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
 /* yaitu antara FirstIdx(T)..LastIdx(T) */

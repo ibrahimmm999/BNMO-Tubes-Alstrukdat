@@ -43,7 +43,7 @@ void SKIPGAME(Queue *queueGame, int numSkip)
                 }
                 else if (IsWordEqual(currentGame, "Diner DASH"))
                 {
-                    DinerDash();
+                    dinerDash();
                 }
                 else if (IsWordEqual(currentGame, "tictactoe"))
                 {

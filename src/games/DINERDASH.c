@@ -1,10 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../boolean.h"
-#include "../ADT/mesinkata.h"
-#include "../ADT/prioqueue.h"
-#include "../ADT/array.h"
+
+#include "dinerdash.h"
+
+PQElType addQueue(int i)
+{
+    PQElType addOrder;
+    addOrder.foodId = i;
+    addOrder.cookTime = (rand() % 5) + 1;
+    addOrder.stayTime = (rand() % 5) + 1;
+    addOrder.price = (rand() % 5) * 5000 + 10000;
+    return addOrder;
+}
+
+void dequeueAt(PrioQueue *pq, int idx, PQElType *val)
+{
+    (*val).foodId = (*pq).buffer[idx].foodId;
+    (*val).cookTime = (*pq).buffer[idx].cookTime;
+    (*val).stayTime = (*pq).buffer[idx].stayTime;
+    (*val).price = (*pq).buffer[idx].price;
+    if (IDX_HEADPQ(*pq) == IDX_TAILPQ(*pq))
+    {
+        IDX_HEADPQ(*pq) = IDX_UNDEFPQ;
+        IDX_TAILPQ(*pq) = IDX_UNDEFPQ;
+    }
+    else
+    {
+        int i;
+        for (i = idx; i < IDX_TAILPQ(*pq); i++)
+        {
+            (*pq).buffer[i].foodId = (*pq).buffer[i + 1].foodId;
+            (*pq).buffer[i].cookTime = (*pq).buffer[i + 1].cookTime;
+            (*pq).buffer[i].stayTime = (*pq).buffer[i + 1].stayTime;
+            (*pq).buffer[i].price = (*pq).buffer[i + 1].price;
+        }
+        IDX_TAILPQ(*pq)
+        --;
+    }
+}
 
 void dinerDash()
 {
@@ -66,7 +100,7 @@ void dinerDash()
         {
             id = id * 10 + (orderId.TabWord[i] - '0');
         }
-        while (id < HEAD(queuePesanan).foodId || id > TAIL(queuePesanan).foodId)
+        while (id < HEADPQ(queuePesanan).foodId || id > TAILPQ(queuePesanan).foodId)
         {
             printf("Masukkan command: ");
             STARTSTDIN();
@@ -93,7 +127,7 @@ void dinerDash()
         {
             if (!isEmptyPQ(serveQ))
             {
-                if (HEAD(queuePesanan).foodId == id)
+                if (HEADPQ(queuePesanan).foodId == id)
                 {
                     printf("Berhasil mengantar M%d\n", id);
                     enqueuePQ(&queuePesanan, addQueue(count));
@@ -102,12 +136,12 @@ void dinerDash()
                     dequeuePQ(&serveQ, &vals);
                     served++;
                     count++;
-                    saldo += HEAD(queuePesanan).price;
+                    saldo += HEADPQ(queuePesanan).price;
                 }
 
                 else
                 {
-                    printf("Makanan M%d tidak dapat disajikan karena M%d belum selesai\n", id, HEAD(queuePesanan).foodId);
+                    printf("Makanan M%d tidak dapat disajikan karena M%d belum selesai\n", id, HEADPQ(queuePesanan).foodId);
                 }
             }
             else
@@ -131,16 +165,16 @@ void dinerDash()
         printf("=================================================================\n");
 
         int ctr;
-        ctr = IDX_HEAD(serveQ);
+        ctr = IDX_HEADPQ(serveQ);
 
-        while (ctr < IDX_TAIL(serveQ) + 1)
+        while (ctr < IDX_TAILPQ(serveQ) + 1)
         { // untuk mengurangi waktu masak
             serveQ.buffer[ctr].stayTime -= 1;
             ctr++;
         }
 
-        ctr = IDX_HEAD(cookQ);
-        while (ctr < IDX_TAIL(cookQ) + 1)
+        ctr = IDX_HEADPQ(cookQ);
+        while (ctr < IDX_TAILPQ(cookQ) + 1)
         { // untuk mengurangi waktu masak
             cookQ.buffer[ctr].cookTime -= 1;
             if (cookQ.buffer[ctr].cookTime == 0)
@@ -157,9 +191,4 @@ void dinerDash()
     }
     printf("========== GAME OVER ==========\n");
     printf("SKOR AKHIR : %d\n", saldo);
-}
-
-int main()
-{
-    dinerDash();
 }

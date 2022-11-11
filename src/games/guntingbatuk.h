@@ -3,7 +3,7 @@
 #include <time.h>
 
 #include "../ADT/mesinkata.h"
-#include "../ADT/list.h"
+#include "../ADT/array.h"
 #include "../boolean.h"
 
 #ifndef GBK_H

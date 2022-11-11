@@ -5,18 +5,18 @@
 
 void createQueuePQ(PrioQueue *pq)
 {
-    IDX_HEAD(*pq) = IDX_UNDEF;
-    IDX_TAIL(*pq) = IDX_UNDEF;
+    IDX_HEADPQ(*pq) = IDX_UNDEFPQ;
+    IDX_TAILPQ(*pq) = IDX_UNDEFPQ;
 }
 
 boolean isEmptyPQ(PrioQueue pq)
 {
-    return ((IDX_HEAD(pq) == IDX_UNDEF) && (IDX_TAIL(pq) == IDX_UNDEF));
+    return ((IDX_HEADPQ(pq) == IDX_UNDEFPQ) && (IDX_TAILPQ(pq) == IDX_UNDEFPQ));
 }
 
 boolean isFullPQ(PrioQueue pq)
 {
-    return (IDX_TAIL(pq) == PQCAPACITY - 1 && IDX_HEAD(pq) == 0);
+    return (IDX_TAILPQ(pq) == PQCAPACITY - 1 && IDX_HEADPQ(pq) == 0);
 }
 
 int lengthPQ(PrioQueue pq)
@@ -27,7 +27,7 @@ int lengthPQ(PrioQueue pq)
     }
     else
     {
-        return IDX_TAIL(pq) - IDX_HEAD(pq) + 1;
+        return IDX_TAILPQ(pq) - IDX_HEADPQ(pq) + 1;
     }
 }
 
@@ -35,77 +35,41 @@ void enqueuePQ(PrioQueue *pq, PQElType val)
 {
     if (isEmptyPQ(*pq))
     {
-        IDX_HEAD(*pq) = 0;
-        IDX_TAIL(*pq) = 0;
+        IDX_HEADPQ(*pq) = 0;
+        IDX_TAILPQ(*pq) = 0;
     }
     else
     {
-        IDX_TAIL(*pq) = IDX_TAIL(*pq) + 1;
+        IDX_TAILPQ(*pq) = IDX_TAILPQ(*pq) + 1;
     }
-    TAIL(*pq).foodId = val.foodId;
-    TAIL(*pq).cookTime = val.cookTime;
-    TAIL(*pq).stayTime = val.stayTime;
-    TAIL(*pq).price = val.price;
+    TAILPQ(*pq).foodId = val.foodId;
+    TAILPQ(*pq).cookTime = val.cookTime;
+    TAILPQ(*pq).stayTime = val.stayTime;
+    TAILPQ(*pq).price = val.price;
 }
 
 void dequeuePQ(PrioQueue *pq, PQElType *val)
 {
-    (*val).foodId = HEAD(*pq).foodId;
-    (*val).cookTime = HEAD(*pq).cookTime;
-    (*val).stayTime = HEAD(*pq).stayTime;
-    (*val).price = HEAD(*pq).price;
-    if (IDX_HEAD(*pq) == IDX_TAIL(*pq))
+    (*val).foodId = HEADPQ(*pq).foodId;
+    (*val).cookTime = HEADPQ(*pq).cookTime;
+    (*val).stayTime = HEADPQ(*pq).stayTime;
+    (*val).price = HEADPQ(*pq).price;
+    if (IDX_HEADPQ(*pq) == IDX_TAILPQ(*pq))
     {
-        IDX_HEAD(*pq) = IDX_UNDEF;
-        IDX_TAIL(*pq) = IDX_UNDEF;
+        IDX_HEADPQ(*pq) = IDX_UNDEFPQ;
+        IDX_TAILPQ(*pq) = IDX_UNDEFPQ;
     }
     else
     {
         int i;
-        for (i = 0; i < IDX_TAIL(*pq); i++)
+        for (i = 0; i < IDX_TAILPQ(*pq); i++)
         {
             (*pq).buffer[i].foodId = (*pq).buffer[i + 1].foodId;
             (*pq).buffer[i].cookTime = (*pq).buffer[i + 1].cookTime;
             (*pq).buffer[i].stayTime = (*pq).buffer[i + 1].stayTime;
             (*pq).buffer[i].price = (*pq).buffer[i + 1].price;
         }
-        IDX_TAIL(*pq)
-        --;
-    }
-}
-
-PQElType addQueue(int i)
-{
-    PQElType addOrder;
-    addOrder.foodId = i;
-    addOrder.cookTime = (rand() % 5) + 1;
-    addOrder.stayTime = (rand() % 5) + 1;
-    addOrder.price = (rand() % 5) * 5000 + 10000;
-    return addOrder;
-}
-
-void dequeueAt(PrioQueue *pq, int idx, PQElType *val)
-{
-    (*val).foodId = (*pq).buffer[idx].foodId;
-    (*val).cookTime = (*pq).buffer[idx].cookTime;
-    (*val).stayTime = (*pq).buffer[idx].stayTime;
-    (*val).price = (*pq).buffer[idx].price;
-    if (IDX_HEAD(*pq) == IDX_TAIL(*pq))
-    {
-        IDX_HEAD(*pq) = IDX_UNDEF;
-        IDX_TAIL(*pq) = IDX_UNDEF;
-    }
-    else
-    {
-        int i;
-        for (i = idx; i < IDX_TAIL(*pq); i++)
-        {
-            (*pq).buffer[i].foodId = (*pq).buffer[i + 1].foodId;
-            (*pq).buffer[i].cookTime = (*pq).buffer[i + 1].cookTime;
-            (*pq).buffer[i].stayTime = (*pq).buffer[i + 1].stayTime;
-            (*pq).buffer[i].price = (*pq).buffer[i + 1].price;
-        }
-        IDX_TAIL(*pq)
+        IDX_TAILPQ(*pq)
         --;
     }
 }
@@ -122,8 +86,8 @@ void printOrders(PrioQueue pq)
     else
     {
         PQElType val;
-        int i = IDX_HEAD(pq);
-        while (i != IDX_TAIL(pq) + 1)
+        int i = IDX_HEADPQ(pq);
+        while (i != IDX_TAILPQ(pq) + 1)
         {
             printf("M%d      | %d              | %d         | %d\n", pq.buffer[i].foodId,
                    pq.buffer[i].cookTime, pq.buffer[i].stayTime, pq.buffer[i].price);
@@ -146,8 +110,8 @@ void printCooking(PrioQueue pq)
     else
     {
         PQElType val;
-        int i = IDX_HEAD(pq);
-        while (i != IDX_TAIL(pq) + 1)
+        int i = IDX_HEADPQ(pq);
+        while (i != IDX_TAILPQ(pq) + 1)
         {
             printf("M%d      | %d              \n", pq.buffer[i].foodId, pq.buffer[i].cookTime);
             i++;
@@ -168,8 +132,8 @@ void printServing(PrioQueue pq)
     else
     {
         PQElType val;
-        int i = IDX_HEAD(pq);
-        while (i != IDX_TAIL(pq) + 1)
+        int i = IDX_HEADPQ(pq);
+        while (i != IDX_TAILPQ(pq) + 1)
         {
             printf("M%d      | %d              \n", pq.buffer[i].foodId, pq.buffer[i].stayTime);
             i++;

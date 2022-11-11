@@ -18,22 +18,22 @@ int MaxNbEl(Arr T)
     return IdxMax;
 }
 
-IdxType GetFirstIdx(Arr T)
+IdxTypeArr GetFirstIdx(Arr T)
 {
     return IdxMin;
 }
 
-IdxType GetLastIdx(Arr T)
+IdxTypeArr GetLastIdx(Arr T)
 {
     return T.Neff;
 }
 
-ElType GetElmt(Arr T, IdxType i)
+ElTypeArr GetElmt(Arr T, IdxTypeArr i)
 {
     return T.A[i];
 }
 
-void SetEl(Arr *T, IdxType i, ElType v)
+void SetEl(Arr *T, IdxTypeArr i, ElTypeArr v)
 {
     int j;
     (*T).A[i].Length = v.Length;
@@ -46,17 +46,17 @@ void SetEl(Arr *T, IdxType i, ElType v)
     // printf("\n %d\n", (*T).Neff);
 }
 
-void SetNeff(Arr *T, IdxType N)
+void SetNeff(Arr *T, IdxTypeArr N)
 {
     (*T).Neff = N;
 }
 
-boolean IsIdxValid(Arr T, IdxType i)
+boolean IsIdxValid(Arr T, IdxTypeArr i)
 {
     return (i >= IdxMin && i <= IdxMax);
 }
 
-boolean IsIdxEff(Arr T, IdxType i)
+boolean IsIdxEff(Arr T, IdxTypeArr i)
 {
     return (i >= IdxMin && i <= T.Neff);
 }

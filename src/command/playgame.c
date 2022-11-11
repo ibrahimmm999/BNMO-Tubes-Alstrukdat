@@ -30,7 +30,7 @@ void PLAYGAME(Queue *queueGame)
         }
         else if (IsWordEqual(currentGame, "Diner DASH"))
         {
-            DinerDash();
+            dinerDash();
         }
         else if (IsWordEqual(currentGame, "tictactoe"))
         {

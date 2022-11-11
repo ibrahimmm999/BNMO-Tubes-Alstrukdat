@@ -11,8 +11,11 @@
 #include "../ADT/array.h"
 // boolean isSame(char str1[], char str2[]);
 // mengembalikan true jika str1 sama dengan str2
+PQElType addQueue(int i);
 
-void DinerDash();
+void dequeueAt(PrioQueue *pq, int idx, PQElType *val);
+
+void dinerDash();
 // -	Terdapat 2 command yang dapat dilakukan pada game, yaitu COOK dan SERVE
 // -	COOK merupakan command yang bertujuan untuk memasak makanan
 // -	SERVE merupakan command yang bertujuan untuk menyajikan makanan kepada pelanggan.

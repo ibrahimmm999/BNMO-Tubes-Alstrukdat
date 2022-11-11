@@ -12,7 +12,7 @@ void SKIPGAME(Queue *queueGame, int numSkip)
     { // Percabangan untuk memastikan parameter input numSkip valid (bukan nol dan bukan pula bilangan negatif)
         if(length(*queueGame) == 0)
         {
-            printf("Kamu belum memiliki daftar Game yang ingin kamu mainkan dalam antrean. Mohon masukkan dahulu sejumlah Game dalam antrean melalui command QUEUE GAME");
+            printf("Antrean Game kosng. Kamu belum/sudah tidak memiliki daftar Game yang ingin dimainkan dalam antrean. Tidak ada Game yang perlu dilewati. Mohon masukkan dahulu sejumlah Game dalam antrean melalui command QUEUE GAME\n");
         }
         else if(length(*queueGame) > 0)
         {

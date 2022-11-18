@@ -49,7 +49,7 @@ void dinerDash()
 
         command = accessIndexWord(currentWord, 1);
         orderId = accessIndexWord(currentWord, 2);
-        while (!((IsWordEqual(command, cook) || IsWordEqual(command, serve) || IsWordEqual(command, skip)) && orderId.TabWord[0] == 'M'))
+        while (!(((IsWordEqual(command, cook) && orderId.TabWord[0] == 'M') || (IsWordEqual(command, serve) && orderId.TabWord[0] == 'M') || IsWordEqual(command, skip))))
         {
             printf("\nInput tidak sesuai\n");
             printf("Masukkan command: ");

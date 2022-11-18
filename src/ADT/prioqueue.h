@@ -47,4 +47,8 @@ void printCooking(PrioQueue pq);
 
 void printServing(PrioQueue pq);
 
+PQElType addQueue(int i);
+
+void dequeueAt(PrioQueue *pq, int idx, PQElType *val);
+
 #endif

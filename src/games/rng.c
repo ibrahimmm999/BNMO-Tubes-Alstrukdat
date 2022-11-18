@@ -5,7 +5,6 @@ void RNG()
     srand(time(NULL));
     int x = rand();
     int y = rand();
-    float score = 1.0;
     if (x > y)
     {
         x -= y;
@@ -19,12 +18,13 @@ void RNG()
     {
         x /= 10;
     }
-    printf("%d\n", x);
+    int score = 100;
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     printf("Tebakan: ");
     STARTSTDIN();
-    while (WordToInt(currentWord) != x)
+    while (WordToInt(currentWord) != x && score != 0)
     {
+        score--;
         if (WordToInt(currentWord) > x)
         {
             printf("Lebih kecil\n");
@@ -33,12 +33,11 @@ void RNG()
         {
             printf("Lebih besar\n");
         }
-        score++;
         printf("Tebakan: ");
         STARTSTDIN();
     }
     printf("\nYa, X adalah %d.\n", x);
-    printf("\nSkor anda adalah %.0f\n", (1 / score) * 100);
+    printf("\nSkor anda adalah %d\n", score);
 }
 /*
 int main()

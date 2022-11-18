@@ -1,12 +1,49 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include "prioqueue.h"
-#include "../boolean.h"
 
 void createQueuePQ(PrioQueue *pq)
 {
     IDX_HEADPQ(*pq) = IDX_UNDEFPQ;
     IDX_TAILPQ(*pq) = IDX_UNDEFPQ;
+}
+
+PQElType addQueue(int i)
+{
+    PQElType addOrder;
+    addOrder.foodId = i;
+    addOrder.cookTime = (rand() % 5) + 1;
+    addOrder.stayTime = (rand() % 5) + 1;
+    addOrder.price = (rand() % 5) * 5000 + 10000;
+    return addOrder;
+}
+
+void dequeueAt(PrioQueue *pq, int idx, PQElType *val)
+{
+    (*val).foodId = (*pq).buffer[idx].foodId;
+    (*val).cookTime = (*pq).buffer[idx].cookTime;
+    (*val).stayTime = (*pq).buffer[idx].stayTime;
+    (*val).price = (*pq).buffer[idx].price;
+    if (IDX_HEADPQ(*pq) == IDX_TAILPQ(*pq))
+    {
+        IDX_HEADPQ(*pq) = IDX_UNDEFPQ;
+        IDX_TAILPQ(*pq) = IDX_UNDEFPQ;
+    }
+    else
+    {
+        int i;
+        for (i = idx; i < IDX_TAILPQ(*pq); i++)
+        {
+            (*pq).buffer[i].foodId = (*pq).buffer[i + 1].foodId;
+            (*pq).buffer[i].cookTime = (*pq).buffer[i + 1].cookTime;
+            (*pq).buffer[i].stayTime = (*pq).buffer[i + 1].stayTime;
+            (*pq).buffer[i].price = (*pq).buffer[i + 1].price;
+        }
+        IDX_TAILPQ(*pq)
+        --;
+    }
 }
 
 boolean isEmptyPQ(PrioQueue pq)

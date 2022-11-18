@@ -42,9 +42,43 @@ void MAINMENU()
         }
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "LOAD"))
         {
-            Word x = accessIndexWord(currentWord, 2);
-            LOAD(wordToString(x, true), &arrGame);
-            cek = false;
+            if (currentWord.Length == 4)
+            {
+                printf("Masukkan nama file!\n");
+            }
+            else
+            {
+                Word x = accessIndexWord(currentWord, 2);
+                int k = 8;
+                int len = 8 + x.Length;
+                char *c = malloc((len) * sizeof(char));
+                char *dir = "../data/";
+                int i, j;
+                for (j = 0; j < k; j++)
+                {
+                    c[j] = dir[j];
+                }
+                for (i = 0; i < x.Length; i++)
+                {
+
+                    c[k] = x.TabWord[i];
+                    k++;
+                }
+                c[k] = '\0';
+
+                FILE *p;
+                p = fopen(c, "r");
+                if (p == NULL)
+                {
+                    printf("Masukkan file dengan benar\n");
+                }
+                else
+                {
+                    LOAD(wordToString(x, true), &arrGame);
+                    fclose(p);
+                    cek = false;
+                }
+            }
         }
         else
         {
@@ -98,10 +132,18 @@ void MAINMENU()
         {
             DELETEGAME(&arrGame, queueGame);
         }
-        else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME"))
+        else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {
-            Word x = accessIndexWord(currentWord, 2);
-            SKIPGAME(&queueGame, WordToInt(x));
+            if (currentWord.Length > 9)
+            {
+
+                Word x = accessIndexWord(currentWord, 2);
+                SKIPGAME(&queueGame, WordToInt(x));
+            }
+            else
+            {
+                printf("Masukkan command yang valid\n");
+            }
         }
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SAVE"))
         {

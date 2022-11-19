@@ -1,10 +1,11 @@
+
 #include <stdio.h>
 
-#include "listV2.h"
+#include "ListV2.h"
 
-List MakeList()
+ListV2 MakeListV2()
 {
-    List L;
+    ListV2 L;
     int i;
     for (i = 0; i < MaxEl; i++)
     {
@@ -14,17 +15,17 @@ List MakeList()
     return L;
 }
 
-boolean IsBlank(List L)
+boolean IsBlank(ListV2 L)
 {
     return (L.A[0].TabWord[0] == Mark);
 }
 
-ElType Get(List L, IdxType i)
+ElType GetV2(ListV2 L, IdxType i)
 {
     return (L.A[i]);
 }
 
-void Set(List *L, IdxType i, ElType v)
+void SetV2(ListV2 *L, IdxType i, ElType v)
 {
     int j; 
     for(j = 0; j < v.Length; j++)
@@ -34,7 +35,7 @@ void Set(List *L, IdxType i, ElType v)
     }
 }
 
-int Length(List L)
+int LengthV2(ListV2 L)
 {
     int i;
     int len = 0;
@@ -48,12 +49,12 @@ int Length(List L)
     return len;
 }
 
-IdxType FirstIdx(List L)
+IdxType FirstIdxV2(ListV2 L)
 {
     return 0;
 }
 
-IdxType LastIdx(List L)
+IdxType LastIdxV2(ListV2 L)
 {
     int i = MaxEl;
     while (L.A[i - 1].TabWord[0] == Mark)
@@ -63,17 +64,17 @@ IdxType LastIdx(List L)
     return i - 1;
 }
 /*
-boolean IsIdxValid(List L, IdxType i)
+boolean IsIdxValid(ListV2 L, IdxType i)
 {
     return (i >= 0 && i <= (MaxEl - 1));
 }
 
-boolean IsIdxEff(List L, IdxType i)
+boolean IsIdxEff(ListV2 L, IdxType i)
 {
     return (i >= 0 && i <= LastIdx(L));
 }
 
-boolean Search(List L, ElType X)
+boolean Search(ListV2 L, ElType X)
 {
     int i;
     boolean cond = false;
@@ -88,17 +89,17 @@ boolean Search(List L, ElType X)
 }
 
 */
-void InsertFirst(List *L, ElType X)
+void InsertFirstV2(ListV2 *L, ElType X)
 {
-    InsertAt(L, X, 0);
+    InsertAtV2(L, X, 0);
 }
 
-void InsertAt(List *L, ElType X, IdxType i)
+void InsertAtV2(ListV2 *L, ElType X, IdxType i)
 {
     int j, k;
-    if (Length(*L) < MaxEl)
+    if (LengthV2(*L) < MaxEl)
     {
-        for (j = Length(*L); j > i; j--)
+        for (j = LengthV2(*L); j > i; j--)
         {
             (*L).A[j] = (*L).A[j - 1];
         }
@@ -110,55 +111,66 @@ void InsertAt(List *L, ElType X, IdxType i)
     }
 }
 
-void InsertLast(List *L, ElType X)
+void InsertLastV2(ListV2 *L, ElType X)
 {
-    InsertAt(L, X, LastIdx(*L) + 1);
+    InsertAtV2(L, X, LastIdxV2(*L) + 1);
 }
 
-void DeleteFirst(List *L)
+void DeleteFirstV2(ListV2 *L)
 {
-    DeleteAt(L, 0);
+    DeleteAtV2(L, 0);
 }
 
-void DeleteAt(List *L, IdxType i)
+void DeleteAtV2(ListV2 *L, IdxType i)
 {
     int j;
-    for (j = i; j < Length(*L); j++)
+    for (j = i; j < LengthV2(*L); j++)
     {
         (*L).A[j] = (*L).A[j + 1];
     }
-    (*L).A[Length(*L)].TabWord[0] = Mark;
-    (*L).A[Length(*L)].Length = 0;
+    (*L).A[LengthV2(*L)].TabWord[0] = Mark;
+    (*L).A[LengthV2(*L)].Length = 0;
 }
 
-void DeleteLast(List *L)
+void DeleteLastV2(ListV2 *L)
 {
-    DeleteAt(L, LastIdx(*L));
+    DeleteAtV2(L, LastIdxV2(*L));
 }
 
-/*
-List Concat(List L1, List L2)
+void DeleteAll(ListV2 *L)
 {
-    List L3 = MakeList();
+    /* Kamus */
     int i;
-    for (i = 0; i < Length(L1); i++)
+    int lastIdx = LastIdxV2(*L);
+    /* Algoritma */
+    for(i = 0; i <= lastIdx; i++)
+    {
+        DeleteFirstV2(L);
+    }
+}
+/*
+ListV2 Concat(ListV2 L1, ListV2 L2)
+{
+    ListV2 L3 = MakeListV2();
+    int i;
+    for (i = 0; i < LengthV2(L1); i++)
     {
         L3.A[i] = L1.A[i];
     }
-    for (i = 0; i < Length(L2); i++)
+    for (i = 0; i < LengthV2(L2); i++)
     {
-        L3.A[i + Length(L1)] = L2.A[i];
+        L3.A[i + LengthV2(L1)] = L2.A[i];
     }
     return L3;
 }
 */
 
-void CetakList(List L, IdxType untilIdx)
+void CetakList(ListV2 L, IdxType untilIdx)
 {
     int i, j;
     for(i = 0; i < untilIdx; i++)
     {
-        if(i < Length(L))
+        if(i < LengthV2(L))
         {
             printf("%d. ", i+1);
             for(j = 0; j < L.A[i].Length; j++)

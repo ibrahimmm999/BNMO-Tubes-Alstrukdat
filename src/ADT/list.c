@@ -12,22 +12,23 @@ List MakeList()
     }
     return L;
 }
-/*
-boolean IsEmpty(List L)
+
+/* boolean IsEmpty(List L)
 {
     return (L.A[0] == Mark);
-}
-*/
+} */
 
-ElType Get(List L, IdxType i)
+
+EllType Get(List L, IdxType i)
 {
     return (L.A[i]);
 }
 
-void Set(List *L, IdxType i, ElType v)
+void Set(List *L, IdxType i, EllType v)
 {
     (*L).A[i] = v;
 }
+
 int Length(List L)
 {
     int i;
@@ -67,7 +68,7 @@ boolean IsIdxEff(List L, IdxType i)
     return (i >= 0 && i <= LastIdx(L));
 }
 
-boolean Search(List L, ElType X)
+boolean Search(List L, EllType X)
 {
     int i;
     boolean cond = false;
@@ -82,12 +83,12 @@ boolean Search(List L, ElType X)
 }
 
 */
-void InsertFirst(List *L, ElType X)
+void InsertFirst(List *L, EllType X)
 {
     InsertAt(L, X, 0);
 }
 
-void InsertAt(List *L, ElType X, IdxType i)
+void InsertAt(List *L, EllType X, IdxType i)
 {
     int j;
     if (Length(*L) < MaxEl)
@@ -100,7 +101,7 @@ void InsertAt(List *L, ElType X, IdxType i)
     }
 }
 
-void InsertLast(List *L, ElType X)
+void InsertLast(List *L, EllType X)
 {
     InsertAt(L, X, LastIdx(*L) + 1);
 }

@@ -112,6 +112,6 @@ void DeleteLast(List *L);
 /* Urutan elemen terisi dari L1, lalu L2 */
 /* Contoh : L1 : [1, 2]; L2 : [3, 4]; Mengembalikan [1, 2, 3, 4] */
 
-void CetakList(List L);
+void CetakList(List L, IdxType untilIdx);
 
 #endif

@@ -39,7 +39,7 @@ int main()
     Set(&testList, 1, Y);
 
     printf("testList setelah ditambah pada (idx == 0) dan (idx == 1)\n");
-    CetakList(testList);
+    CetakList(testList, Length(testList));
 
     if(IsBlank(testList) == 0)
     {
@@ -66,17 +66,24 @@ int main()
     InsertLast(&testList, last);
 
     printf("\ntestList setelah ditambah di awal, akhir, dan tengah (idx == 3):\n");
-    CetakList(testList);
+    CetakList(testList, Length(testList));
     printf("\nPanjang list: %d", Length(testList));
     printf("\nFirst idx: %d", FirstIdx(testList));
     printf("\nLast idx: %d", LastIdx(testList));
+
+    printf("\ntestList (3 baris): \n");
+    CetakList(testList, 3);
+
+    printf("\n");
+    printf("\ntestList ('10' baris):\n");
+    CetakList(testList, 10);
 
     DeleteFirst(&testList);
     DeleteLast(&testList);
     DeleteAt(&testList, 1);
 
     printf("\ntestList setelah dihapus di awal, akhir, dan tengah (idx == 1):\n");
-    CetakList(testList);
+    CetakList(testList, Length(testList));
     printf("\nPanjang list: %d", Length(testList));
     printf("\nFirst idx: %d", FirstIdx(testList));
     printf("\nLast idx: %d", LastIdx(testList));

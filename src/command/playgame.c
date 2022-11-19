@@ -10,7 +10,7 @@ void displayCurrentGame(Word CurrentGame)
     }
 }
 
-void PLAYGAME(Queue *queueGame)
+void PLAYGAME(Queue *queueGame, ListV2 *history)
 {
     printf("Berikut adalah daftar Game-mu\n");
     displayQueue(*queueGame);
@@ -27,22 +27,27 @@ void PLAYGAME(Queue *queueGame)
         if (IsWordEqual(currentGame, "RNG"))
         {
             RNG();
+            addToHistory(history, currentGame);
         }
         else if (IsWordEqual(currentGame, "Diner DASH"))
         {
             dinerDash();
+            addToHistory(history, currentGame);
         }
         else if (IsWordEqual(currentGame, "tictactoe"))
         {
             tictactoe();
+            addToHistory(history, currentGame);
         }
         else if (IsWordEqual(currentGame, "gbk"))
         {
             gbk();
+            addToHistory(history, currentGame);
         }
         else
         {
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));
+            addToHistory(history, currentGame);
         }
 
         dequeue(queueGame, &currentGame);

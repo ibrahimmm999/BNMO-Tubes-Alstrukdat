@@ -1,6 +1,6 @@
 #include "SKIPGAME.h"
 
-void SKIPGAME(Queue *queueGame, int numSkip)
+void SKIPGAME(Queue *queueGame, ListV2 *history, int numSkip)
 {
     /* Kamus */
     int i = 0;
@@ -12,7 +12,7 @@ void SKIPGAME(Queue *queueGame, int numSkip)
     { // Percabangan untuk memastikan parameter input numSkip valid (bukan nol dan bukan pula bilangan negatif)
         if (length(*queueGame) == 0)
         {
-            printf("Antrean Game kosng. Kamu belum/sudah tidak memiliki daftar Game yang ingin dimainkan dalam antrean. Tidak ada Game yang perlu dilewati. Mohon masukkan dahulu sejumlah Game dalam antrean melalui command QUEUE GAME\n");
+            printf("Antrean Game kosong. Kamu belum/sudah tidak memiliki daftar Game yang ingin dimainkan dalam antrean. Tidak ada Game yang perlu dilewati. Mohon masukkan dahulu sejumlah Game dalam antrean melalui command QUEUE GAME\n");
         }
         else if (length(*queueGame) > 0)
         {
@@ -40,22 +40,27 @@ void SKIPGAME(Queue *queueGame, int numSkip)
                 if (IsWordEqual(currentGame, "RNG"))
                 {
                     RNG();
+                    addToHistory(history, currentGame);
                 }
                 else if (IsWordEqual(currentGame, "Diner DASH"))
                 {
                     dinerDash();
+                    addToHistory(history, currentGame);
                 }
                 else if (IsWordEqual(currentGame, "tictactoe"))
                 {
                     tictactoe();
+                    addToHistory(history, currentGame);
                 }
                 else if (IsWordEqual(currentGame, "gbk"))
                 {
                     gbk();
+                    addToHistory(history, currentGame);
                 }
                 else
                 {
                     printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));
+                    addToHistory(history, currentGame);
                 }
             }
         }

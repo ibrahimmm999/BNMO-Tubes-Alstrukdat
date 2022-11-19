@@ -153,16 +153,19 @@ List Concat(List L1, List L2)
 }
 */
 
-void CetakList(List L)
+void CetakList(List L, IdxType untilIdx)
 {
     int i, j;
-    for(i = 0; i < Length(L); i++)
+    for(i = 0; i < untilIdx; i++)
     {
-        printf("%d. ", i+1);
-        for(j = 0; j < L.A[i].Length; j++)
+        if(i < Length(L))
         {
-            printf("%c", L.A[i].TabWord[j]);
-        }
-        printf("\n");
+            printf("%d. ", i+1);
+            for(j = 0; j < L.A[i].Length; j++)
+            {
+                printf("%c", L.A[i].TabWord[j]);
+            }
+            printf("\n");
+        }    
     }
 }

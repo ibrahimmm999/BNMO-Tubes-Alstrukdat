@@ -7,20 +7,6 @@
 boolean EndWord;
 Word currentWord;
 
-void IgnoreNewLine()
-{
-    while (currentChar == '\n')
-    {
-        ADV();
-    }
-}
-void IgnoreBlanks()
-{
-    while (currentChar == '\n')
-    {
-        ADV();
-    }
-}
 
 void STARTWORD(char savefile[])
 {
@@ -34,6 +20,20 @@ void STARTWORD(char savefile[])
     {
         EndWord = false;
         CopyWord();
+    }
+}
+void IgnoreNewLine()
+{
+    while (currentChar == '\n')
+    {
+        ADV();
+    }
+}
+void IgnoreBlanks()
+{
+    while (currentChar == '\n')
+    {
+        ADV();
     }
 }
 
@@ -61,53 +61,6 @@ void CopyWord()
     }
     currentWord.Length = i;
 }
-
-int WordToInt(Word word)
-{
-    int result = 0;
-    int i;
-    result += word.TabWord[0] - 48;
-    if (word.Length > 1)
-    {
-        for (i = 1; i < word.Length; i++)
-        {
-            result *= 10;
-            result += word.TabWord[i] - 48;
-        }
-    }
-
-    return result;
-}
-
-void STARTSTDIN()
-{
-    STARTINPUT();
-    if (currentChar == '\0')
-    {
-        EndWord = true;
-    }
-    else
-    {
-        EndWord = false;
-        CopyWord();
-    }
-}
-
-boolean IsWordEqual(Word k1, char *k2)
-{
-    boolean sama = true;
-    for (int i = 0; i < k1.Length; i++)
-    {
-        if (k2[i] != k1.TabWord[i])
-        {
-
-            sama = false;
-        }
-    }
-
-    return sama;
-}
-
 Word accessIndexWord(Word command, int indexWord)
 {
     /*Mengakses kata dalam kalimat
@@ -186,6 +139,52 @@ char *wordToString(Word w, boolean isLoadOrSave)
     }
 }
 
+int WordToInt(Word word)
+{
+    int result = 0;
+    int i;
+    result += word.TabWord[0] - 48;
+    if (word.Length > 1)
+    {
+        for (i = 1; i < word.Length; i++)
+        {
+            result *= 10;
+            result += word.TabWord[i] - 48;
+        }
+    }
+
+    return result;
+}
+
+void STARTSTDIN()
+{
+    STARTINPUT();
+    if (currentChar == '\0')
+    {
+        EndWord = true;
+    }
+    else
+    {
+        EndWord = false;
+        CopyWord();
+    }
+}
+
+boolean IsWordEqual(Word k1, char *k2)
+{
+    boolean sama = true;
+    for (int i = 0; i < k1.Length; i++)
+    {
+        if (k2[i] != k1.TabWord[i])
+        {
+
+            sama = false;
+        }
+    }
+
+    return sama;
+}
+
 Word stringToWord(char *string)
 {
     Word res;
@@ -197,4 +196,40 @@ Word stringToWord(char *string)
     }
     res.Length = i;
     return res;
+}
+
+int ScanNum(Word word){
+   // Menghasilkan integer dari sebuah kata
+   int result = 0;
+   int i = 0;
+   while( i < word.Length){
+      result *= 10;
+      result += (int) (word.TabWord[i] - '0');
+      i++;
+   }
+   return result;
+}
+
+boolean IsWordStr(Word word, char string[]){
+   // Menghasilkan true jika string pada kata sama dengan string yang dibandingkan
+   int i = 0;
+   if(word.Length == LengthStr(string)){
+      while(i < word.Length){
+         if(word.TabWord[i] != string[i]){
+            return false;
+         }
+      i++;
+      }
+      return true;
+   }
+   return false;
+}
+
+int LengthStr(char string[]){
+   // Menghitung panjang dari suatu string
+   int i = 0;
+   while (string[i] != '\0'){
+      i++;
+   }
+   return i;
 }

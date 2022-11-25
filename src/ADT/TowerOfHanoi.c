@@ -8,29 +8,8 @@
 # include "../ADT/mesinkata.h"
 
 
-// gcc stack.c mesinkata.c mesinkarakter.c toh.c boolean.c -o main
-void Move(Stack *s1, Stack *s2)
-{
-    if (IsEmpty(*s1)){
-        printf("Tidak bisa, kosong tiangnya, mas.. atau mba?");
-    }
-    else{
-        infotype x;
-        if(IsEmpty(*s2)){
-            Pop(s1,&x);
-            Push(s2,x);
-        }
-        else{
-            if(InfoTop(*s1) > InfoTop(*s2)){
-                printf("Invalid Command!\n");
-            }    
-            else{
-                Pop(s1,&x);
-                Push(s2,x);
-            }
-        }
-    }
-}
+// gcc stack.c mesinkata.c mesinkarakter.c towerofhanoia.c -o main
+
 
 boolean isWin(Stack s, int temp){
     int i;
@@ -57,6 +36,7 @@ boolean isWin(Stack s, int temp){
         return false;
     }
 }
+
 void Tower(int x){
     if(x==1){
         printf ("       o       \n"); 
@@ -153,28 +133,28 @@ void DisplayTower(Stack S, Stack S2, Stack S3){
     printf("    TOWER B\n");
     printf("\n");
 
-    for (int i = 5; i>0; i--){
-        if (i<length(S3)){
-            if (S3.T[i]==1){
-                infotype x=1;
-                Tower(x);
-            }
-            else if(S3.T[i]==2){
-                infotype x=2;
-                Tower(x);
-            }
-            else if(S3.T[i]==3){
-                infotype x=3;
-                Tower(x);
-            }
-            else if(S3.T[i]==4){
-                infotype x=4;
-                Tower(x);
-            }
-            else if(S3.T[i]==5){
-                infotype x=5;
-                Tower(x);
-            }
+    for (int i = 5; i>0; i--){ 
+        if (i<length(S3)){ 
+            if (S3.T[i]==1){ 
+                infotype x=1; 
+                Tower(x); 
+            } 
+            else if(S3.T[i]==2){ 
+                infotype x=2; 
+                Tower(x); 
+            } 
+            else if(S3.T[i]==3){ 
+                infotype x=3; 
+                Tower(x); 
+            } 
+            else if(S3.T[i]==4){ 
+                infotype x=4; 
+                Tower(x); 
+            } 
+            else if(S3.T[i]==5){ 
+                infotype x=5; 
+                Tower(x); 
+            } 
         }
         else {
             infotype x=0;
@@ -187,31 +167,116 @@ void DisplayTower(Stack S, Stack S2, Stack S3){
     printf("\n");
 }
 
+boolean MoveValid(Stack S1, Stack S2){
+    if (InfoTop(S2)==7){
+        return true;
+    }
+    else if(!IsEmpty(S2)){
+        return InfoTop(S2)>InfoTop(S1);
+    }
+    else{
+        return true;
+    }
+}
+void Pindah(Stack *A, Stack *B){
+    if(!IsEmpty(*A)){
+        if (MoveValid(*A,*B)){
+            infotype x;
+            Pop(A,&x);
+            Push(B,x);
+        }
+    }
+    else{
+        printf("INPUT INVALID\n");
+    }    
+}
 
 void TowerOfHanoi(){
-    Stack A, B, C;
-    infotype x = 6;
-    infotype y = 7;
+    Stack A,B,C;
+    int steps = 0;
     CreateEmpty(&A);
     CreateEmpty(&B);
     CreateEmpty(&C);
-    for(int i=6;i>0;i--){
-        Push(&A,x);
-        x--;
+    int disk;
+    printf("Main Menu:\n");
+    printf("1. Play Game\n");
+    printf("2. Exit\n");
+    printf("ENTER CHOICE : ");
+    int c;
+    STARTSTDIN();
+    while (IsWordStr(currentWord, "2")){
+        break;
     }
-    Push(&B,y);
-    Push(&C,y);
-    // printf("%d\n",InfoTop(B));
-    // Move(&A,&B);
-
-    // pindah(&A,&B,&C,'A','B');
-    // pindah(&A,&B,&C,'A','B');
-    // pindah(&A,&B,&C,'B','C');
-
-    DisplayTower(A,B,C);
+    while (IsWordStr(currentWord, "1")){ 
+        printf("Masukkan banyak disk yang ingin dimainkan: ");
+        ADVWORD();
+        disk = ScanNum(currentWord);
+        int i;
+        for(i=disk+1; i>0; i--){
+            Push(&A,i);
+        }
+        while(!isWin(C,disk)){
+            printf("%d\n", InfoTop(A));
+            printf("%d\n", InfoTop(B));
+            printf("%d\n", InfoTop(C));    
+            DisplayTower(A,B,C);
+            printf("Masukkan menara yang disknya ingin dipindahkan: ");
+            ADVWORD();
+            if (IsWordStr(currentWord,"A")){
+                printf("Dipindahkan ke Menara: ");
+                ADVWORD();
+                if (IsWordStr(currentWord,"A")){
+                    printf("Invalid Command!\n");
+                }
+                else if (IsWordStr(currentWord,"B")){
+                    Pindah(&A, &B);
+                }
+                else if (IsWordStr(currentWord,"C")){
+                    Pindah(&A, &C);
+                }
+                else{
+                    printf("Invalid Command!\n");
+                }
+            }
+            else if (IsWordStr(currentWord,"B")){
+                printf("Dipindahkan ke Menara: ");
+                ADVWORD();
+                if (IsWordStr(currentWord,"B")){
+                    printf("Invalid Command!\n");
+                }
+                else if (IsWordStr(currentWord,"A")){
+                    Pindah(&B, &A);
+                }
+                else if (IsWordStr(currentWord,"C")){
+                    Pindah(&B, &C);
+                }
+                else{
+                    printf("Invalid Command!\n");
+                }
+            }
+            else if (IsWordStr(currentWord,"C")){
+                printf("Dipindahkan ke Menara: ");
+                ADVWORD();
+                if (IsWordStr(currentWord,"C")){
+                    printf("Invalid Command!\n");
+                }
+                else if (IsWordStr(currentWord,"A")){
+                    Pindah(&C, &A);
+                }
+                else if (IsWordStr(currentWord,"B")){
+                    Pindah(&C, &B);
+                }
+                else{
+                    printf("Invalid Command!\n");
+                }
+            }
+            steps++;
+        }
+        printf("Selamat Anda Menyelesaikan Tower of Hanoi dengan %d langkah\n", steps);
+        break;
+    }
 }
 
-int main(){
-
-    TowerOfHanoi();
-}
+// int main(){
+//     TowerOfHanoi();
+// }

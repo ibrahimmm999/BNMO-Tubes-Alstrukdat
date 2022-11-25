@@ -8,7 +8,7 @@
 #include "../ADT/stack.h"
 #include "../games/TowerOfHanoi.h"
 
-// gcc stack.c mesinkata.c mesinkarakter.c towerofhanoia.c -o main
+// gcc stack.c mesinkata.c mesinkarakter.c TowerOfHanoi.c -o main
 
 
 boolean isWin(Stack s, int temp){

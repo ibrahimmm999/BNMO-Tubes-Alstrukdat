@@ -65,4 +65,13 @@ char *wordToString(Word w, boolean isLoadOrSave);
 
 Word stringToWord(char *string);
 
+
+int LengthStr(char string[]);
+//menghitung panjang stringchar
+
+int ScanNum(Word word);
+//merubah word jadi number
+
+boolean IsWordStr(Word word, char string[]);
+//apakah word string?
 #endif

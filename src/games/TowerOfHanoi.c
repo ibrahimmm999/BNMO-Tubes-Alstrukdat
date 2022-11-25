@@ -1,57 +1,70 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
-#include "../ADT/mesinkata.h"
-#include "../ADT/mesinkarakter.h"
-#include "../boolean.h"
-#include "../ADT/stack.h"
-#include "../games/TowerOfHanoi.h"
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <time.h> 
+#include <math.h> 
+#include "../ADT/mesinkata.h" 
+#include "../ADT/mesinkarakter.h" 
+#include "../boolean.h" 
+#include "../ADT/stack.h" 
+#include "../games/TowerOfHanoi.h" 
+  
 
-// gcc stack.c mesinkata.c mesinkarakter.c TowerOfHanoi.c -o main
-
-
+// gcc stack.c mesinkata.c mesinkarakter.c towerofhanoia.c -o main
+ 
+ 
 boolean isWin(Stack s, int temp){
-    int i;
-    Stack W;
-    CreateEmpty(&W);
-    for(i=temp; i>0; i--){
-        Push(&W,i);
-    }
-    boolean win = true;
-    infotype x;
-    while(!IsEmpty(W) && !IsEmpty(s))
-    {
-        if(InfoTop(s) != InfoTop(W))
-        {
-            win = false;
-        }
-        Pop(&s,&x);
-        Pop(&W,&x);
-    }
-    if(IsEmpty(s) && IsEmpty(W)){
-        return win;
-    }
-    else{
-        return false;
-    }
-}
-
-void Tower(int x){
-    if(x==1){
-        printf ("       o       \n"); 
-    }
+    int i; 
+    Stack W; 
+    CreateEmpty(&W); 
+    for(i=temp; i>0; i--){ 
+        Push(&W,i); 
+    } 
+    boolean win = true; 
+    infotype x; 
+    while(!IsEmpty(W) && !IsEmpty(s)) 
+    { 
+        if(InfoTop(s) != InfoTop(W)) 
+        { 
+            win = false; 
+        } 
+        Pop(&s,&x); 
+        Pop(&W,&x); 
+    } 
+    if(IsEmpty(s) && IsEmpty(W)){ 
+        return win; 
+    } 
+    else{ 
+        return false; 
+    }  
+}  
+ 
+void Tower(int x){  
+    if(x==1){ 
+        printf ("        o       \n"); 
+    } 
     else if (x==2){
-        printf ("      ooo      \n");      
+        printf ("       ooo      \n");      
     }
     else if (x==3){
-        printf ("     ooooo     \n");
+        printf ("      ooooo     \n");
     }
     else if (x==4){
-        printf ("    ooooooo    \n");
+        printf ("     ooooooo    \n");  
     }
-    else if(x==5){
-        printf ("   ooooooooo   \n");
+    else if(x==5){ 
+        printf ("    ooooooooo   \n");
+    }
+    else if(x==6){
+        printf ("   ooooooooooo   \n"); 
+    }
+    else if(x==7){ 
+        printf ("  ooooooooooooo   \n");
+    }
+    else if(x==8){
+        printf (" ooooooooooooooo   \n");
+    }
+    else if(x==9){
+        printf ("ooooooooooooooooo   \n");        
     }
     else{
         printf ("       |       \n");
@@ -59,14 +72,14 @@ void Tower(int x){
 }
 
 void Alas(){
-    printf ("---------------\n");
+    printf ("-----------------\n");
 }
 
-void DisplayTower(Stack S, Stack S2, Stack S3){
+void DisplayTower(Stack S, Stack S2, Stack S3,int disk){
     printf("\n");
     printf("\n");
 
-    for (int i = 5; i>=0; i--){
+    for (int i = disk; i>=0; i--){
         if (i<length(S)){
             if (S.T[i]==1){
                 infotype x=1;
@@ -88,6 +101,22 @@ void DisplayTower(Stack S, Stack S2, Stack S3){
                 infotype x=5;
                 Tower(x);
             }
+            else if(S.T[i]==6){
+                infotype x=6;
+                Tower(x);
+            }
+            else if(S.T[i]==7){
+                infotype x=7;
+                Tower(x);
+            }
+            else if(S.T[i]==8){
+                infotype x=8;
+                Tower(x);
+            }
+            else if(S.T[i]==9){
+                infotype x=9;
+                Tower(x);
+            }
         }
         else {
             infotype x=0;
@@ -100,7 +129,7 @@ void DisplayTower(Stack S, Stack S2, Stack S3){
     printf("    TOWER A\n");
     printf("\n");
 
-    for (int i = 5; i>=0; i--){
+    for (int i = disk; i>=0; i--){
         if (i<length(S2)){
             if (S2.T[i]==1){
                 infotype x=1;
@@ -122,6 +151,22 @@ void DisplayTower(Stack S, Stack S2, Stack S3){
                 infotype x=5;
                 Tower(x);
             }
+            else if(S2.T[i]==6){
+                infotype x=6;
+                Tower(x);
+            }
+            else if(S2.T[i]==7){
+                infotype x=7;
+                Tower(x);
+            }
+            else if(S2.T[i]==8){
+                infotype x=8;
+                Tower(x);
+            }
+            else if(S2.T[i]==9){
+                infotype x=9;
+                Tower(x);
+            }
         }
         else {
             infotype x=0;
@@ -130,18 +175,18 @@ void DisplayTower(Stack S, Stack S2, Stack S3){
     }
     Alas();
     printf("\n");
-    printf("    TOWER B\n");
-    printf("\n");
-
-    for (int i = 5; i>=0; i--){
-        if (i<length(S3)){
+    printf("    TOWER B\n"); 
+    printf("\n"); 
+  
+    for (int i = disk; i>=0; i--){
+        if (i<length(S3)){ 
             if (S3.T[i]==1){
                 infotype x=1;
-                Tower(x);
+                Tower(x); 
             }
             else if(S3.T[i]==2){
                 infotype x=2;
-                Tower(x);
+                Tower(x); 
             }
             else if(S3.T[i]==3){
                 infotype x=3;
@@ -149,10 +194,26 @@ void DisplayTower(Stack S, Stack S2, Stack S3){
             }
             else if(S3.T[i]==4){
                 infotype x=4;
-                Tower(x);
+                Tower(x); 
             }
             else if(S3.T[i]==5){
                 infotype x=5;
+                Tower(x);
+            }
+            else if(S3.T[i]==6){
+                infotype x=6;
+                Tower(x);
+            }
+            else if(S3.T[i]==7){
+                infotype x=7;
+                Tower(x);
+            }
+            else if(S3.T[i]==8){
+                infotype x=8;
+                Tower(x);
+            }
+            else if(S3.T[i]==9){
+                infotype x=9;
                 Tower(x);
             }
         }
@@ -223,7 +284,7 @@ void TowerOfHanoi(){
             printf("%d\n", InfoTop(A));
             printf("%d\n", InfoTop(B));
             printf("%d\n", InfoTop(C));    
-            DisplayTower(A,B,C);
+            DisplayTower(A,B,C, disk);
             printf("Masukkan menara yang disknya ingin dipindahkan: ");
             ADVWORD();
             if (IsWordStr(currentWord,"A")){
@@ -280,6 +341,7 @@ void TowerOfHanoi(){
         break;
     }
 }
+
 
 // int main(){
 //     TowerOfHanoi();

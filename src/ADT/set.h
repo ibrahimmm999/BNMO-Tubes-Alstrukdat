@@ -34,11 +34,11 @@ void CreateSet(Set *S);
 
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
-boolean IsEmpty(Set S);
+boolean IsSetEmpty(Set S);
 
 /* Mengirim true jika Set S penuh */
 /* Ciri Set penuh : count bernilai MaxEl */
-boolean IsFull(Set S);
+boolean IsSetFull(Set S);
 
 /* ********** Operator Dasar Set ********* */
 
@@ -55,6 +55,9 @@ void Insert(Set *S, infotype Elmt);
 void Delete(Set *S, infotype Elmt);
 
 /* Mengembalikan true jika Elmt adalah member dari S */
-boolean IsMember(Set S, infotype Elmt);
+boolean IsMemberSet(Set S, infotype Elmt);
+
+/* Menulis isi set secara menyamping*/
+void TulisIsiSet(Set S);
 
 #endif

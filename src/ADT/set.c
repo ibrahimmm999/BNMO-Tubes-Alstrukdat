@@ -4,16 +4,16 @@ void CreateSet(Set *S){
     (*S).Count = Nil;
 }
 
-boolean IsEmpty(Set S){
+boolean IsSetEmpty(Set S){
     return S.Count == Nil;
 }
 
-boolean IsFull(Set S){
+boolean IsSetFull(Set S){
     return S.Count == MaxEl;
 }
 
 void Insert(Set *S, infotype Elmt){
-    if (!IsMember(*S, Elmt)){
+    if (!IsMemberSet(*S, Elmt)){
         (*S).Elements[(*S).Count] = Elmt;
         (*S).Count++;
     }
@@ -21,7 +21,7 @@ void Insert(Set *S, infotype Elmt){
 
 void Delete(Set *S, infotype Elmt){
     int idx = 0;
-    if (IsMember(*S, Elmt)){
+    if (IsMemberSet(*S, Elmt)){
         for (int i=0;i<(*S).Count;i++){
             if (IsWordEqual((*S).Elements[i], Elmt.TabWord)){
                 idx = i;
@@ -34,11 +34,24 @@ void Delete(Set *S, infotype Elmt){
     }
 }
 
-boolean IsMember(Set S, infotype Elmt){
+boolean IsMemberSet(Set S, infotype Elmt){
     for (int i=0; i<S.Count; i++){
         if (IsWordEqual(S.Elements[i], Elmt.TabWord)){
             return true;
         }
     }
     return false;
+}
+
+void TulisIsiSet(Set S){
+    if (IsSetEmpty(S)){
+        printf("-\n");
+    } else {
+        for (int i=0;i<S.Count;i++){
+            for (int j=0;j<S.Elements[i].Length;j++){
+                printf("%c", S.Elements[i].TabWord[j]);
+            }
+        }
+        printf("\n");
+    }
 }

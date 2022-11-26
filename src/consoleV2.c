@@ -22,7 +22,7 @@ void MAINMENU()
 
 {
     Arr arrGame;
-    ListV2 history;
+    StackW history;
     Queue queueGame;
     CreateQueue(&queueGame);
     boolean cek = true;

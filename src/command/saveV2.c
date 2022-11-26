@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "saveV2.h"
 
-void save(char *file_name, Arr list_game, ListV2 history)
+void save(char *file_name, Arr list_game, StackW history)
 {
     /*
     Prosedur untuk menyimpan state game (jumlah dan daftar game yang dimiliki sistem)
@@ -11,6 +11,7 @@ void save(char *file_name, Arr list_game, ListV2 history)
     F.S. state game disimpan pada suatu file. Jika file sudah ada sebelumnya, make file akan dioverwrite
     */
     FILE *fp = NULL;
+    Word info;
     fp = fopen(file_name, "w+");
 
     if (fp != NULL)
@@ -41,16 +42,18 @@ void save(char *file_name, Arr list_game, ListV2 history)
             }
         }
 
-        lenhis = LengthV2(history);
+        lenhis = lengthStack(history);
         fprintf(fp, "\n%d\n", lenhis);
         for (i = 0; i < lenhis; i++)
         {
-            wordlen = history.A[i].Length;
+            wordlen = history.T[history.TOP].Length;
             // wordlen = GetElmt(list_game, i).Length;
             char *temp = malloc((wordlen) * sizeof(char));
+            PopStack(&history, &info);
             for (j = 0; j < wordlen; j++)
             {
-                temp[j] = GetV2(history, i).TabWord[j];
+                temp[j] = info.TabWord[j];
+                // temp[j] = GetV2(history, i).TabWord[j];
                 // temp[j] = GetElmt(list_game, i).TabWord[j];
             }
 

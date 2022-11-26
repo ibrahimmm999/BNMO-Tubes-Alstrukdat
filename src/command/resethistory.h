@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "../boolean.h"
 #include "../ADT/mesinkata.h"
-#include "../ADT/listV2.h"
+#include "../ADT/stackV2.h"
 #include "history.h"
 
 #ifndef _RESET_HISTORY_
 #define _RESET_HISTORY_
 
-void RESETHISTORY(ListV2 *history);
+void RESETHISTORY(StackW *history);
 
 #endif

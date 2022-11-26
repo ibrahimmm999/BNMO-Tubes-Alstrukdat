@@ -1,6 +1,6 @@
 #include "SKIPGAME.h"
 
-void SKIPGAME(Queue *queueGame, ListV2 *history, int numSkip)
+void SKIPGAME(Queue *queueGame, StackW *history, int numSkip)
 {
     /* Kamus */
     int i = 0;

@@ -10,7 +10,7 @@ void displayCurrentGame(Word CurrentGame)
     }
 }
 
-void PLAYGAME(Queue *queueGame, ListV2 *history)
+void PLAYGAME(Queue *queueGame, StackW *history)
 {
     printf("Berikut adalah daftar Game-mu\n");
     displayQueue(*queueGame);
@@ -48,7 +48,7 @@ void PLAYGAME(Queue *queueGame, ListV2 *history)
         {
             TowerOfHanoi();
             addToHistory(history, currentGame);
-        }        
+        }       
         else
         {
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));

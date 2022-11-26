@@ -1,15 +1,17 @@
 #include "start.h"
 #include "loadV2.h"
 
-void LOAD(char *savefile, Arr *arrgame, ListV2 *history)
+void LOAD(char *savefile, Arr *arrgame, StackW *history)
 {
     MakeEmpty(arrgame);
-    *history = MakeListV2();
+    CreateEmptyStack(history);
     STARTWORD(savefile);
 
     int i;
     int lenOfArr = currentWord.TabWord[0] - 48;
-    int lenOfList;
+    int lenOfStack;
+    StackW histemp;
+    CreateEmptyStack(&histemp);
 
     ADVWORD();
     int temp = 0;
@@ -20,14 +22,16 @@ void LOAD(char *savefile, Arr *arrgame, ListV2 *history)
         ADVWORD();
     }
 
-    lenOfList = currentWord.TabWord[0] - 48;
+    lenOfStack = currentWord.TabWord[0] - 48;
     ADVWORD();
-    for (i = 0; i < lenOfList; i++)
+    for (i = 0; i < lenOfStack; i++)
     {
         // printf("%s\n", currentWord.TabWord);
-        InsertLastV2(history, currentWord);
+        PushStack(&histemp, currentWord);
         ADVWORD();
     }
+
+    ReverseStack(histemp, history);
 
     printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }

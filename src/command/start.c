@@ -1,9 +1,9 @@
 #include "start.h"
 
-void STARTGAME(Arr *arrgame, ListV2 *history)
+void STARTGAME(Arr *arrgame, StackW *history)
 {
     MakeEmpty(arrgame);
-    *history = MakeListV2();
+    CreateEmptyStack(history);
     STARTWORD("../data/config.txt");
 
     int i;

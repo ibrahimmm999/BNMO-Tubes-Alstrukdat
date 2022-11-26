@@ -44,6 +44,11 @@ void PLAYGAME(Queue *queueGame, ListV2 *history)
             gbk();
             addToHistory(history, currentGame);
         }
+        else if (IsWordEqual(currentGame, "Tower of Hanoi"))
+        {
+            TowerOfHanoi();
+            addToHistory(history, currentGame);
+        }        
         else
         {
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));

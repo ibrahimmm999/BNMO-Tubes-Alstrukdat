@@ -7,6 +7,7 @@
         "deletegame.h": "c",
         "array.h": "c",
         "stdio.h": "c",
-        "guntingbatuk.h": "c"
+        "guntingbatuk.h": "c",
+        "history.h": "c"
     }
 }

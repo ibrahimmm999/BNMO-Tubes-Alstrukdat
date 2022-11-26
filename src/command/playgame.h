@@ -1,11 +1,13 @@
 #include <stdio.h>
 
-#include "../ADT/queueV2.h"
-#include "../games/rng.h"
-#include "../games/tictactoe.h"
-#include "../games/dinerdash.h"
-#include "../games/guntingbatuk.h"
-#include "../ADT/listV2.h"
+#include "../ADT/queueV2.h" 
+#include "../games/rng.h" 
+#include "../games/tictactoe.h" 
+#include "../games/dinerdash.h" 
+#include "../games/guntingbatuk.h" 
+#include "../ADT/listV2.h" 
+#include "../games/TowerOfHanoi.h"
+
 #include "history.h"
 
 #ifndef PLAYGAME_H

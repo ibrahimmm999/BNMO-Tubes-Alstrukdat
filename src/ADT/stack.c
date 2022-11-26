@@ -42,7 +42,7 @@ void Pop(Stack * S, infotype* X){
     Top(*S) = Top(*S) - 1;
 }
 
-int length(Stack S){
+int lengthStack(Stack S){
     if (!IsEmpty(S)){
         return Top(S)+1;
     }

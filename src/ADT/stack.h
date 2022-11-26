@@ -56,7 +56,7 @@ void Pop(Stack * S, infotype* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
-int length (Stack S);
+int lengthStack (Stack S);
 /* Ngitung panjang */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. Mengembalikan panjang */

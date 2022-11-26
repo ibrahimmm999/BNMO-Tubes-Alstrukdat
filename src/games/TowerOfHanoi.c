@@ -80,7 +80,7 @@ void DisplayTower(Stack S, Stack S2, Stack S3,int disk){
     printf("\n");
 
     for (int i = disk; i>=0; i--){
-        if (i<length(S)){
+        if (i<lengthStack(S)){
             if (S.T[i]==1){
                 infotype x=1;
                 Tower(x);
@@ -130,7 +130,7 @@ void DisplayTower(Stack S, Stack S2, Stack S3,int disk){
     printf("\n");
 
     for (int i = disk; i>=0; i--){
-        if (i<length(S2)){
+        if (i<lengthStack(S2)){
             if (S2.T[i]==1){
                 infotype x=1;
                 Tower(x);
@@ -179,7 +179,7 @@ void DisplayTower(Stack S, Stack S2, Stack S3,int disk){
     printf("\n"); 
   
     for (int i = disk; i>=0; i--){
-        if (i<length(S3)){ 
+        if (i<lengthStack(S3)){ 
             if (S3.T[i]==1){
                 infotype x=1;
                 Tower(x); 

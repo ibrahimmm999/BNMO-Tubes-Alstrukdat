@@ -44,6 +44,7 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
             if (IsMemberSet(*guessedAlphabet, currentWord)){
                 printf("Kamu sudah pernah menebak huruf %c\n\n", currentWord.TabWord[0]);
                 (*chance)--;
+                hangmanPics(*chance);
             } else {
                 charUpper(&currentWord);
                 if (!IsAlphabetExist(currentWord.TabWord[0], currentGuess)){
@@ -51,6 +52,7 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
                     charLower(&currentWord);
                     Insert(guessedAlphabet, currentWord);
                     (*chance)--;
+                    hangmanPics(*chance);
                 } else {
                     printf("Selamat, tebakan kamu benar!\n\n");
                     charLower(&currentWord);
@@ -68,6 +70,7 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
         } else {
             printf("Anda hanya bisa menebak satu huruf per tebakan\n\n");
             (*chance)--;
+            hangmanPics(*chance);
         }
     }
     if (win){
@@ -152,10 +155,96 @@ void displayHangmanTextArt(){
     printf("\n\n");
 }
 
-int main(){
-    // Arr word;
-    // generateWordList(&word);
-    // TulisIsi(word);
-    hangman();
-    return 0;
+void hangmanPics(int chance){
+    if (chance == 9){
+        printf("\n\n\n\n\n\n");
+        printf("=========\n");
+    } else if (chance == 8){
+        printf("\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 7){
+        printf("   +---+\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 6){
+        printf("   +---+\n");
+        printf("   |   |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 5){
+        printf("   +---+\n");
+        printf("   |   |\n");
+        printf("   O   |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 4){
+        printf("   +---+\n");
+        printf("   |   |\n");
+        printf("   O   |\n");
+        printf("   |   |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 3){
+        printf("   +---+\n");
+        printf("   |   |\n");
+        printf("   O   |\n");
+        printf("  /|   |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 2){
+        printf("   +---+\n");
+        printf("   |   |\n");
+        printf("   O   |\n");
+        printf("  /|\\  |\n");
+        printf("       |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 1){
+        printf("   +---+\n");
+        printf("   |   |\n");
+        printf("   O   |\n");
+        printf("  /|\\  |\n");
+        printf("  /    |\n");
+        printf("       |\n");
+        printf("=========\n");
+    } else if (chance == 0){
+        printf("   +---+\n");
+        printf("   |   |\n");
+        printf("   O   |\n");
+        printf("  /|\\  |\n");
+        printf("  / \\  |\n");
+        printf("       |\n");
+        printf("=========\n");
+        printf("\n");
+        printf("                      _                \n");
+        printf("                     | |               \n");
+        printf("  _   _  ___  _   _  | | ___  ___  ___ \n");
+        printf(" | | | |/ _ \\| | | | | |/ _ \\/ __|/ _ \\\n");
+        printf(" | |_| | (_) | |_| | | | (_) \\__ \\  __/\n");
+        printf("  \\__, |\\___/ \\__,_| |_|\\___/|___/\\___|\n");
+        printf("   __/ |                               \n");
+        printf("  |___/                                \n");
+    }
 }
+
+// gcc hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman
+// int main(){
+//     hangman();
+//     return 0;
+// }

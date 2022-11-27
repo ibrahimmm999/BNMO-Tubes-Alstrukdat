@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "../ADT/array.h"
 
+#define MaxScore 
+
 /* Fungsi utama untuk memainkan hangman */
 void hangman();
 
@@ -37,5 +39,8 @@ void generateWordList(Arr *word);
 
 /* Mencetak banner hangman */
 void displayHangmanTextArt();
+
+/* Mencetak gambar kondisi hangman */
+void hangmanPics(int chance);
 
 #endif

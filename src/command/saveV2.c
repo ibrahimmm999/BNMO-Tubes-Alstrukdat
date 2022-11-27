@@ -65,11 +65,11 @@ void save(char *file_name, Arr list_game, StackW history)
         }
         
         // ------------ scoreboard ------------
-        SaveSB(SBrng);
-        SaveSB(SBdd);
-        SaveSB(SBhm);
-        SaveSB(SBtoh);
-        SaveSB(SBsom);
+        SaveSB(fp, SBrng);
+        SaveSB(fp, SBdd);
+        SaveSB(fp, SBhm);
+        SaveSB(fp, SBtoh);
+        SaveSB(fp, SBsom);
 
         printf("File %s.txt berhasil disimpan\n", file_name);
         fclose(fp);
@@ -80,9 +80,9 @@ void save(char *file_name, Arr list_game, StackW history)
     }
 }
 
-void SaveSB(Map SBGame) {
+void SaveSB(FILE *fp, Map SBGame) {
     int i;
-    fprintf("fp, %d\n", SBGame.Count);
+    fprintf(fp, "%d\n", SBGame.Count);
     for (i = 0; i < SBGame.Count; i++) {
         fprintf(fp, "%s %d\n", VName(SBGame, i), VScore(SBGame, i));
     }

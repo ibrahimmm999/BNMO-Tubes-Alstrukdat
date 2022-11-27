@@ -15,6 +15,6 @@ void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, M
 /*
 Prosedur simpan scoreboard ke dalam file
 */
-void SaveSB(Map SBGame);
+void SaveSB(FILE *fp, Map SBGame);
 
 #endif

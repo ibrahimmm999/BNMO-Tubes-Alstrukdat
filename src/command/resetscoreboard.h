@@ -1,5 +1,5 @@
-#include "mapV2.h"
-#include "mesinkata.h"
+#include "../ADT/mapV2.h"
+#include "../ADT/mesinkata.h"
 
 #ifndef RESETSCOREBOARD_H
 #define RESETSCOREBOARD_H

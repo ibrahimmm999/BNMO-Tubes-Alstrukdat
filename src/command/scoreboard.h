@@ -1,5 +1,5 @@
-#include "mapV2.h"
-#include "mesinkata.h"
+#include "../ADT/mapV2.h"
+#include "../ADT/mesinkata.h"
 #include <stdio.h>
 
 #ifndef SCOREBOARD_H

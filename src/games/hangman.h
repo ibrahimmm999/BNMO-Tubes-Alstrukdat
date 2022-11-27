@@ -11,6 +11,12 @@ void hangman();
 /* Memainkan satu ronde hangman*/
 void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet);
 
+/* Mengubah huruf kecil menjadi huruf kapital */
+void charUpper(Word *w);
+
+/* Mengubah huruf kapital menjadi huruf kecil */
+void charLower(Word *w);
+
 /* Mengecek apakah semua huruf dalam kata sudah tertebak.
    Mengembalikan true jika semua huruf sudah tertebak*/
 boolean IsRoundFinished(char* guessTemp, Word currentGuess);

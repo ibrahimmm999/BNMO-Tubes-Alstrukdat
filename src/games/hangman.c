@@ -40,16 +40,20 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
         STARTSTDIN();
 
         if (currentWord.Length == 1){
+            charLower(&currentWord);
             if (IsMemberSet(*guessedAlphabet, currentWord)){
                 printf("Kamu sudah pernah menebak huruf %c\n\n", currentWord.TabWord[0]);
                 (*chance)--;
             } else {
+                charUpper(&currentWord);
                 if (!IsAlphabetExist(currentWord.TabWord[0], currentGuess)){
                     printf("Tebakan kamu salah!\n\n");
+                    charLower(&currentWord);
                     Insert(guessedAlphabet, currentWord);
                     (*chance)--;
                 } else {
                     printf("Selamat, tebakan kamu benar!\n\n");
+                    charLower(&currentWord);
                     Insert(guessedAlphabet, currentWord);
                     underscoreToAlphabet(currentWord.TabWord[0], guessTemp, currentGuess);
                     if (IsRoundFinished(guessTemp, currentGuess)){
@@ -71,6 +75,18 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
     }
     if (*chance == 0){
         printf("Kesempatan habis!\n");
+    }
+}
+
+void charUpper(Word *w){
+    if ((*w).TabWord[0] >= 'a' && (*w).TabWord[0] <= 'z'){
+        (*w).TabWord[0] -= 32;
+    }
+}
+
+void charLower(Word *w){
+    if ((*w).TabWord[0] >= 'A' && (*w).TabWord[0] <= 'Z'){
+        (*w).TabWord[0] += 32;
     }
 }
 

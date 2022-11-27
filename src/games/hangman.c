@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 void hangman(){
+    displayHangmanTextArt();
     Set guessedAlphabet;
     Arr guessWords;
     generateWordList(&guessWords);
@@ -51,7 +52,7 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
                     printf("Selamat, tebakan kamu benar!\n\n");
                     Insert(guessedAlphabet, currentWord);
                     underscoreToAlphabet(currentWord.TabWord[0], guessTemp, currentGuess);
-                    if (!IsRoundFinished(guessTemp, currentGuess)){
+                    if (IsRoundFinished(guessTemp, currentGuess)){
                         win = true;
                     } else {
                         win = false;
@@ -76,23 +77,25 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
 boolean IsRoundFinished(char* guessTemp, Word currentGuess){
     for (int i=0; i<currentGuess.Length; i++){
         if ('_' == guessTemp[i]){
-            return true;
+            return false;
         }
     }
-    return false;
+    return true;
 }
 
 void underscoreToAlphabet(char c, char *guessTemp, Word currentGuess){
     for (int i=0; i<currentGuess.Length; i++){
         if (c == currentGuess.TabWord[i]){
             guessTemp[i] = c;
+        } else if (c-32 == currentGuess.TabWord[i]){
+            guessTemp[i] = c - 32;
         }
     }
 }
 
 boolean IsAlphabetExist(char c, Word currentGuess){
     for (int i=0; i<currentGuess.Length;i++){
-        if (c == currentGuess.TabWord[i]){
+        if ((c == currentGuess.TabWord[i]) || (c-32 == currentGuess.TabWord[i])){
             return true;
         }
     }
@@ -119,6 +122,18 @@ void generateWordList(Arr *word){
         SetEl(word, i, currentWord);
     }
     fclose(p);
+}
+
+void displayHangmanTextArt(){
+    printf(" _                                             \n");
+    printf("| |                                            \n");
+    printf("| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n");
+    printf("| '_ \\ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ \n");
+    printf("| | | | (_| | | | | (_| | | | | | | (_| | | | |\n");
+    printf("|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|\n");
+    printf("                    __/ |                      \n");
+    printf("                   |___/   \n");
+    printf("\n\n");
 }
 
 int main(){

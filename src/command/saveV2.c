@@ -5,11 +5,6 @@
 
 void save(char *file_name, Arr list_game, StackW history)
 {
-    /*
-    Prosedur untuk menyimpan state game (jumlah dan daftar game yang dimiliki sistem)
-    I.S. game belum disimpan
-    F.S. state game disimpan pada suatu file. Jika file sudah ada sebelumnya, make file akan dioverwrite
-    */
     FILE *fp = NULL;
     Word info;
     fp = fopen(file_name, "w+");
@@ -18,7 +13,8 @@ void save(char *file_name, Arr list_game, StackW history)
     {
         int i, j, len, lenhis, wordlen;
         char *temp;
-
+        
+        // ------------ list game ------------
         len = NbElmt(list_game);
         fprintf(fp, "%d\n", len);
         for (i = 0; i < len; i++)
@@ -37,11 +33,11 @@ void save(char *file_name, Arr list_game, StackW history)
             }
             else
             {
-
                 fprintf(fp, "%s\n", temp);
             }
         }
-
+        
+        // ------------ history ------------
         lenhis = lengthStack(history);
         fprintf(fp, "\n%d\n", lenhis);
         for (i = 0; i < lenhis; i++)
@@ -64,10 +60,16 @@ void save(char *file_name, Arr list_game, StackW history)
             }
             else
             {
-
                 fprintf(fp, "%s\n", temp);
             }
         }
+        
+        // ------------ scoreboard ------------
+        SaveSB(SBrng);
+        SaveSB(SBdd);
+        SaveSB(SBhm);
+        SaveSB(SBtoh);
+        SaveSB(SBsom);
 
         printf("File %s.txt berhasil disimpan\n", file_name);
         fclose(fp);
@@ -75,5 +77,13 @@ void save(char *file_name, Arr list_game, StackW history)
     else
     {
         printf("File gagal disimpan.\n");
+    }
+}
+
+void SaveSB(Map SBGame) {
+    int i;
+    fprintf("fp, %d\n", SBGame.Count);
+    for (i = 0; i < SBGame.Count; i++) {
+        fprintf(fp, "%s %d\n", VName(SBGame, i), VScore(SBGame, i));
     }
 }

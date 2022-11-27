@@ -65,6 +65,8 @@ IdxType LastIdxV2(ListV2 L);
 /* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen terakhir */
 
+boolean IsInList(ListV2 L, Word X);
+
 /* ********** Test Indeks yang valid ********** */
 // boolean IsIdxValid(List L, IdxType i);
 /* Prekondisi : i sembarang */
@@ -81,6 +83,8 @@ IdxType LastIdxV2(ListV2 L);
 /* Prekondisi : X sembarang */
 /* Mengirimkan true jika terdapat elemen X di dalam list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
+
+int GetIdxList(ListV2 L, ElType X);
 
 void InsertFirstV2(ListV2 *L, ElType X);
 /* I.S. L terdefinisi, mungkin kosong. */

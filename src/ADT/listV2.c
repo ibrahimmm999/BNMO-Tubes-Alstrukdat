@@ -28,7 +28,9 @@ ElType GetV2(ListV2 L, IdxType i)
 void SetV2(ListV2 *L, IdxType i, ElType v)
 {
     int j; 
-    for(j = 0; j < v.Length; j++)
+    int len = v.Length;
+    (*L).A[i].Length = 0;
+    for(j = 0; j < len; j++)
     {
         (*L).A[i].TabWord[j] = v.TabWord[j];
         (*L).A[i].Length++;
@@ -63,6 +65,32 @@ IdxType LastIdxV2(ListV2 L)
     }
     return i - 1;
 }
+
+boolean IsInList(ListV2 L, Word X)
+{
+    int i;
+    char arrx[100];
+    boolean found = false;
+    for(i = 0; i < X.Length; i++)
+    {
+        arrx[i] = X.TabWord[i];
+
+    }
+    i = FirstIdxV2(L);
+    while(i <= LastIdxV2(L) && found == false)
+    {
+
+        if(IsWordEqual(L.A[i], arrx))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return found;
+}
 /*
 boolean IsIdxValid(ListV2 L, IdxType i)
 {
@@ -89,6 +117,40 @@ boolean Search(ListV2 L, ElType X)
 }
 
 */
+
+int GetIdxList(ListV2 L, ElType X)
+{
+    int i;
+    char arrx[100];
+    boolean found = false;
+    for(i = 0; i < X.Length; i++)
+    {
+        arrx[i] = X.TabWord[i];
+
+    }
+    i = FirstIdxV2(L);
+    while(i <= LastIdxV2(L) && found == false)
+    {
+
+        if(IsWordEqual(L.A[i], arrx))
+        {
+            found = true;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    if(found = true)
+    {
+        return i;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
 void InsertFirstV2(ListV2 *L, ElType X)
 {
     InsertAtV2(L, X, 0);
@@ -103,6 +165,7 @@ void InsertAtV2(ListV2 *L, ElType X, IdxType i)
         {
             (*L).A[j] = (*L).A[j - 1];
         }
+        (*L).A[i].Length = 0;
         for (k = 0; k < X.Length; k++)
         {
             (*L).A[i].TabWord[k] = X.TabWord[k];

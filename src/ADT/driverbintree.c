@@ -1,79 +1,88 @@
-#include <stdio.h>
 #include "bintree.h"
 
-int main() {
-    BinTree Pohon, Left, Right;
-    Word Akar, Ga, Hmm, Yes;
+int main()
+{
+    BinTree Pohon;
+    BinTree Left;
+    BinTree Right;
 
-    Akar.TabWord[0] = 'Y';
-    Akar.TabWord[1] = 'a';
-    Akar.Length = 2;
+    Word satu, dua, tiga, empat, lima;
 
-    Ga.TabWord[0] = 'G';
-    Ga.TabWord[1] = 'a';
-    Ga.Length = 2;
+    satu.Length = 4;
+    dua.Length = 3;
+    tiga.Length = 4;
+    empat.Length = 5;
+    lima.Length = 4;
 
-    Hmm.TabWord[0] = 'H';
-    Hmm.TabWord[1] = 'm';
-    Hmm.TabWord[2] = 'm';
-    Hmm.Length = 3;
+    satu.TabWord[0] = 'S';
+    satu.TabWord[1] = 'a';
+    satu.TabWord[2] = 't';
+    satu.TabWord[3] = 'u';
 
-    Yes.TabWord[0] = 'Y';
-    Yes.TabWord[1] = 'e';
-    Yes.TabWord[2] = 's';
-    Yes.Length = 3;
+    dua.TabWord[0] = 'D';
+    dua.TabWord[1] = 'u';
+    dua.TabWord[2] = 'a';
 
-    Pohon = Nil;
-    PrintPreorder(Pohon);
-    Left = AlokNode(Ga);
-    Right = AlokNode(Hmm);
-    Pohon = Tree(Akar, Left, Right);
+    tiga.TabWord[0] = 'T';
+    tiga.TabWord[1] = 'i';
+    tiga.TabWord[2] = 'g';
+    tiga.TabWord[3] = 'a';
 
-    PrintPreorder(Pohon);
+    empat.TabWord[0] = 'E';
+    empat.TabWord[1] = 'm';
+    empat.TabWord[2] = 'p';
+    empat.TabWord[3] = 'a';
+    empat.TabWord[4] = 't';
 
-    if(IsTreeEmpty(Pohon))
-    {
-        printf("\nPohon kosong.\n");
-    } else {
-        printf("\nPohon tidak kosong.\n");
-    }
+    lima.TabWord[0] = 'L';
+    lima.TabWord[1] = 'i';
+    lima.TabWord[2] = 'm';
+    lima.TabWord[3] = 'a';
 
-    AddDaun(&Pohon, Hmm, Yes, false);
-    PrintPreorder(Pohon);
-
-    if(IsTreeOneElmt(Pohon))
-    {
-        printf("\nPohon hanya berisi satu elemen.\n");
-    }
-    else
-    {
-        printf("\nPohon berisi lebih dari satu elemen.\n");
-    }
-
-    if(IsBiner)
-    {
-        printf("\nPohon merupakan pohon biner.\n");
-    }
+    Pohon = AlokNode(satu);
+    Left(Pohon) = AlokNode(dua);
+    Left(Left(Pohon)) = AlokNode(tiga);
     
-   /* if(SearchTree(Pohon, Ga))
-    {
-        printf("Ada elemen dengan info 'Ga' dalam pohon.\n");
-    } */
-
-    printf("Banyak elemen Pohon: %d\n", NbElmt(Pohon));
-    printf("Banyak daun Pohon: %d\n", NbDaun(Pohon));
-   // printf("Level node bernilai 2: %d\n", Level(Pohon, Yes));
-    printf("Tinggi Pohon: %d\n", Tinggi(Pohon));
-
-    // AddDaun(&Pohon, 2, 5, false);
-    // AddDaun(&Pohon, 8, 10, true);
-    /* AddDaun(&Pohon, 8, 5, false);
+    printf("Pohon:");
     PrintPreorder(Pohon);
+    printf("\n");
+    printf("NbDaun: %d\n", NbDaun(Pohon));
+    printf("Level elemen berinfo 'Tiga': %d\n", Level(Pohon, tiga));
+    printf("Tinggi: %d\n", Tinggi(Pohon));
+    printf("Pohon kosong? %d\n", IsTreeEmpty(Pohon)); //0
+    printf("Pohon berelemen satu? %d\n", IsTreeOneElmt(Pohon)); //0
+    printf("Ada elemen '20' di pohon? %d\n", SearchTree(Pohon, dua)); // 1
+    printf("Ada elemen 'Lima' di pohon? %d\n", SearchTree(Pohon, lima)); // 0
+    
+    Right(Pohon) = AlokNode(empat);
+    Right(Left(Pohon)) = AlokNode(lima);
+    
+    PrintPreorder(Pohon);
+    printf("\nNbDaun: %d\n", NbDaun(Pohon));
 
-    // AddDaun(&Pohon, 10, 5, false);
-    DelDaun(&Pohon, 10);
-    PrintPreorder(Pohon); */
+    DelDaunTerkiri(&Pohon, &dua);
+    PrintPreorder(Pohon);
+    printf("\nNbDaun: %d\n", NbDaun(Pohon));
 
-    return 0;
-
-}
+    DelDaun(&Pohon, satu);
+    DelDaun(&Pohon, satu);
+    DelDaun(&Pohon, satu);
+    PrintPreorder(Pohon);
+    printf("\n");
+    AddDaunTerkiri(&Pohon, satu);
+    PrintPreorder(Pohon);
+    printf("\n");
+    AddDaunTerkiri(&Pohon, tiga);
+    AddDaunTerkiri(&Pohon, empat);
+    AddDaunTerkiri(&Pohon, tiga);
+    AddDaunTerkiri(&Pohon, tiga);
+    AddDaunTerkiri(&Pohon, satu);
+    AddDaunTerkiri(&Pohon, tiga);
+    AddDaunTerkiri(&Pohon, empat);
+    AddDaunTerkiri(&Pohon, tiga);
+    AddDaunTerkiri(&Pohon, tiga);
+    PrintPreorder(Pohon);
+    printf("\nIs it skew left? %d\n", IsSkewLeft(Pohon)); //1
+    // PrintPreorder(Pohon);
+    
+}   

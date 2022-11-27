@@ -70,7 +70,11 @@ int main()
     CetakList(testList, LengthV2(testList));
     printf("\nPanjang list: %d", LengthV2(testList));
     printf("\nFirst idx: %d", FirstIdxV2(testList));
-    printf("\nLast idx: %d", LastIdxV2(testList));
+    printf("\nLast idx: %d\n", LastIdxV2(testList));
+    int idxFound = GetIdxList(testList, Y);
+    printf("Idx 'Ga' = %d\n", idxFound);
+    idxFound = GetIdxList(testList, last);
+    printf("Idx 'last' = %d\n", idxFound);
 
     printf("\ntestList (3 baris): \n");
     CetakList(testList, 3);

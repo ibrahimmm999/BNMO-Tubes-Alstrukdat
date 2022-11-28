@@ -1,4 +1,5 @@
 IF2111 Algoritma dan Struktur Data
+
 Tugas Besar 1 dan 2
 
 Dibuat oleh kelompok 7 K02 dengan anggota:
@@ -20,6 +21,7 @@ Sejauh ini, program memiliki 7 default games, yaitu
 - Hangman (game menebak kata)
 - Tower of Hanoi (game memindahkan piringan)
 - Snake on Meteor (game menggerakkan ular untuk mendapat makanan dan menghindari meteor)
+
 Selain itu, juga terdapat game tambahan, yaitu:
 - Guess the Peter Parker (game mengungkap penyamaran seseorang)
 

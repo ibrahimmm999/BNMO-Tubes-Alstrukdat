@@ -26,5 +26,6 @@ Selain itu, juga terdapat game tambahan, yaitu:
 - Guess the Peter Parker (game mengungkap penyamaran seseorang)
 
 Berikut cara kompilasi program melalui terminal (dengan terlebih dahulu melakukan set terhadap path folder dengan memasukkan command cd Tubes-Alstrukdat/src).
+
 gcc main.c consoleV2.c ADT/array.c ADT/bintree.c ADT/list.c ADT/listV2.c ADT/listdp.c ADT/map.c ADT/mapV2.c ADT/mesinkarakter.c ADT/mesinkata.c ADT/point.c ADT/prioqueue.c ADT/queueV2.c ADT/set.c ADT/stack.c ADT/stackV2.c command/SKIPGAME.c command/creategame.c command/deletegame.c command/help.c command/history.c command/listgame.c command/loadV2.c command/playgame.c command/queuegame.c command/quit.c command/resethistory.c command/resetscoreboard.c command/saveV2.c command/scoreboard.c command/start.c games/DINERDASH.c games/TowerOfHanoi.c games/guessthepeterparker.c games/guntingbatuk.c games/hangman.c games/rng.c games/snakeonmeteor.c games/tictactoe.c -o main
 

@@ -42,6 +42,9 @@ char *VName(Map M, keytype k) {
     if (IsMember(M, k)) {
         return M.Elements[k].Value.name;
     }
+    else {
+        return "";
+    }
 }
 
 int VScore(Map M, keytype k) {
@@ -54,12 +57,10 @@ int VScore(Map M, keytype k) {
 }
 
 void Insert(Map *M, keytype k, valuetype v) {
-    if (!IsMember(*M, k)) {
-        M->Elements[k].Key = k;
-        M->Elements[k].Value.name = v.name;
-        M->Elements[k].Value.score = v.score;
-        M->Count++;
-    }
+    M->Elements[k].Key = k;
+    M->Elements[k].Value.name = v.name;
+    M->Elements[k].Value.score = v.score;
+    M->Count++;
 }
 
 /* void Delete(Map *M, keytype k) {

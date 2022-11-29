@@ -67,22 +67,17 @@ void InsertScoreboard (char *nama, int skor, Map *SBGame) {
             Insert(SBGame, 0, el);
         }
         else {
-            // search posisi skor agar terurut mengecil
-            i = 0;
-            while (i < SBGame->Count && VScore(*SBGame, i) >= skor) {
-                i++;
-            }
-
-            // geser elemen
-            for (j = SBGame->Count-1; j >= i; j++) {
-                SBGame->Elements[j+1].Key = SBGame->Elements[j].Key;
-                SBGame->Elements[j+1].Value.name = VName(*SBGame, j);
-                SBGame->Elements[j+1].Value.score = VScore(*SBGame, j);
+            // geser elemen yang skornya lebih kecil dari skor input
+            i = SBGame->Count;
+            while (i > 0 && VScore(*SBGame, i-1) < skor) {
+                SBGame->Elements[i].Key = i;
+                SBGame->Elements[i].Value.name = SBGame->Elements[i-1].Value.name;
+                SBGame->Elements[i].Value.score = SBGame->Elements[i-1].Value.score;
+                i--;
             }
             
             // insert di posisi yang sesuai
             Insert(SBGame, i, el);
-            SBGame->Count++;
         }
     }
 }

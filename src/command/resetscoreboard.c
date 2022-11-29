@@ -1,11 +1,11 @@
 #include "resetscoreboard.h"
 #include <stdio.h>
 
-void reset_scoreboard(Map SBrng, Map SBdd, Map SBhm, Map SBtoh, Map SBsom) {
+void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom) {
     int i, input;
     Word trash;
     trash.Length = 1;
-    trash.TabWord[0] = "X";
+    trash.TabWord[0] = 'X';
 
     printf("DAFTAR SCOREBOARD:\n");
     printf("0. ALL\n");
@@ -23,28 +23,28 @@ void reset_scoreboard(Map SBrng, Map SBdd, Map SBhm, Map SBtoh, Map SBsom) {
     // panggil prosedur sesuai input
     switch (input) {
     case 0:
-        printf("Apakah Anda yakin ingin melakukan RESET SCOREBOARD (YA / TIDAK)? ");
+        printf("Apakah Anda yakin ingin melakukan RESET ALL SCOREBOARD (YA / TIDAK)? ");
         STARTSTDIN();
-        RSB("RNG", &SBrng, true, currentWord);
-        RSB("Diner Dash", &SBdd, true, currentWord);
-        RSB("HANGMAN", &SBhm, true, currentWord);
-        RSB("TOWER OF HANOI", &SBtoh, true, currentWord);
-        RSB("SNAKE ON METEOR", &SBsom, true, currentWord);
+        RSB("RNG", SBrng, true, currentWord);
+        RSB("Diner Dash", SBdd, true, currentWord);
+        RSB("HANGMAN", SBhm, true, currentWord);
+        RSB("TOWER OF HANOI", SBtoh, true, currentWord);
+        RSB("SNAKE ON METEOR", SBsom, true, currentWord);
         break;
     case 1:
-        RSB("RNG", &SBrng, false, trash);
+        RSB("RNG", SBrng, false, trash);
         break;
     case 2:
-        RSB("Diner Dash", &SBdd, false, trash);
+        RSB("Diner Dash", SBdd, false, trash);
         break;
     case 3:
-        RSB("HANGMAN", &SBhm, false, trash);
+        RSB("HANGMAN", SBhm, false, trash);
         break;
     case 4:
-        RSB("TOWER OF HANOI", &SBtoh, false, trash);
+        RSB("TOWER OF HANOI", SBtoh, false, trash);
         break;
     case 5:
-        RSB("SNAKE ON METEOR", &SBsom, false, trash);
+        RSB("SNAKE ON METEOR", SBsom, false, trash);
         break;
     default:
         printf("Scoreboard tidak tersedia. Mohon periksa masukan Anda.\n");
@@ -71,7 +71,7 @@ void RSB(char *game, Map *SBGame, boolean isALL, Word answer) {
         len = SBGame->Count;
         for (j = 0; j < len; j++) {
             SBGame->Elements[j].Key = Undefined;
-            SBGame->Elements[j].Value.name = Undefined;
+            SBGame->Elements[j].Value.name = "";
             SBGame->Elements[j].Value.score = Undefined;
         }
         SBGame->Count = 0;

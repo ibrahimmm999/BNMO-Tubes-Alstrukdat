@@ -89,10 +89,10 @@ POINT Meteor(POINT Food)
     return P;
 }
 
-void move(List snake, char input, boolean *GameOver)
+void move(List snake, char input, boolean *reinput)
 {
     address P = First(snake);
-    *GameOver = false;
+    *reinput = false;
     POINT Temp;
     if (input == 'w')
     {
@@ -114,12 +114,8 @@ void move(List snake, char input, boolean *GameOver)
         Temp.x = (Pos(P).x + 1) % 5;
         Temp.y = Pos(P).y % 5;
     }
-    if (Search(snake, Temp) != Nil)
-    {
-        printf("\nKepala snake menabrak badan\n");
-        *GameOver = true;
-    }
-    else
+
+    if (Search(snake, Temp) == Nil)
     {
         address Q;
         P = Last(snake);
@@ -214,37 +210,76 @@ void SnakeOfMeteor()
         STARTSTDIN();
         printf("\n");
         boolean cekInput = false;
-        while (!cekInput)
+        address P = First(snake);
+        POINT TempP;
+        if (IsWordEqual(currentWord, "w"))
         {
+            TempP.x = Pos(P).x % 5;
+            TempP.y = (Pos(P).y + 4) % 5;
+        }
+        else if (IsWordEqual(currentWord, "a"))
+        {
+            TempP.x = (Pos(P).x + 4) % 5;
+            TempP.y = Pos(P).y % 5;
+        }
+        else if ((IsWordEqual(currentWord, "s")))
+        {
+            TempP.x = Pos(P).x % 5;
+            TempP.y = (Pos(P).y + 1) % 5;
+        }
+        else if ((IsWordEqual(currentWord, "d")))
+        {
+            TempP.x = (Pos(P).x + 1) % 5;
+            TempP.y = Pos(P).y % 5;
+        }
+        while (((!IsWordEqual(currentWord, "a") && !IsWordEqual(currentWord, "w") && !IsWordEqual(currentWord, "s") && !IsWordEqual(currentWord, "d")) || currentWord.Length != 1) || ((Search(snake, TempP) != Nil)) || (((IsWordEqual(currentWord, "a") && (prevMeteor.x == snake.First->pos.x - 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "d") && (prevMeteor.x == snake.First->pos.x + 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "s") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y + 1))) || ((IsWordEqual(currentWord, "w") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y - 1)))))
+        {
+            if (cekInput)
+            {
+                STARTSTDIN();
+
+                if (IsWordEqual(currentWord, "w"))
+                {
+                    TempP.x = Pos(P).x % 5;
+                    TempP.y = (Pos(P).y + 4) % 5;
+                }
+                else if (IsWordEqual(currentWord, "a"))
+                {
+                    TempP.x = (Pos(P).x + 4) % 5;
+                    TempP.y = Pos(P).y % 5;
+                }
+                else if ((IsWordEqual(currentWord, "s")))
+                {
+                    TempP.x = Pos(P).x % 5;
+                    TempP.y = (Pos(P).y + 1) % 5;
+                }
+                else if ((IsWordEqual(currentWord, "d")))
+                {
+                    TempP.x = (Pos(P).x + 1) % 5;
+                    TempP.y = Pos(P).y % 5;
+                }
+            }
             if ((!IsWordEqual(currentWord, "a") && !IsWordEqual(currentWord, "w") && !IsWordEqual(currentWord, "s") && !IsWordEqual(currentWord, "d")) || currentWord.Length != 1)
             {
                 printf("Command tidak valid! Silahkan input command menggunakan huruf w/a/s/d\n");
                 printf("Silahkan masukkan command anda: ");
-                STARTSTDIN();
+                cekInput = true;
                 printf("\n");
             }
             else
             {
-                if ((IsWordEqual(currentWord, "a") && (snake.First->next->pos.x == snake.First->pos.x - 1) && (snake.First->next->pos.y == snake.First->pos.y)) || (IsWordEqual(currentWord, "d") && (snake.First->next->pos.x == snake.First->pos.x + 1) && (snake.First->next->pos.y == snake.First->pos.y)) || (IsWordEqual(currentWord, "w") && (snake.First->next->pos.x == snake.First->pos.x) && (snake.First->next->pos.y == snake.First->pos.y - 1)) || (IsWordEqual(currentWord, "s") && (snake.First->next->pos.x == snake.First->pos.x) && (snake.First->next->pos.y == snake.First->pos.y + 1)))
+                if ((Search(snake, TempP) != Nil))
                 {
                     printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\nSilahkan input command yang lain\n");
                     printf("Silahkan masukkan command anda: ");
-                    STARTSTDIN();
-                    printf("\n");
-                }
-                else
-                {
                     cekInput = true;
+                    printf("\n");
                 }
                 if (((IsWordEqual(currentWord, "a") && (prevMeteor.x == snake.First->pos.x - 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "d") && (prevMeteor.x == snake.First->pos.x + 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "s") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y + 1))) || ((IsWordEqual(currentWord, "w") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y - 1))))
                 {
                     printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\nSilahkan masukkan command lainnya\n");
                     printf("Silahkan masukkan command anda: ");
-                    STARTSTDIN();
                     printf("\n");
-                }
-                else
-                {
                     cekInput = true;
                 }
             }
@@ -282,9 +317,8 @@ void SnakeOfMeteor()
     }
     printf("===== GAME OVER =====\n");
 }
-/*
+
 int main()
 {
     SnakeOfMeteor();
 }
-*/

@@ -1,7 +1,7 @@
 #ifndef map_H
 #define map_H
 #include <stdio.h>
-#include "boolean.h"
+#include "../boolean.h"
 
 #define Nil 0
 #define MaxEl 10
@@ -10,19 +10,22 @@
 typedef int keytype;
 typedef int address;
 
-typedef struct {
-    char *name;
-    int score;
+typedef struct
+{
+        char *name;
+        int score;
 } valuetype;
 
-typedef struct {
+typedef struct
+{
         keytype Key;
-	valuetype Value;
+        valuetype Value;
 } infotype;
 
-typedef struct {
-	infotype Elements[MaxEl];
-	address Count;
+typedef struct
+{
+        infotype Elements[MaxEl];
+        address Count;
 } Map;
 
 /* Definisi Map M kosong : M.Count = Nil */
@@ -74,7 +77,7 @@ void Delete(Map *M, keytype k);
 boolean IsMember(Map M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
-boolean NameExist(Map M, char* name);
+boolean NameExist(Map M, char *name);
 /* Mengembalikan true jika nama adalah member dari M */
 
 #endif

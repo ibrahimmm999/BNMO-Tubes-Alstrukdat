@@ -23,6 +23,7 @@ void MAINMENU()
 {
     Arr arrGame;
     StackW history;
+    Map SBrng, SBdd, SBhm, SBtoh, SBsom;
     Queue queueGame;
     CreateQueue(&queueGame);
     boolean cek = true;
@@ -152,11 +153,18 @@ void MAINMENU()
         {
             DELETEGAME(&arrGame, queueGame);
         }
+        else if (IsWordEqual(currentWord, "SCOREBOARD"))
+        {
+            scoreboard(SBrng, SBdd, SBhm, SBtoh, SBsom);
+        }
+        else if (IsWordEqual(currentWord, "RESET SCOREBOARD"))
+        {
+            reset_scoreboard(SBrng, SBdd, SBhm, SBtoh, SBsom);
+        }
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {
             if (currentWord.Length > 9)
             {
-
                 Word x = accessIndexWord(currentWord, 2);
                 SKIPGAME(&queueGame, &history, WordToInt(x));
             }
@@ -168,7 +176,7 @@ void MAINMENU()
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SAVE"))
         {
             Word x = accessIndexWord(currentWord, 2);
-            save(wordToString(x, true), arrGame, history);
+            save(wordToString(x, true), arrGame, history, SBrng, SBdd, SBhm, SBtoh, SBsom);
         }
         else
         {

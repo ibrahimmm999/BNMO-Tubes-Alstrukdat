@@ -3,6 +3,7 @@
 #include "./ADT/array.h"
 #include "./ADT/queueV2.h"
 #include "./ADT/stackV2.h"
+#include "./ADT/stack.h"
 #include "./command/help.h"
 #include "./command/start.h"
 #include "./command/loadV2.h"
@@ -16,3 +17,5 @@
 #include "./command/SKIPGAME.h"
 #include "./command/history.h"
 #include "./command/resethistory.h"
+#include "./command/scoreboard.h"
+#include "./command/resetscoreboard.h"

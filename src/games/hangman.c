@@ -17,6 +17,11 @@ void hangman(){
             score += currentGuess.Length;
         }
         idx++;
+        if (idx == NbElmt(guessWords)){
+            printf("Selamat! Kamu berhasil menebak semua kata pada game ini\n");
+            winMessage();
+            chance = 0;
+        }
         CreateSet(&guessedAlphabet);
     }
     printf("GAME OVER.\nSkor kamu: %d", score);
@@ -62,6 +67,7 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
                         win = true;
                     } else {
                         win = false;
+                        hangmanPics(*chance);
                     }
                 }
             }
@@ -243,8 +249,19 @@ void hangmanPics(int chance){
     }
 }
 
+void winMessage(){
+    printf("                               _       \n");
+    printf("                              (_)      \n");
+    printf("  _   _  ___  _   _  __      ___ _ __  \n");
+    printf(" | | | |/ _ \\| | | | \\ \\ /\\ / / | '_ \\ \n");
+    printf(" | |_| | (_) | |_| |  \\ V  V /| | | | |\n");
+    printf("  \\__, |\\___/ \\__,_|   \\_/\\_/ |_|_| |_|\n");
+    printf("   __/ |                               \n");
+    printf("  |___/                                \n");
+}
+
 // gcc hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman
-// int main(){
-//     hangman();
-//     return 0;
-// }
+int main(){
+    hangman();
+    return 0;
+}

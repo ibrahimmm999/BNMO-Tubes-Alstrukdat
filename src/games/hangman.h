@@ -43,4 +43,7 @@ void displayHangmanTextArt();
 /* Mencetak gambar kondisi hangman */
 void hangmanPics(int chance);
 
+/* Mencetak pesan kemenangan */
+void winMessage();
+
 #endif

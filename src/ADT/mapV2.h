@@ -4,7 +4,7 @@
 #include "../boolean.h"
 
 #define Nil 0
-#define MaxEl 10
+#define MaxEl 20
 #define Undefined -999
 
 typedef int keytype;
@@ -50,16 +50,15 @@ boolean IsFull(Map M);
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-valuetype Value(Map M, keytype k);
-/* Mengembalikan nilai value dengan key k dari M */
+// valuetype Value(Map M, keytype k);
+/* Mengembalikan nilai value dengan key k pada M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
 char *VName(Map M, keytype k);
-/* Mengembalikan nilai value name dengan key k dari M */
-/* Jika tidak ada key k pada M, akan mengembalikan Undefined */
+/* Mengembalikan nilai value name dengan key k pada M */
 
 int VScore(Map M, keytype k);
-/* Mengembalikan nilai value score dengan key k dari M */
+/* Mengembalikan nilai value score dengan key k pada M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
 void Insert(Map *M, keytype k, valuetype v);
@@ -68,7 +67,7 @@ void Insert(Map *M, keytype k, valuetype v);
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void Delete(Map *M, keytype k);
+// void Delete(Map *M, keytype k);
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */

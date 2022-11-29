@@ -9,7 +9,7 @@ void PrintSpace(int n) {
 
 void PrintSB(char *game, Map SBGame) {
     Word temp;
-    char *game, *nama;
+    char *nama;
     int skor, i;
     
     // header
@@ -34,13 +34,13 @@ void PrintSB(char *game, Map SBGame) {
 
             printf("| %d", skor);
             if (skor < 10) {
-                PrintSpace(6-1);
+                PrintSpace(7-1);
             }
             else if (skor >= 10 && skor < 100) {
-                PrintSpace(6-2);
+                PrintSpace(7-2);
             }
             else {
-                PrintSpace(6-3);
+                PrintSpace(7-3);
             }
 
             printf("|\n");

@@ -12,6 +12,7 @@ void hangman(){
     CreateSet(&guessedAlphabet);
     while (chance > 0){
         Word currentGuess = guessWords.A[idx];
+        charUpper(&currentGuess);
         playHangman(&chance, currentGuess, &guessedAlphabet);
         if (chance != 0){
             score += currentGuess.Length;
@@ -88,8 +89,10 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
 }
 
 void charUpper(Word *w){
-    if ((*w).TabWord[0] >= 'a' && (*w).TabWord[0] <= 'z'){
-        (*w).TabWord[0] -= 32;
+    for (int i=0; i<(*w).Length; i++){
+        if ((*w).TabWord[i] >= 'a' && (*w).TabWord[i] <= 'z'){
+            (*w).TabWord[i] -= 32;
+        }
     }
 }
 
@@ -261,7 +264,7 @@ void winMessage(){
 }
 
 // gcc hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman
-// int main(){
-//     hangman();
-//     return 0;
-// }
+int main(){
+    hangman();
+    return 0;
+}

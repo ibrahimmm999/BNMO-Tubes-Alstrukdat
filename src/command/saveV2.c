@@ -63,7 +63,7 @@ void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, M
                 fprintf(fp, "%s\n", temp);
             }
         }
-        Map SBrng, SBdd, SBhm, SBtoh, SBsom;
+        
         // ------------ scoreboard ------------
         SaveSB(SBrng, fp);
         SaveSB(SBdd, fp);
@@ -83,7 +83,7 @@ void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, M
 void SaveSB(Map SBGame, FILE *fp)
 {
     int i;
-    fprintf("fp, %d\n", SBGame.Count);
+    fprintf(fp, "%d\n", SBGame.Count);
     for (i = 0; i < SBGame.Count; i++)
     {
         fprintf(fp, "%s %d\n", VName(SBGame, i), VScore(SBGame, i));

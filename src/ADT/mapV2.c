@@ -6,7 +6,7 @@ void CreateEmptyMap(Map *M) {
     int i;
     for (i = 0; i < MaxEl; i++) {
         M->Elements[i].Key = Undefined;
-        M->Elements[i].Value.name = Undefined;
+        M->Elements[i].Value.name = "";
         M->Elements[i].Value.score = Undefined;
     }
 }
@@ -41,9 +41,6 @@ boolean IsFull(Map M) {
 char *VName(Map M, keytype k) {
     if (IsMember(M, k)) {
         return M.Elements[k].Value.name;
-    }
-    else {
-        return Undefined;
     }
 }
 
@@ -85,7 +82,7 @@ void Insert(Map *M, keytype k, valuetype v) {
         }
         M->Count--;
     }
-}
+} */
 
 boolean IsMember(Map M, keytype k) {
     int i = 0;
@@ -99,7 +96,7 @@ boolean IsMember(Map M, keytype k) {
         }
     }
     return found;
-} */
+}
 
 boolean NameExist(Map M, char* name) {
     int i = 0;

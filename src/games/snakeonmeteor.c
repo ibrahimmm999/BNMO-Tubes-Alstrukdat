@@ -275,7 +275,8 @@ void SnakeOfMeteor()
                     cekInput = true;
                     printf("\n");
                 }
-                if (((IsWordEqual(currentWord, "a") && (prevMeteor.x == snake.First->pos.x - 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "d") && (prevMeteor.x == snake.First->pos.x + 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "s") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y + 1))) || ((IsWordEqual(currentWord, "w") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y - 1))))
+                // ((IsWordEqual(currentWord, "a") && (prevMeteor.x == snake.First->pos.x - 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "d") && (prevMeteor.x == snake.First->pos.x + 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "s") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y + 1))) || ((IsWordEqual(currentWord, "w") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y - 1)))
+                if (((IsWordEqual(currentWord, "a") && (prevMeteor.x == (snake.First->pos.x + 4) % 5) && (prevMeteor.y == snake.First->pos.y % 5))) || ((IsWordEqual(currentWord, "d") && (prevMeteor.x == (snake.First->pos.x + 1) % 5) && (prevMeteor.y == snake.First->pos.y % 5))) || ((IsWordEqual(currentWord, "s") && (prevMeteor.x == snake.First->pos.x % 5) && (prevMeteor.y == (snake.First->pos.y + 1) % 5))) || ((IsWordEqual(currentWord, "w") && (prevMeteor.x == snake.First->pos.x % 5) && (prevMeteor.y == (snake.First->pos.y + 4) % 5))))
                 {
                     printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\nSilahkan masukkan command lainnya\n");
                     printf("Silahkan masukkan command anda: ");

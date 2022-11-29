@@ -261,7 +261,7 @@ void winMessage(){
 }
 
 // gcc hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman
-int main(){
-    hangman();
-    return 0;
-}
+// int main(){
+//     hangman();
+//     return 0;
+// }

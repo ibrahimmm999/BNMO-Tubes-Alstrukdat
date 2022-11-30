@@ -55,19 +55,19 @@ void Tower(int x){
         printf ("    ooooooooo   \n");
     }
     else if(x==6){
-        printf ("   ooooooooooo   \n"); 
+        printf ("   ooooooooooo   \n");  
+    } 
+    else if(x==7){  
+        printf ("  ooooooooooooo   \n"); 
     }
-    else if(x==7){ 
-        printf ("  ooooooooooooo   \n");
-    }
-    else if(x==8){
-        printf (" ooooooooooooooo   \n");
-    }
+    else if(x==8){ 
+        printf (" ooooooooooooooo   \n"); 
+    } 
     else if(x==9){
         printf ("ooooooooooooooooo   \n");        
     }
     else{
-        printf ("       |       \n");
+        printf ("        |       \n");
     }
 }
 
@@ -126,7 +126,7 @@ void DisplayTower(Stack S, Stack S2, Stack S3,int disk){
 
     Alas();
     printf("\n");
-    printf("    TOWER A\n");
+    printf("     TOWER A\n");
     printf("\n");
 
     for (int i = disk; i>=0; i--){
@@ -175,7 +175,7 @@ void DisplayTower(Stack S, Stack S2, Stack S3,int disk){
     }
     Alas();
     printf("\n");
-    printf("    TOWER B\n"); 
+    printf("     TOWER B\n"); 
     printf("\n"); 
   
     for (int i = disk; i>=0; i--){
@@ -224,7 +224,7 @@ void DisplayTower(Stack S, Stack S2, Stack S3,int disk){
     }
     Alas();
     printf("\n");
-    printf("    TOWER C\n");
+    printf("     TOWER C\n");
     printf("\n");
 }
 
@@ -263,9 +263,9 @@ void TowerOfHanoi(){
     CreateEmpty(&B);
     CreateEmpty(&C);
     int disk;
-    printf("Main Menu:\n");
-    printf("1. Play Game\n");
-    printf("2. Exit\n");
+    printf("Welcome to Tower of Hanoi\n");
+    printf("1. Ketik 1 untuk bermain\n");
+    printf("2. Ketik 2 untuk keluar\n");
     printf("ENTER CHOICE : ");
     int c;
     STARTSTDIN();
@@ -338,6 +338,9 @@ void TowerOfHanoi(){
             steps++;
         }
         printf("Selamat Anda Menyelesaikan Tower of Hanoi dengan %d langkah\n", steps);
+        float skorMax=(pow(2,disk))-1;
+        float skor=skorMax*100/steps;
+        printf("Anda mendapatkan skor sebesar %f\n", skor);        
         break;
     }
 }

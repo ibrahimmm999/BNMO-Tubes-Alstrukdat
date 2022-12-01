@@ -17,7 +17,12 @@ void hangman(){
         } else if (IsWordEqual(currentWord, "2")){
             printf("Masukkan kata yang ingin ditambahkan: ");
             STARTSTDIN();
-            SetEl(&guessWords, NbElmt(guessWords), currentWord);
+            if (!isWordExist(guessWords, currentWord)){
+                SetEl(&guessWords, NbElmt(guessWords), currentWord);
+                printf("Kata berhasil ditambah\n");
+            } else {
+                printf("Kata sudah tersedia di list kata\n\n");
+            }
         } else if (IsWordEqual(currentWord, "3")){
             valid = true;
         } else {
@@ -25,6 +30,15 @@ void hangman(){
         }
     }
     save_hangman("../../data/hangman.txt", guessWords);
+}
+
+boolean isWordExist(Arr guessWords, Word w){
+    for (int i=0;i<NbElmt(guessWords);i++){
+        if (IsWordEqual(w, guessWords.A[i].TabWord)){
+            return true;
+        }
+    }
+    return false;
 }
 
 void hangman_game(Arr guessWords){
@@ -162,44 +176,36 @@ void printStringWithSpace(char* str, int len){
 
 void save_hangman(char *file_name, Arr list_game)
 {
-    FILE *fp = NULL;
+    FILE *fp;
     fp = fopen(file_name, "w+");
+    int i, j, len, wordlen;
+    char *temp;
 
-    if (fp != NULL)
+    len = NbElmt(list_game);
+    fprintf(fp, "%d\n", len);
+    for (i = 0; i < len; i++)
     {
-        int i, j, len, wordlen;
-        char *temp;
-
-        len = NbElmt(list_game);
-        fprintf(fp, "%d\n", len);
-        for (i = 0; i < len; i++)
+        wordlen = GetElmt(list_game, i).Length;
+        char *temp = malloc((wordlen) * sizeof(char));
+        for (j = 0; j < wordlen; j++)
         {
-            wordlen = GetElmt(list_game, i).Length;
-            char *temp = malloc((wordlen) * sizeof(char));
-            for (j = 0; j < wordlen; j++)
-            {
-                temp[j] = GetElmt(list_game, i).TabWord[j];
-            }
-
-            temp[j] = '\0';
-            if (i == len - 1)
-            {
-                fprintf(fp, "%s", temp);
-            }
-            else
-            {
-
-                fprintf(fp, "%s\n", temp);
-            }
+            temp[j] = GetElmt(list_game, i).TabWord[j];
         }
 
-        printf("File berhasil disimpan\n\n");
-        fclose(fp);
+        temp[j] = '\0';
+        if (i == len - 1)
+        {
+            fprintf(fp, "%s", temp);
+        }
+        else
+        {
+
+            fprintf(fp, "%s\n", temp);
+        }
     }
-    else
-    {
-        printf("File gagal disimpan.\n");
-    }
+
+    printf("File berhasil disimpan\n\n");
+    fclose(fp);
 }
 
 void generateWordList(Arr *word){
@@ -329,7 +335,7 @@ void winMessage(){
 }
 
 // gcc hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman
-// int main(){
-//     hangman();
-//     return 0;
-// }
+int main(){
+    hangman();
+    return 0;
+}

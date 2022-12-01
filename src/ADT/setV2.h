@@ -1,7 +1,7 @@
 #ifndef set_H
 #define set_H
 #include <stdio.h>
-#include "boolean.h"
+#include "../boolean.h"
 #include "mapV2.h"
 
 /* MODUL Set
@@ -9,19 +9,19 @@ ADT Set berisi elemen berupa tipe bentukan nama game dan Map (Scoreboard game)
 Digunakan untuk implementasi scoreboard dan reset scoreboard
 */
 
-#define Nil 0
-#define MaxEl 20
+#define NilSetV2 0
+#define MaxElsetV2 30
 
-typedef int addressSet;
+typedef int addressSetV2;
 typedef struct {
         char* game;
-        Map M;
-} infotypeSet;
+        MapV2 M;
+} infotypeSetV2;
 
 typedef struct
 {
-    infotypeSet Elements[MaxEl];
-    addressSet Count;
+    infotypeSetV2 Elements[MaxElsetV2];
+    addressSetV2 Count;
 } Set;
 
 /* Definisi Set S kosong : S.Count = Nil */
@@ -46,13 +46,13 @@ boolean IsFullSet(Set S);
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void InsertSet(Set *S, infotypeSet Elmt);
+void InsertSet(Set *S, infotypeSetV2 Elmt);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void DeleteSet(Set *S, infotypeSet Elmt);
+void DeleteSet(Set *S, infotypeSetV2 Elmt);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */

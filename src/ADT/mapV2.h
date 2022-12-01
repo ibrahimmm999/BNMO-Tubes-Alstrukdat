@@ -4,28 +4,28 @@
 #include "../boolean.h"
 
 #define NilMapV2 0
-#define MaxElMapV2 20
+#define MaxElMapV2 30
 #define Undefined -999
 
-typedef int keytype;
-typedef int address;
+typedef int keytypeV2;
+typedef int addressMapV2;
 
 typedef struct
 {
         char *name;
         int score;
-} valuetype;
+} valuetypeMapV2;
 
 typedef struct
 {
-        keytype Key;
-        valuetype Value;
-} infotypemapv2;
+        keytypeV2 Key;
+        valuetypeMapV2 Value;
+} infotypeMapV2;
 
 typedef struct
 {
-        infotypemapv2 Elements[MaxElMapV2];
-        address Count;
+        infotypeMapV2 Elements[MaxElMapV2];
+        addressMapV2 Count;
 } Map;
 
 /* Definisi Map M kosong : M.Count = Nil */
@@ -35,17 +35,17 @@ typedef struct
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyMapV2(Map *M);
+void CreateEmptyMapV2(MapV2 *M);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsMapV2Empty(Map M);
+boolean IsMapEmptyV2(MapV2 M);
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 
-boolean IsMapV2Full(Map M);
+boolean IsMapFullV2(MapV2 M);
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
@@ -54,14 +54,14 @@ boolean IsMapV2Full(Map M);
 /* Mengembalikan nilai value dengan key k pada M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-char *VName(Map M, keytype k);
+char *VName(MapV2 M, keytypeV2 k);
 /* Mengembalikan nilai value name dengan key k pada M */
 
-int VScore(Map M, keytype k);
+int VScore(MapV2 M, keytypeV2 k);
 /* Mengembalikan nilai value score dengan key k pada M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void InsertMapV2(Map *M, keytype k, valuetype v);
+void InsertMapV2(MapV2 *M, keytypeV2 k, valuetypeMapV2 v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
@@ -73,10 +73,10 @@ void InsertMapV2(Map *M, keytype k, valuetype v);
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMemberMapV2(Map M, keytype k);
+boolean IsMemberMapV2(MapV2 M, keytypeV2 k);
 /* Mengembalikan true jika k adalah member dari M */
 
-boolean NameExist(Map M, char *name);
+boolean NameExist(MapV2 M, char* name);
 /* Mengembalikan true jika nama adalah member dari M */
 
 #endif

@@ -9,7 +9,10 @@ int generate(int i, int max, int min)
 
 void getInfo(BinTree Tree, int idx, int *i, Word *info)
 {
+    /* Kamus */
     int j;
+
+    /* Algoritma */
     if((*i) < idx)
     {
         (*i)++;
@@ -28,12 +31,17 @@ void getInfo(BinTree Tree, int idx, int *i, Word *info)
 
 void relation(ListV2 listFam, Word checked, int idxSusPP, int *n)
 {
+    /* Kamus */
     int idxChecked = GetIdxList(listFam, checked)+1;
     // printf("idx checked in list: %d\n", idxChecked);
     int i = generate(2, 10, 4);
     int rel = generate(i, 7, 1);
-    Word hub;
     int role;
+    Word hub;
+
+    /* Algoritma */
+
+    // Mempersiapkan anggota lain yang akan 'dikomentari'
     if(idxChecked == 1)
     {
         while(rel == idxChecked || rel == idxSusPP)
@@ -311,28 +319,37 @@ void relation(ListV2 listFam, Word checked, int idxSusPP, int *n)
 
 void TheClue(Word who, Word clue, Word checked)
 {
+    /* Kamus */
     boolean foundMark = false;
     boolean foundPercent = false;
     boolean makeCaps = false;
     int i, j, alphabet;
+
+    /* Algoritma */
+
+    // Mencetak nama anggota keluarga yang diinterogasi
     for(i = 0; i < checked.Length; i++)
     {
         printf("%c", checked.TabWord[i]);
     }
     printf(": '");
+
+    // Mengubah huruf pertama relasi antaranggota keluarga menjadi kapital jika berada di awal kalimat
     if(clue.TabWord[0] == '%')
     {
         alphabet = who.TabWord[0];
         alphabet -= 32;
         who.TabWord[0] = alphabet;
     }
+
+    // Mencetak clue
     for(i = 0; i < clue.Length; i++)
     {
         if(clue.TabWord[i] == '?' || clue.TabWord[i] == '.')
         {
             foundMark = true;
         }
-        if(foundMark == true && clue.TabWord[i] == '%')
+        if(foundMark == true && clue.TabWord[i+2] == '%')
         {
             alphabet = who.TabWord[0];
             alphabet -= 32;
@@ -356,7 +373,10 @@ void TheClue(Word who, Word clue, Word checked)
 
 void PrintFamTree(BinTree FamTree)
 {
+    /* Kamus */
     int i, j;
+
+    /* Algoritma */
     printf("\n");
     for(i = 0; i < 23; i++)
     {
@@ -609,19 +629,27 @@ void PrintFamTree(BinTree FamTree)
 
 void GPP(int *score)
 {
-    BinTree FamTree, RelTree, ClueTree;
-    int x, new;
+    /* Kamus */
+    boolean PPFound = false;
+    int x, new, y, idxSusPP;
     int i = 1;
     int j = 0;
     int n = 0;
-    Word who, clue;
     char arrx[100];
+    char arry[100];
+    BinTree FamTree, RelTree, ClueTree;
+    Word who, clue, temp, SusPP;
     ListV2 list, notChecked;
+
+    /* Algoritma */
     notChecked = MakeListV2();
     list = MakeListV2();
-    Word temp;
+    
+    // Mengakses file 'database' game
     FILE *p;
     p = fopen("../../data/guessthepeterparker.txt", "r");
+
+    // Melakukan generate untuk pohon keluarga
     STARTWORD("../../data/guessthepeterparker.txt");
     (*score) = 100;
     while(j < 50)
@@ -632,7 +660,8 @@ void GPP(int *score)
     j = 0;
     while(i < 8)
     {
-        x = generate(i, 40, 5);
+        x = generate(i, 75, 25);
+        x %= 390;
         if(i % 2 == 0) // i genap
         {
             if(x % 2 != 0)
@@ -698,6 +727,7 @@ void GPP(int *score)
     }
     // CetakList(list, 10);
 
+    // Melakukan generate untuk pohon relasi antar anggota keluarga
     STARTWORD("../../data/guessthepeterparker.txt");
     for(i = 0; i < 19; i++)
     {
@@ -712,6 +742,7 @@ void GPP(int *score)
         ADVWORD();
     }
 
+    // Melakukan generate untuk sejumlah clue yang mengarah kepada tersangka (Peter Parker)
     STARTWORD("../../data/guessthepeterparker.txt");
     j = 0;
     while(j < 19)
@@ -734,16 +765,20 @@ void GPP(int *score)
     }
 
     fclose(p);
+
+    // Set up selesai, memulai permainan
     printf("Hai, Detektif!\n");
     printf("Salah satu orang pada pohon keluarga ini merupakan aktor terkenal, Peter Parker, yang dicari dunia selama ini.\n");
     printf("Kini, seluruh anggota keluarga telah meminum ramuan kejujuran.\n");
     printf("Kumpulkan informasi dari mereka. Temukan benang merah dari misteri ini: temukan Peter Parker yang sedang menyamar!\n");
     
+    // Mencetak pohon keluarga ke layar
     PrintFamTree(FamTree);
 
+    // Melakukan generate untuk menentukan tersangka (Peter Parker) dalam anggota keluarga
     i = generate(2, 4, 8);
-    int idxSusPP = generate(i, 7, 1);
-    Word SusPP;
+    idxSusPP = generate(i, 7, 1);
+
     SusPP.Length = 0;
     for(i = 0; i < 10; i++)
     {
@@ -754,14 +789,16 @@ void GPP(int *score)
     {
         printf("%c", SusPP.TabWord[i]);
     } */
-    int y;
-    boolean PPFound = false;
-    x = 0;
+    
+    // Menyalin nama-nama anggota keluarga dari pohon keluarga ke sebuah list*
+    // *list ini digunakan untuk menyimpan nama-nama anggota keluarga yang belum diinterogasi
     for(j = 0; j < 7; j++)
     {
         notChecked.A[j] = list.A[j];
     }
-    char arry[100];
+
+    // Memulai meminta input dari pemain (permainan menebak dari clue yang ada dimulai)
+    x = 0;
     while(x < 2 && PPFound == false)
     {
         x++;
@@ -843,6 +880,7 @@ void GPP(int *score)
             TheClue(who, clue, temp);
         }
 
+        // Clue selesai diberikan, pemain mulai menebak
         printf("\nSaatnya menebak. Siapa Peter Parker menurut dugaanmu? ");
         STARTSTDIN();
         while(!SearchTree(FamTree, currentWord))
@@ -853,12 +891,16 @@ void GPP(int *score)
                 STARTSTDIN();
             }
 
+        for(i = 0; i < SusPP.Length; i++)
+        {
+            arrx[i] = SusPP.TabWord[i];
+        }
+
         if(x == 2)
         {
             printf("\nPeter Parker menyamar menjadi ");
             for(i = 0; i < SusPP.Length; i++)
             {
-                arrx[i] = SusPP.TabWord[i];
                 printf("%c", arrx[i]);
             }
             printf(".\n");
@@ -890,43 +932,36 @@ void GPP(int *score)
             }
             printf("\n");
         }
-        if(x == 1)
+        if(x == 1 && PPFound == false)
         {
             PrintFamTree(FamTree);
         }
     }
 
-    if(PPFound != true)
+    // Kalkulasi score
+    if(x == 2)
     {
-        y = generate((*score), 40, 7);
+        if(PPFound != true)
+        {
+            y = generate((*score), 70, 40);
+        }
+        else
+        {
+            y = generate((*score), 30, 13);
+        }
         (*score) -= y;
     }
 
     printf("Skor akhir: %d\n", (*score));
-    /* printf("\nKetik nama anggota keluarga yang ingin diinterogasi: ");
-    STARTSTDIN();
-    // printf("%d\n", SearchTree(FamTree, currentWord));
-    while(!SearchTree(FamTree, currentWord))
-    {
-        printf("\nInput tidak valid. Mohon periksa kembali nama yang dimasukkan.\n");
-        printf("Ketik nama anggota keluarga yang ingin diinterogasi: ");
-        STARTSTDIN();
-    }
-
-    i = GetIdxList(list, currentWord);
-    // printf("ini idx: %d\n", i+1);
-
-    CetakList(notChecked, 7);
-    i = GetIdxList(notChecked, currentWord);
-    DeleteAtV2(&notChecked, i);
-
-    printf("nama yang belum diintergoasi:\n");
-    CetakList(notChecked, LengthV2(notChecked)); */
+    
 
 }
 
-/* int main()
+int main()
 {
     int score = 0;
     GPP(&score);
-} */
+} 
+
+// cd Tubes-Alstrukdat\src\ADT
+// gcc bintree.c mesinkata.c mesinkarakter.c listV2.c ../games/guessthepeterparker.c -o main

@@ -1,10 +1,12 @@
-6 
+8
 RNG
 Diner DASH
 HANGMAN
 TOWER OF HANOI
 SNAKE ON METEOR
 Guess the Peter Parker
+tictactoe
+gbk
 3
 HANGMAN
 TOWER OF HANOI

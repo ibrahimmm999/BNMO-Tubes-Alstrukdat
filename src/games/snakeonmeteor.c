@@ -299,6 +299,7 @@ void SnakeOnMeteor()
         prevMeteor.y = meteor.y;
         if (!GameOver)
         {
+            printf("Berikut merupakan peta permainan\n");
             displayBoard(snake, food, meteor);
         }
         if (Search(snake, meteor) != NilLDP)
@@ -308,8 +309,18 @@ void SnakeOnMeteor()
                 isMeteorOnHead = true;
                 GameOver = true;
             }
-            DelP(&snake, meteor);
-            lenSnake--;
+            else
+            {
+                DelP(&snake, meteor);
+                lenSnake--;
+                printf("Berikut merupakan peta permainan sekarang:\n");
+                displayBoard(snake, food, meteor);
+                printf("Silakan lanjutkan permainan.\n");
+            }
+        }
+        else
+        {
+            printf("Anda beruntung tidak terkena meteor! Silakan lanjutkan permainan.\n\n");
         }
         POINT cekTop = MakePOINT(snake.First->pos.x % 5, (snake.First->pos.y + 4) % 5);
         POINT cekLeft = MakePOINT((snake.First->pos.x + 4) % 5, snake.First->pos.y % 5);
@@ -317,6 +328,7 @@ void SnakeOnMeteor()
         POINT cekBottom = MakePOINT((snake.First->pos.x + 1) % 5, snake.First->pos.y % 5);
         if ((Search(snake, cekTop) != NULL) && (Search(snake, cekLeft) != NULL) && (Search(snake, cekRight) != NULL) && (Search(snake, cekBottom) != NULL))
         {
+            GameOver = true;
         }
         turn++;
     }

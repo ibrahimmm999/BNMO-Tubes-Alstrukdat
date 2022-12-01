@@ -57,6 +57,25 @@ void SKIPGAME(Queue *queueGame, StackW *history, int numSkip)
                     gbk();
                     addToHistory(history, currentGame);
                 }
+                else if (IsWordEqual(currentGame, "TOWER OF HANOI"))
+                {
+                    TowerOfHanoi();
+                    addToHistory(history, currentGame);
+                }
+                else if (IsWordEqual(currentGame, "SNAKE ON METEOR"))
+                {
+                    SnakeOnMeteor();
+                    addToHistory(history, currentGame);
+                }
+                else if (IsWordEqual(currentGame, "HANGMAN"))
+                {
+                    hangman();
+                    addToHistory(history, currentGame);
+                }
+                else if (IsWordEqual(currentGame, "Guess the Peter Parker"))
+                {
+                    addToHistory(history, currentGame);
+                }
                 else
                 {
                     printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));

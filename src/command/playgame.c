@@ -44,17 +44,17 @@ void PLAYGAME(Queue *queueGame, StackW *history)
             gbk();
             addToHistory(history, currentGame);
         }
-        else if (IsWordEqual(currentGame, "Tower of Hanoi"))
+        else if (IsWordEqual(currentGame, "TOWER OF HANOI"))
         {
             TowerOfHanoi();
             addToHistory(history, currentGame);
         }
-        else if (IsWordEqual(currentGame, "Snake on Meteor"))
+        else if (IsWordEqual(currentGame, "SNAKE ON METEOR"))
         {
             SnakeOnMeteor();
             addToHistory(history, currentGame);
         }
-        else if (IsWordEqual(currentGame, "hangman"))
+        else if (IsWordEqual(currentGame, "HANGMAN"))
         {
             hangman();
             addToHistory(history, currentGame);

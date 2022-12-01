@@ -16,12 +16,12 @@ Urutan scoreboard game yang ditampilkan mengikuti urutan pada List Game.
 Urutan nama pada scoreboard diurutkan berdasarkan skor (descending).
 Pre-kondisi : Map Scoreboard sudah terurut berdasarkan skor.
 */
-void PrintSB(char *game, Map SBGame);
+void PrintSB(char *game, MapV2 SBGame);
 
 /*
 Prosedur untuk memanggil prosedur yang menampilkan nama dan skor untuk semua game.
 */
-void scoreboard(Map SBrng, Map SBdd, Map SBhm, Map SBtoh, Map SBsom);
+void scoreboard(Set S);
 
 /*
 Prosedur memasukkan/menyimpan nama dan skor pemain yang telah
@@ -33,6 +33,12 @@ I.S. Map Scoreboard terdefinisi dan mungkin kosong.
 F.S. Nama dan skor milik pemain adalah anggota dari Map.
     Scoreboard tetap terurut secara descending seperti kondisi awal.
 */
-void InsertScoreboard (char *nama, int skor, Map *SBGame);
+void InsertScoreboard (char *nama, int skor, MapV2 *SBGame);
+
+/*
+Prosedur membuat Scoreboard Game (Map) baru di dalam sebuah Set of Scoreboards
+Jika game sudah terdaftar dalam set, maka proses tidak dilakukan
+*/
+void CreateScoreboard (Set *SetOfSB, char* game);
 
 #endif

@@ -4,7 +4,7 @@ void RESETHISTORY(StackW *history)
 {
     printf("\nAPAKAH KAMU YAKIN INGIN MELAKUKAN RESET HISTORY (YA/TIDAK)? ");
     STARTSTDIN();
-    if (IsWordEqual(currentWord, "YA"))
+    if (IsWordEqual(currentWord, "YA") && currentWord.Length == 2)
     {
         if (lengthStackV2(*history) > 0)
         {
@@ -16,7 +16,7 @@ void RESETHISTORY(StackW *history)
             printf("\nTidak ada daftar Game dalam history, tidak perlu melakukan reset.\n");
         }
     }
-    else if (IsWordEqual(currentWord, "TIDAK"))
+    else if (IsWordEqual(currentWord, "TIDAK") && currentWord.Length == 5)
     {
         printf("\nHistory tidak jadi di-reset. ");
         if (lengthStackV2(*history) > 0)

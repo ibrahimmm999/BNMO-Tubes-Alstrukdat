@@ -134,7 +134,7 @@ void move(ListDP snake, char input, POINT food, POINT meteor)
 void SnakeOnMeteor()
 {
     ListDP snake;
-    POINT temp;
+    POINT temp, temp1, temp2, temp3, temp4;
     struct tm *ptr;
     time_t t;
     t = time(NULL);
@@ -322,20 +322,63 @@ void SnakeOnMeteor()
         {
             printf("Anda beruntung tidak terkena meteor! Silakan lanjutkan permainan.\n\n");
         }
-        POINT cekTop = MakePOINT(snake.First->pos.x % 5, (snake.First->pos.y + 4) % 5);
-        POINT cekLeft = MakePOINT((snake.First->pos.x + 4) % 5, snake.First->pos.y % 5);
-        POINT cekRight = MakePOINT(snake.First->pos.x % 5, (snake.First->pos.y + 1) % 5);
-        POINT cekBottom = MakePOINT((snake.First->pos.x + 1) % 5, snake.First->pos.y % 5);
-        if ((Search(snake, cekTop) != NULL) && (Search(snake, cekLeft) != NULL) && (Search(snake, cekRight) != NULL) && (Search(snake, cekBottom) != NULL))
+        addressLDP B = First(snake);
+        temp1.x = Pos(B).x % 5;
+        temp1.y = (Pos(B).y + 4) % 5;
+        temp2.x = (Pos(B).x + 4) % 5;
+        temp2.y = Pos(B).y % 5;
+        temp3.x = Pos(B).x % 5;
+        temp3.y = (Pos(B).y + 1) % 5;
+        temp4.x = (Pos(B).x + 1) % 5;
+        temp4.y = Pos(B).y % 5;
+        if ((Search(snake, temp1) != NilLDP) && (Search(snake, temp2) != NilLDP) && (Search(snake, temp3) != NilLDP) && (Search(snake, temp4) != NilLDP))
         {
             GameOver = true;
         }
+        else if ((temp1.x == meteor.x && temp1.y == meteor.y) && (Search(snake, temp2) != NilLDP) && (Search(snake, temp3) != NilLDP) && (Search(snake, temp4) != NilLDP))
+        {
+            GameOver = true;
+        }
+        else if ((Search(snake, temp1) != NilLDP) && (temp2.x == meteor.x && temp2.y == meteor.y) && (Search(snake, temp3) != NilLDP) && (Search(snake, temp4) != NilLDP))
+        {
+            GameOver = true;
+        }
+        else if ((Search(snake, temp1) != NilLDP) && (Search(snake, temp2) != NilLDP) && (temp3.x == meteor.x && temp3.y == meteor.y) && (Search(snake, temp4) != NilLDP))
+        {
+            GameOver = true;
+        }
+        else if ((Search(snake, temp1) != NilLDP) && (Search(snake, temp2) != NilLDP) && (Search(snake, temp3) != NilLDP) && (temp4.x == meteor.x && temp4.y == meteor.y))
+        {
+            GameOver = true;
+        }
+
         turn++;
     }
     if (isMeteorOnHead)
     {
+        int score = 0;
         printf("\nKepala snake terkena meteor\n");
+        addressLDP addr = First(snake);
+        while (addr != Last(snake))
+        {
+            score++;
+            addr = Next(addr);
+        }
+        score *= 2;
+        printf("\nGame berakhir. Skor: %d\n", score);
+    }
+    else
+    {
+        addressLDP addr = First(snake);
+        int score = 0;
+        while (addr != NilLDP)
+        {
+            score++;
+            addr = Next(addr);
+        }
+        score--;
+        score *= 2;
+        printf("\nGame berakhir. Skor: %d\n", score);
     }
     printf("===== GAME OVER =====\n");
-    printf("\nGame berakhir. Skor: %d\n", (lenSnake)*2);
 }

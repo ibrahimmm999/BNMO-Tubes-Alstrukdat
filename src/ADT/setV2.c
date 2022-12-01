@@ -3,9 +3,9 @@
 void CreateEmptySet(Set *S) {
     int i;
     S->Count = 0;
-    for (i = 0; i < MaxEl; i++) {
+    for (i = 0; i < MaxElsetV2; i++) {
         S->Elements[i].game = "";
-        CreateEmptyMap(&S->Elements[i].M);
+        CreateEmptyMapV2(&S->Elements[i].M);
     }
 }
 
@@ -14,17 +14,17 @@ boolean IsEmptySet(Set S) {
 }
 
 boolean IsFullSet(Set S) {
-    return (S.Count == MaxEl);
+    return (S.Count == MaxElsetV2);
 }
 
-void InsertSet(Set *S, infotypeSet Elmt) {
+void InsertSet(Set *S, infotypeSetV2 Elmt) {
     if (!IsMemberSet(*S, Elmt.game)) {
         S->Elements[S->Count] = Elmt;
         S->Count++;
     }
 }
 
-void DeleteSet(Set *S, infotypeSet Elmt) {
+void DeleteSet(Set *S, infotypeSetV2 Elmt) {
     int i = 0;
     boolean found = false;
     if (IsMemberSet(*S, Elmt.game)) {

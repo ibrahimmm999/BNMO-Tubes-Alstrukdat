@@ -39,16 +39,16 @@ void PLAYGAME(Queue *queueGame, StackW *history)
             tictactoe();
             addToHistory(history, currentGame);
         }
-        else if (IsWordEqual(currentGame, "gbk")) 
+        else if (IsWordEqual(currentGame, "gbk"))
         {
-            gbk(); 
-            addToHistory(history, currentGame); 
-        } 
-        else if (IsWordEqual(currentGame, "Tower of Hanoi")) 
-        { 
-            TowerOfHanoi(); 
-            addToHistory(history, currentGame); 
-        } 
+            gbk();
+            addToHistory(history, currentGame);
+        }
+        else if (IsWordEqual(currentGame, "Tower of Hanoi"))
+        {
+            TowerOfHanoi();
+            addToHistory(history, currentGame);
+        }
         else if (IsWordEqual(currentGame, "Snake on Meteor"))
         {
             SnakeOfMeteor();
@@ -58,13 +58,13 @@ void PLAYGAME(Queue *queueGame, StackW *history)
         {
             hangman();
             addToHistory(history, currentGame);
-        }                          
-        else 
-        { 
+        }
+        else
+        {
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));
-            addToHistory(history, currentGame); 
-        } 
- 
-        dequeue(queueGame, &currentGame); 
-    } 
-} 
+            addToHistory(history, currentGame);
+        }
+
+        dequeue(queueGame, &currentGame);
+    }
+}

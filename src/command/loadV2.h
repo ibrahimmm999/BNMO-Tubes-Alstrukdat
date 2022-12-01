@@ -5,8 +5,8 @@
 #include "../ADT/array.h"
 #include "../ADT/stackV2.h"
 
-#ifndef LOAD_H
-#define LOAD_H
+#ifndef LOADV2_H
+#define LOADV2_H
 
 void LOAD();
 

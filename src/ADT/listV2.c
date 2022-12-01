@@ -7,7 +7,7 @@ ListV2 MakeListV2()
 {
     ListV2 L;
     int i;
-    for (i = 0; i < MaxEl; i++)
+    for (i = 0; i < MaxElListV2; i++)
     {
         L.A[i].TabWord[0] = Mark;
         L.A[i].Length = 1;
@@ -27,10 +27,10 @@ ElType GetV2(ListV2 L, IdxType i)
 
 void SetV2(ListV2 *L, IdxType i, ElType v)
 {
-    int j; 
+    int j;
     int len = v.Length;
     (*L).A[i].Length = 0;
-    for(j = 0; j < len; j++)
+    for (j = 0; j < len; j++)
     {
         (*L).A[i].TabWord[j] = v.TabWord[j];
         (*L).A[i].Length++;
@@ -41,7 +41,7 @@ int LengthV2(ListV2 L)
 {
     int i;
     int len = 0;
-    for (i = 0; i < MaxEl; i++)
+    for (i = 0; i < MaxElListV2; i++)
     {
         if (L.A[i].TabWord[0] != Mark)
         {
@@ -58,7 +58,7 @@ IdxType FirstIdxV2(ListV2 L)
 
 IdxType LastIdxV2(ListV2 L)
 {
-    int i = MaxEl;
+    int i = MaxElListV2;
     while (L.A[i - 1].TabWord[0] == Mark)
     {
         i--;
@@ -71,16 +71,15 @@ boolean IsInList(ListV2 L, Word X)
     int i;
     char arrx[100];
     boolean found = false;
-    for(i = 0; i < X.Length; i++)
+    for (i = 0; i < X.Length; i++)
     {
         arrx[i] = X.TabWord[i];
-
     }
     i = FirstIdxV2(L);
-    while(i <= LastIdxV2(L) && found == false)
+    while (i <= LastIdxV2(L) && found == false)
     {
 
-        if(IsWordEqual(L.A[i], arrx))
+        if (IsWordEqual(L.A[i], arrx))
         {
             found = true;
         }
@@ -94,7 +93,7 @@ boolean IsInList(ListV2 L, Word X)
 /*
 boolean IsIdxValid(ListV2 L, IdxType i)
 {
-    return (i >= 0 && i <= (MaxEl - 1));
+    return (i >= 0 && i <= (MaxElListV2 - 1));
 }
 
 boolean IsIdxEff(ListV2 L, IdxType i)
@@ -123,16 +122,15 @@ int GetIdxList(ListV2 L, ElType X)
     int i;
     char arrx[100];
     boolean found = false;
-    for(i = 0; i < X.Length; i++)
+    for (i = 0; i < X.Length; i++)
     {
         arrx[i] = X.TabWord[i];
-
     }
     i = FirstIdxV2(L);
-    while(i <= LastIdxV2(L) && found == false)
+    while (i <= LastIdxV2(L) && found == false)
     {
 
-        if(IsWordEqual(L.A[i], arrx))
+        if (IsWordEqual(L.A[i], arrx))
         {
             found = true;
         }
@@ -141,7 +139,7 @@ int GetIdxList(ListV2 L, ElType X)
             i++;
         }
     }
-    if(found = true)
+    if (found = true)
     {
         return i;
     }
@@ -159,7 +157,7 @@ void InsertFirstV2(ListV2 *L, ElType X)
 void InsertAtV2(ListV2 *L, ElType X, IdxType i)
 {
     int j, k;
-    if (LengthV2(*L) < MaxEl)
+    if (LengthV2(*L) < MaxElListV2)
     {
         for (j = LengthV2(*L); j > i; j--)
         {
@@ -206,7 +204,7 @@ void DeleteAll(ListV2 *L)
     int i;
     int lastIdx = LastIdxV2(*L);
     /* Algoritma */
-    for(i = 0; i <= lastIdx; i++)
+    for (i = 0; i <= lastIdx; i++)
     {
         DeleteFirstV2(L);
     }
@@ -231,16 +229,16 @@ ListV2 Concat(ListV2 L1, ListV2 L2)
 void CetakList(ListV2 L, IdxType untilIdx)
 {
     int i, j;
-    for(i = 0; i < untilIdx; i++)
+    for (i = 0; i < untilIdx; i++)
     {
-        if(i < LengthV2(L))
+        if (i < LengthV2(L))
         {
-            printf("%d. ", i+1);
-            for(j = 0; j < L.A[i].Length; j++)
+            printf("%d. ", i + 1);
+            for (j = 0; j < L.A[i].Length; j++)
             {
                 printf("%c", L.A[i].TabWord[j]);
             }
             printf("\n");
-        }    
+        }
     }
 }

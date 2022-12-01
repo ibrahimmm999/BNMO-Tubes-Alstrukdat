@@ -11,6 +11,6 @@
 
 void tictactoe();
 
-void displayBoard(List board);
+void displayBoardTTT(List board);
 
 #endif

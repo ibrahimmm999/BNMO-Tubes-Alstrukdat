@@ -4,14 +4,14 @@
 #include "../ADT/list.h"
 #include "../boolean.h"
 
-void displayBoard(List board)
+void displayBoardTTT(List board)
 {
     int i;
     int x = 0;
     printf("\n");
     for (i = 0; i < 9; i++)
     {
-        printf("%c ", Get(board, i));
+        printf("%c ", GetElList(board, i));
         x++;
         if (x == 3)
         {
@@ -29,14 +29,14 @@ void tictactoe()
     int i;
     for (i = 1; i <= 9; i++)
     {
-        Set(&board, i - 1, i + '0');
+        SetElList(&board, i - 1, i + '0');
     }
     int count = 0;
     boolean end = false;
     int isPlayer1 = true;
     while (!end && count != 9)
     {
-        displayBoard(board);
+        displayBoardTTT(board);
         if (isPlayer1)
         {
             printf("\n= Giliran Player 1 =\n");
@@ -50,16 +50,16 @@ void tictactoe()
         int input = WordToInt(currentWord);
         if ((input <= 9) && (input >= 1))
         {
-            if (Get(board, input - 1) != 'X' && Get(board, input - 1) != 'O')
+            if (GetElList(board, input - 1) != 'X' && GetElList(board, input - 1) != 'O')
             {
                 if (isPlayer1)
                 {
-                    Set(&board, input - 1, 'X');
+                    SetElList(&board, input - 1, 'X');
                     isPlayer1 = false;
                 }
                 else
                 {
-                    Set(&board, input - 1, 'O');
+                    SetElList(&board, input - 1, 'O');
                     isPlayer1 = true;
                 }
                 count++;
@@ -73,104 +73,104 @@ void tictactoe()
         {
             printf("\nMasukkan angka yang sesuai\n");
         }
-        if (Get(board, 0) == Get(board, 1) && Get(board, 0) == Get(board, 2))
+        if (GetElList(board, 0) == GetElList(board, 1) && GetElList(board, 0) == GetElList(board, 2))
         {
-            if ((Get(board, 0) == 'X'))
+            if ((GetElList(board, 0) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 0) == 'O'))
+            else if ((GetElList(board, 0) == 'O'))
             {
 
                 playerwin = 2;
             }
             end = true;
         }
-        else if (Get(board, 3) == Get(board, 4) && Get(board, 3) == Get(board, 5))
+        else if (GetElList(board, 3) == GetElList(board, 4) && GetElList(board, 3) == GetElList(board, 5))
         {
-            if ((Get(board, 3) == 'X'))
+            if ((GetElList(board, 3) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 3) == 'O'))
+            else if ((GetElList(board, 3) == 'O'))
             {
 
                 playerwin = 2;
             }
             end = true;
         }
-        else if (Get(board, 6) == Get(board, 7) && Get(board, 6) == Get(board, 8))
+        else if (GetElList(board, 6) == GetElList(board, 7) && GetElList(board, 6) == GetElList(board, 8))
         {
-            if ((Get(board, 6) == 'X'))
+            if ((GetElList(board, 6) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 6) == 'O'))
+            else if ((GetElList(board, 6) == 'O'))
             {
 
                 playerwin = 2;
             }
             end = true;
         }
-        else if (Get(board, 0) == Get(board, 3) && Get(board, 0) == Get(board, 6))
+        else if (GetElList(board, 0) == GetElList(board, 3) && GetElList(board, 0) == GetElList(board, 6))
         {
-            if ((Get(board, 0) == 'X'))
+            if ((GetElList(board, 0) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 0) == 'O'))
+            else if ((GetElList(board, 0) == 'O'))
             {
 
                 playerwin = 2;
             }
             end = true;
         }
-        else if (Get(board, 1) == Get(board, 7) && Get(board, 4) == Get(board, 7))
+        else if (GetElList(board, 1) == GetElList(board, 7) && GetElList(board, 4) == GetElList(board, 7))
         {
-            if ((Get(board, 1) == 'X'))
+            if ((GetElList(board, 1) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 1) == 'O'))
+            else if ((GetElList(board, 1) == 'O'))
             {
 
                 playerwin = 2;
             }
             end = true;
         }
-        else if (Get(board, 2) == Get(board, 8) && Get(board, 5) == Get(board, 8))
+        else if (GetElList(board, 2) == GetElList(board, 8) && GetElList(board, 5) == GetElList(board, 8))
         {
-            if ((Get(board, 2) == 'X'))
+            if ((GetElList(board, 2) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 2) == 'O'))
+            else if ((GetElList(board, 2) == 'O'))
             {
 
                 playerwin = 2;
             }
             end = true;
         }
-        else if (Get(board, 0) == Get(board, 8) && Get(board, 4) == Get(board, 8))
+        else if (GetElList(board, 0) == GetElList(board, 8) && GetElList(board, 4) == GetElList(board, 8))
         {
-            if ((Get(board, 0) == 'X'))
+            if ((GetElList(board, 0) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 0) == 'O'))
+            else if ((GetElList(board, 0) == 'O'))
             {
 
                 playerwin = 2;
             }
             end = true;
         }
-        else if (Get(board, 2) == Get(board, 6) && Get(board, 4) == Get(board, 6))
+        else if (GetElList(board, 2) == GetElList(board, 6) && GetElList(board, 4) == GetElList(board, 6))
         {
-            if ((Get(board, 2) == 'X'))
+            if ((GetElList(board, 2) == 'X'))
             {
                 playerwin = 1;
             }
-            else if ((Get(board, 2) == 'O'))
+            else if ((GetElList(board, 2) == 'O'))
             {
 
                 playerwin = 2;
@@ -178,7 +178,7 @@ void tictactoe()
             end = true;
         }
     }
-    displayBoard(board);
+    displayBoardTTT(board);
     if (playerwin == 1)
     {
         printf("\nSelamat Player 1 menang\n");

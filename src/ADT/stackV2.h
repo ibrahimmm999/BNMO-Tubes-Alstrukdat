@@ -2,30 +2,31 @@
 /* deklarasi stack yang diimplementasi dengan tabel kontigu dan ukuran sama */
 /* TOP adalah alamat elemen puncak */
 /* Implementasi dalam bahasa C dengan alokasi statik */
-#ifndef stackt_H
-#define stackt_H
+#ifndef stacktV2_H
+#define stacktV2_H
 
 #include "..\boolean.h"
 #include <stdio.h>
 #include "mesinkata.h"
 
-#define Nil -1
-#define MaxEl 100
+#define NilStackV2 -1
+#define MaxElStackV2 100
 /* Nil adalah stack dengan elemen kosong . */
 
-typedef int address;   /* indeks tabel */
+typedef int address; /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
-typedef struct { 
-  Word T[MaxEl]; /* tabel penyimpan elemen */
-  address TOP;  /* alamat TOP: elemen puncak */
+typedef struct
+{
+  Word T[MaxElStackV2]; /* tabel penyimpan elemen */
+  address TOP;          /* alamat TOP: elemen puncak */
 } StackW;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
 /* Jika S adalah Stack maka akses elemen : */
-   /* S.T[(S.TOP)] untuk mengakses elemen TOP */
-   /* S.TOP adalah alamat elemen TOP */
+/* S.T[(S.TOP)] untuk mengakses elemen TOP */
+/* S.TOP adalah alamat elemen TOP */
 
 /* Definisi akses dengan Selektor : Set dan Get */
 /* #define Top(S) (S).TOP
@@ -33,41 +34,40 @@ typedef struct {
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyStack(StackW *S);
+void CreateEmptyStackV2(StackW *S);
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 0.. MaxEl */
 /* Ciri stack kosong : TOP bernilai Nil */
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsStackEmpty(StackW S);
+boolean IsStackEmptyV2(StackW S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
-boolean IsStackFull(StackW S);
+boolean IsStackFullV2(StackW S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void PushStack(StackW * S, Word X);
+void PushStackV2(StackW *S, Word X);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void PopStack(StackW * S, Word * X);
+void PopStackV2(StackW *S, Word *X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
-int lengthStack (StackW S);
+int lengthStackV2(StackW S);
 /* Ngitung panjang */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. Mengembalikan panjang */
 
-void ReverseStack (StackW S, StackW * reserved);
+void ReverseStack(StackW S, StackW *reserved);
 
+void CopyStack(StackW S, StackW *copied);
 
-void CopyStack (StackW S, StackW *copied);
-
-void CetakStack (StackW S, int n);
+void CetakStack(StackW S, int n);
 
 void PopAllStack(StackW *S);
 

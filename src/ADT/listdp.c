@@ -2,39 +2,39 @@
 #include <stdlib.h>
 #include "listdp.h"
 
-boolean IsEmpty(List L)
+boolean IsLDPEmpty(ListDP L)
 {
-    return (First(L) == Nil && Last(L) == Nil);
+    return (First(L) == NilLDP && Last(L) == NilLDP);
 }
 
-void CreateEmpty(List *L)
+void CreateEmpty(ListDP *L)
 {
-    First(*L) = Nil;
-    Last(*L) = Nil;
+    First(*L) = NilLDP;
+    Last(*L) = NilLDP;
 }
-address Alokasi(infotypeLdp X, POINT Y)
+addressLDP Alokasi(infotypeLdp X, POINT Y)
 {
-    address P = (address)malloc(sizeof(ElmtList));
-    if (P != Nil)
+    addressLDP P = (addressLDP)malloc(sizeof(ElmtListDP));
+    if (P != NilLDP)
     {
         Info(P) = X;
-        Next(P) = Nil;
-        Prev(P) = Nil;
+        Next(P) = NilLDP;
+        Prev(P) = NilLDP;
         Pos(P) = Y;
     }
     return P;
 }
 
-void Dealokasi(address P)
+void Dealokasi(addressLDP P)
 {
     free(P);
 }
 
-address Search(List L, POINT Y)
+addressLDP Search(ListDP L, POINT Y)
 {
-    address P = First(L);
+    addressLDP P = First(L);
     boolean ada = false;
-    while (P != Nil && !ada)
+    while (P != NilLDP && !ada)
     {
         if (Pos(P).x == Y.x && Pos(P).y == Y.y)
         {
@@ -51,16 +51,16 @@ address Search(List L, POINT Y)
     }
     else
     {
-        return Nil;
+        return NilLDP;
     }
 }
 
-void InsVLast(List *L, infotypeLdp X, POINT Y)
+void InsVLast(ListDP *L, infotypeLdp X, POINT Y)
 {
-    address P = Alokasi(X, Y);
-    if (P != Nil)
+    addressLDP P = Alokasi(X, Y);
+    if (P != NilLDP)
     {
-        if (!IsEmpty(*L))
+        if (!IsLDPEmpty(*L))
         {
             Next(Last(*L)) = P;
             Prev(P) = Last(*L);
@@ -74,53 +74,53 @@ void InsVLast(List *L, infotypeLdp X, POINT Y)
     }
 }
 
-void DelFirst(List *L, address *P)
+void DelFirst(ListDP *L, addressLDP *P)
 {
     *P = First(*L);
-    if (Next(*P) == Nil)
+    if (Next(*P) == NilLDP)
     {
-        First(*L) = Nil;
-        Last(*L) = Nil;
+        First(*L) = NilLDP;
+        Last(*L) = NilLDP;
     }
     else
     {
         First(*L) = Next(*P);
-        Prev(Next(*P)) = Nil;
+        Prev(Next(*P)) = NilLDP;
     }
 }
 
-void DelLast(List *L, address *P)
+void DelLast(ListDP *L, addressLDP *P)
 {
     *P = Last(*L);
-    if (Prev(*P) == Nil)
+    if (Prev(*P) == NilLDP)
     {
-        First(*L) = Nil;
-        Last(*L) = Nil;
+        First(*L) = NilLDP;
+        Last(*L) = NilLDP;
     }
     else
     {
         Last(*L) = Prev(*P);
-        Next(Prev(*P)) = Nil;
+        Next(Prev(*P)) = NilLDP;
     }
 }
 
-void DelP(List *L, POINT X)
+void DelP(ListDP *L, POINT X)
 {
-    address P = Search(*L, X);
-    if (P != Nil)
+    addressLDP P = Search(*L, X);
+    if (P != NilLDP)
     {
-        if (Prev(P) == Nil)
+        if (Prev(P) == NilLDP)
         {
             DelFirst(L, &P);
         }
-        else if (Next(P) == Nil)
+        else if (Next(P) == NilLDP)
         {
             DelLast(L, &P);
         }
         else
         {
-            address Q = Last(*L);
-            address R;
+            addressLDP Q = Last(*L);
+            addressLDP R;
             while (Q != P)
             {
 
@@ -140,17 +140,17 @@ void DelP(List *L, POINT X)
     }
 }
 
-void PrintForward(List L)
+void PrintForward(ListDP L)
 {
-    address P = First(L);
-    if (IsEmpty(L))
+    addressLDP P = First(L);
+    if (IsLDPEmpty(L))
     {
         printf("[]");
     }
     else
     {
         printf("[");
-        while (P != Nil)
+        while (P != NilLDP)
         {
             if (P != Last(L))
             {
@@ -166,17 +166,17 @@ void PrintForward(List L)
     }
 }
 
-void PrintBackward(List L)
+void PrintBackward(ListDP L)
 {
-    address P = Last(L);
-    if (IsEmpty(L))
+    addressLDP P = Last(L);
+    if (IsLDPEmpty(L))
     {
         printf("[]");
     }
     else
     {
         printf("[");
-        while (P != Nil)
+        while (P != NilLDP)
         {
             if (P != First(L))
             {
@@ -192,7 +192,7 @@ void PrintBackward(List L)
     }
 }
 
-POINT GetLastPos(List L)
+POINT GetLastPos(ListDP L)
 {
     return Pos(Last(L));
 }

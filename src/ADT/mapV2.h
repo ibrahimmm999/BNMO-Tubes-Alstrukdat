@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include "../boolean.h"
 
-#define Nil 0
-#define MaxEl 20
+#define NilMapV2 0
+#define MaxElMapV2 20
 #define Undefined -999
 
 typedef int keytype;
@@ -20,11 +20,11 @@ typedef struct
 {
         keytype Key;
         valuetype Value;
-} infotype;
+} infotypemapv2;
 
 typedef struct
 {
-        infotype Elements[MaxEl];
+        infotypemapv2 Elements[MaxElMapV2];
         address Count;
 } Map;
 
@@ -35,17 +35,17 @@ typedef struct
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyMap(Map *M);
+void CreateEmptyMapV2(Map *M);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M);
+boolean IsMapV2Empty(Map M);
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 
-boolean IsFull(Map M);
+boolean IsMapV2Full(Map M);
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
@@ -61,7 +61,7 @@ int VScore(Map M, keytype k);
 /* Mengembalikan nilai value score dengan key k pada M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void Insert(Map *M, keytype k, valuetype v);
+void InsertMapV2(Map *M, keytype k, valuetype v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
@@ -73,7 +73,7 @@ void Insert(Map *M, keytype k, valuetype v);
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, keytype k);
+boolean IsMemberMapV2(Map M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
 boolean NameExist(Map M, char *name);

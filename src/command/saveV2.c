@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "saveV2.h"
 
-void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, Map SBhm, Map SBtoh, Map SBsom);
+void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, Map SBhm, Map SBtoh, Map SBsom)
 {
     FILE *fp = NULL;
     Word info;
@@ -38,14 +38,14 @@ void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, M
         }
 
         // ------------ history ------------
-        lenhis = lengthStack(history);
+        lenhis = lengthStackV2(history);
         fprintf(fp, "\n%d\n", lenhis);
         for (i = 0; i < lenhis; i++)
         {
             wordlen = history.T[history.TOP].Length;
             // wordlen = GetElmt(list_game, i).Length;
             char *temp = malloc((wordlen) * sizeof(char));
-            PopStack(&history, &info);
+            PopStackV2(&history, &info);
             for (j = 0; j < wordlen; j++)
             {
                 temp[j] = info.TabWord[j];
@@ -63,7 +63,7 @@ void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, M
                 fprintf(fp, "%s\n", temp);
             }
         }
-        
+
         // ------------ scoreboard ------------
         SaveSB(SBrng, fp);
         SaveSB(SBdd, fp);

@@ -3,7 +3,7 @@
 void STARTGAME(Arr *arrgame, StackW *history)
 {
     MakeEmpty(arrgame);
-    CreateEmptyStack(history);
+    CreateEmptyStackV2(history);
     STARTWORD("../data/config.txt");
 
     int i;

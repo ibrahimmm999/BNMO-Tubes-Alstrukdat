@@ -2,8 +2,8 @@
 #include "../ADT/stackV2.h"
 #include "../ADT/mapV2.h"
 
-#ifndef SAVE_H
-#define SAVE_H
+#ifndef SAVEV2_H
+#define SAVEV2_H
 
 /*
 Prosedur untuk menyimpan state game (list game, history, scoreboard yang dimiliki sistem)
@@ -15,6 +15,6 @@ void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, M
 /*
 Prosedur simpan scoreboard ke dalam file
 */
-void SaveSB(FILE *fp, Map SBGame);
+void SaveSB(Map SBGame, FILE *fp);
 
 #endif

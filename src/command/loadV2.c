@@ -4,14 +4,14 @@
 void LOAD(char *savefile, Arr *arrgame, StackW *history)
 {
     MakeEmpty(arrgame);
-    CreateEmptyStack(history);
+    CreateEmptyStackV2(history);
     STARTWORD(savefile);
 
     int i;
     int lenOfArr = currentWord.TabWord[0] - 48;
     int lenOfStack;
     StackW histemp;
-    CreateEmptyStack(&histemp);
+    CreateEmptyStackV2(&histemp);
 
     ADVWORD();
     int temp = 0;
@@ -27,7 +27,7 @@ void LOAD(char *savefile, Arr *arrgame, StackW *history)
     for (i = 0; i < lenOfStack; i++)
     {
         // printf("%s\n", currentWord.TabWord);
-        PushStack(&histemp, currentWord);
+        PushStackV2(&histemp, currentWord);
         ADVWORD();
     }
 

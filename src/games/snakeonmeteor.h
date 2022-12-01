@@ -7,15 +7,15 @@
 #include "../ADT/point.h"
 #include "../boolean.h"
 
-void displayBoard(List snake, POINT food, POINT meteor);
+void displayBoard(ListDP snake, POINT food, POINT meteor);
 
-POINT Food(List L);
+POINT Food(ListDP L);
 
 POINT Meteor(POINT Food);
 
-void move(List snake, char input, boolean *GameOver);
+void move(ListDP snake, char input, POINT food, POINT meteor);
 
-void FirstRandSnake(List *L);
+void FirstRandSnake(ListDP *L);
 
 void SnakeOfMeteor();
 

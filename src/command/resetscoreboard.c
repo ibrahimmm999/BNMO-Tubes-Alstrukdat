@@ -1,7 +1,8 @@
 #include "resetscoreboard.h"
 #include <stdio.h>
 
-void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom) {
+void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom)
+{
     int i, input;
     Word trash;
     trash.Length = 1;
@@ -21,7 +22,8 @@ void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom) 
     input = (currentWord.TabWord[0] - 48);
 
     // panggil prosedur sesuai input
-    switch (input) {
+    switch (input)
+    {
     case 0:
         printf("Apakah Anda yakin ingin melakukan RESET ALL SCOREBOARD (YA / TIDAK)? ");
         STARTSTDIN();
@@ -51,45 +53,54 @@ void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom) 
     }
 }
 
-void RSB(char *game, Map *SBGame, boolean isALL, Word answer) {
+void RSB(char *game, Map *SBGame, boolean isALL, Word answer)
+{
     int i, j, len;
     Word confirm;
 
-    if (!isALL) {
+    if (!isALL)
+    {
         printf("Apakah Anda yakin ingin melakukan RESET SCOREBOARD ");
         printf("%s", game);
         printf(" (YA / TIDAK)? ");
         STARTSTDIN();
         confirm = currentWord;
     }
-    else {
+    else
+    {
         confirm = answer;
     }
 
-    if (IsWordEqual(confirm, "YA")) {
+    if (IsWordEqual(confirm, "YA"))
+    {
         // hapus semua isi map
         len = SBGame->Count;
-        for (j = 0; j < len; j++) {
+        for (j = 0; j < len; j++)
+        {
             SBGame->Elements[j].Key = Undefined;
             SBGame->Elements[j].Value.name = "";
             SBGame->Elements[j].Value.score = Undefined;
         }
         SBGame->Count = 0;
-        
+
         printf("Scoreboard ");
         printf("%s", game);
-        if (IsEmpty(*SBGame)) {    
+        if (IsMapV2Empty(*SBGame))
+        {
             printf(" berhasil di-reset.\n");
         }
-        else {
+        else
+        {
             printf(" gagal di-reset.\n");
         }
     }
 
-    else if (IsWordEqual(confirm, "TIDAK")) {
+    else if (IsWordEqual(confirm, "TIDAK"))
+    {
         printf("Scoreboard tidak di-reset.\n");
     }
-    else {
+    else
+    {
         printf("Jawaban yang diberikan tidak valid.\n");
     }
 }

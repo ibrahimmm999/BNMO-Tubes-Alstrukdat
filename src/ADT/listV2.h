@@ -9,7 +9,7 @@
 #include "mesinkata.h"
 
 /* Kamus Umum */
-#define MaxEl 100
+#define MaxElListV2 100
 #define Mark '.'      /* Nilai tak terdefinisi */
 #define InvalidIdx -1 /* Indeks tak terdefinisi */
 
@@ -19,7 +19,7 @@
 
 typedef struct
 {
-    ElType A[MaxEl]; /* Memori tempat penyimpanan elemen (container) */
+    ElType A[MaxElListV2]; /* Memori tempat penyimpanan elemen (container) */
 } ListV2;
 
 /* Indeks yang digunakan seberapa banyak memori itu terisi */

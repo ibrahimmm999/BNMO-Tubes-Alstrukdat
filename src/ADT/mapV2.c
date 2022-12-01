@@ -1,28 +1,32 @@
 #include <stdio.h>
 #include "mapV2.h"
 
-void CreateEmptyMap(Map *M) {
-    M->Count = Nil;
+void CreateEmptyMapV2(Map *M)
+{
+    M->Count = NilMapV2;
     int i;
-    for (i = 0; i < MaxEl; i++) {
+    for (i = 0; i < MaxElMapV2; i++)
+    {
         M->Elements[i].Key = Undefined;
         M->Elements[i].Value.name = "";
         M->Elements[i].Value.score = Undefined;
     }
 }
 
-boolean IsEmpty(Map M) {
-    return (M.Count == Nil);
+boolean IsMapV2Empty(Map M)
+{
+    return (M.Count == NilMapV2);
 }
 
-boolean IsFull(Map M) {
-    return (M.Count == MaxEl);
+boolean IsMapV2Full(Map M)
+{
+    return (M.Count == MaxElMapV2);
 }
 
 /* valuetype Value(Map M, keytype k) {
     int i = 0;
     boolean found = false;
-    if (IsMember(M, k)) {
+    if (IsMemberMapV2(M, k)) {
         while (!found && i < M.Count) {
             if (M.Elements[i].Key == k) {
                 found = true;
@@ -38,25 +42,32 @@ boolean IsFull(Map M) {
     }
 } */
 
-char *VName(Map M, keytype k) {
-    if (IsMember(M, k)) {
+char *VName(Map M, keytype k)
+{
+    if (IsMemberMapV2(M, k))
+    {
         return M.Elements[k].Value.name;
     }
-    else {
+    else
+    {
         return "";
     }
 }
 
-int VScore(Map M, keytype k) {
-    if (IsMember(M, k)) {
+int VScore(Map M, keytype k)
+{
+    if (IsMemberMapV2(M, k))
+    {
         return M.Elements[k].Value.score;
     }
-    else {
+    else
+    {
         return Undefined;
     }
 }
 
-void Insert(Map *M, keytype k, valuetype v) {
+void InsertMapV2(Map *M, keytype k, valuetype v)
+{
     M->Elements[k].Key = k;
     M->Elements[k].Value.name = v.name;
     M->Elements[k].Value.score = v.score;
@@ -66,7 +77,7 @@ void Insert(Map *M, keytype k, valuetype v) {
 /* void Delete(Map *M, keytype k) {
     int i = 0;
     boolean found = false;
-    if (IsMember(*M, k)) {
+    if (IsMemberMapV2(*M, k)) {
         while (!found && i < M->Count) {
             if (M->Elements[i].Key == k) {
                 found = true;
@@ -85,28 +96,36 @@ void Insert(Map *M, keytype k, valuetype v) {
     }
 } */
 
-boolean IsMember(Map M, keytype k) {
+boolean IsMemberMapV2(Map M, keytype k)
+{
     int i = 0;
     boolean found = false;
-    while (!found && i < M.Count) {
-        if (M.Elements[i].Key == k) {
+    while (!found && i < M.Count)
+    {
+        if (M.Elements[i].Key == k)
+        {
             found = true;
         }
-        else {
+        else
+        {
             i++;
         }
     }
     return found;
 }
 
-boolean NameExist(Map M, char* name) {
+boolean NameExist(Map M, char *name)
+{
     int i = 0;
     boolean found = false;
-    while (!found && i < M.Count) {
-        if (M.Elements[i].Value.name == name) {
+    while (!found && i < M.Count)
+    {
+        if (M.Elements[i].Value.name == name)
+        {
             found = true;
         }
-        else {
+        else
+        {
             i++;
         }
     }

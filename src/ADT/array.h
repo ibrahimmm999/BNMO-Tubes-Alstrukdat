@@ -81,7 +81,7 @@ boolean IsIdxEff(Arr T, IdxTypeArr i);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test tabel kosong *** */
-boolean IsEmpty(Arr T);
+boolean IsArrayEmpty(Arr T);
 /* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
 /* *** Test tabel penuh *** */
 boolean IsFull(Arr T);

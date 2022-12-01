@@ -61,7 +61,7 @@ boolean IsIdxEff(Arr T, IdxTypeArr i)
     return (i >= IdxMin && i <= T.Neff);
 }
 
-boolean IsEmpty(Arr T)
+boolean IsArrayEmpty(Arr T)
 {
     return (T.Neff == 0);
 }

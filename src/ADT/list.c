@@ -6,36 +6,35 @@ List MakeList()
 {
     List L;
     int i;
-    for (i = 0; i < MaxEl; i++)
+    for (i = 0; i < MaxElList; i++)
     {
-        L.A[i] = Mark;
+        L.A[i] = MarkList;
     }
     return L;
 }
 
 /* boolean IsEmpty(List L)
 {
-    return (L.A[0] == Mark);
+    return (L.A[0] == MarkList);
 } */
 
-
-EllType Get(List L, IdxType i)
+ElTypeList GetElList(List L, IdxTypeList i)
 {
     return (L.A[i]);
 }
 
-void Set(List *L, IdxType i, EllType v)
+void SetElList(List *L, IdxTypeList i, ElTypeList v)
 {
     (*L).A[i] = v;
 }
 
-int Length(List L)
+int LengthList(List L)
 {
     int i;
     int len = 0;
-    for (i = 0; i < MaxEl; i++)
+    for (i = 0; i < MaxElList; i++)
     {
-        if (L.A[i] != Mark)
+        if (L.A[i] != MarkList)
         {
             len++;
         }
@@ -43,32 +42,32 @@ int Length(List L)
     return len;
 }
 
-IdxType FirstIdx(List L)
+IdxTypeList FirstIdx(List L)
 {
     return 0;
 }
 
-IdxType LastIdx(List L)
+IdxTypeList LastIdx(List L)
 {
-    int i = MaxEl;
-    while (L.A[i - 1] == Mark)
+    int i = MaxElList;
+    while (L.A[i - 1] == MarkList)
     {
         i--;
     }
     return i - 1;
 }
 /*
-boolean IsIdxValid(List L, IdxType i)
+boolean IsIdxValid(List L, IdxTypeList i)
 {
-    return (i >= 0 && i <= (MaxEl - 1));
+    return (i >= 0 && i <= (MaxElList - 1));
 }
 
-boolean IsIdxEff(List L, IdxType i)
+boolean IsIdxEff(List L, IdxTypeList i)
 {
     return (i >= 0 && i <= LastIdx(L));
 }
 
-boolean Search(List L, EllType X)
+boolean Search(List L, ElTypeList X)
 {
     int i;
     boolean cond = false;
@@ -83,17 +82,17 @@ boolean Search(List L, EllType X)
 }
 
 */
-void InsertFirst(List *L, EllType X)
+void InsertFirstList(List *L, ElTypeList X)
 {
-    InsertAt(L, X, 0);
+    InsertAtList(L, X, 0);
 }
 
-void InsertAt(List *L, EllType X, IdxType i)
+void InsertAtList(List *L, ElTypeList X, IdxTypeList i)
 {
     int j;
-    if (Length(*L) < MaxEl)
+    if (LengthList(*L) < MaxElList)
     {
-        for (j = Length(*L); j > i; j--)
+        for (j = LengthList(*L); j > i; j--)
         {
             (*L).A[j] = (*L).A[j - 1];
         }
@@ -101,29 +100,29 @@ void InsertAt(List *L, EllType X, IdxType i)
     }
 }
 
-void InsertLast(List *L, EllType X)
+void InsertLastList(List *L, ElTypeList X)
 {
-    InsertAt(L, X, LastIdx(*L) + 1);
+    InsertAtList(L, X, LastIdx(*L) + 1);
 }
 
-void DeleteFirst(List *L)
+void ElListDeleteFirstList(List *L)
 {
-    DeleteAt(L, 0);
+    DeleteAtList(L, 0);
 }
 
-void DeleteAt(List *L, IdxType i)
+void DeleteAtList(List *L, IdxTypeList i)
 {
     int j;
-    for (j = i; j < Length(*L); j++)
+    for (j = i; j < LengthList(*L); j++)
     {
         (*L).A[j] = (*L).A[j + 1];
     }
-    (*L).A[Length(*L)] = Mark;
+    (*L).A[LengthList(*L)] = MarkList;
 }
 
-void DeleteLast(List *L)
+void DeleteLastList(List *L)
 {
-    DeleteAt(L, LastIdx(*L));
+    DeleteAtList(L, LastIdx(*L));
 }
 
 /*

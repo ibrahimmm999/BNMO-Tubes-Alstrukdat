@@ -4,17 +4,16 @@
 #include "../boolean.h"
 #include "mesinkata.h"
 
-
-#define Nil 0
-#define MaxEl 100
+#define NilSet 0
+#define MaxElSet 100
 
 typedef Word infotype;
 typedef int address;
 
 typedef struct
 {
-    infotype Elements[MaxEl];
-    address Count;
+        infotype Elements[MaxElSet];
+        address Count;
 } Set;
 
 /* Definisi Set S kosong : S.Count = Nil */
@@ -46,13 +45,13 @@ boolean IsSetFull(Set S);
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
-void Insert(Set *S, infotype Elmt);
+void InsertElSet(Set *S, infotype Elmt);
 
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */
 /* F.S. Elmt bukan anggota dari S */
-void Delete(Set *S, infotype Elmt);
+void DeleteElSet(Set *S, infotype Elmt);
 
 /* Mengembalikan true jika Elmt adalah member dari S */
 boolean IsMemberSet(Set S, infotype Elmt);

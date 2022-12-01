@@ -7,6 +7,9 @@
 #include "../boolean.h"
 #include "../ADT/stack.h"
 
+#ifndef TOWEROFHANOI_H
+#define TOWEROFHANOI_H
+
 boolean isWin(Stack s, int temp);
 // Mengecek kemenangan
 
@@ -16,7 +19,7 @@ void Tower(int x);
 void Alas();
 // Alas tower
 
-void DisplayTower(Stack S, Stack S2, Stack S3);
+void DisplayTower(Stack S, Stack S2, Stack S3, int disk);
 // Print tower
 
 boolean MoveValid(Stack S1, Stack S2);
@@ -27,8 +30,5 @@ void Pindah(Stack *A, Stack *B);
 
 void TowerOfHanoi();
 // Permainannya
-#ifndef TOWEROFHANOI_H
-#define TOWEROFHANOI_H
-
 
 #endif

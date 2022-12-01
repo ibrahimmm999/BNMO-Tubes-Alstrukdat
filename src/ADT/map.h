@@ -16,12 +16,14 @@ typedef Word keytype;
 typedef int valuetype;
 typedef int address;
 
-typedef struct {
+typedef struct
+{
 	keytype Key;
 	valuetype Value;
 } infotype;
 
-typedef struct {
+typedef struct
+{
 	infotype Elements[MaxEl];
 	address Count;
 } Map;
@@ -43,11 +45,11 @@ void CreateMap(Map *M);
 
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
-boolean IsEmpty(Map M);
+boolean IsMapEmpty(Map M);
 
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
-boolean IsFull(Map M);
+boolean IsMapFull(Map M);
 
 /* ********** Operator Dasar Map ********* */
 
@@ -57,13 +59,13 @@ valuetype Value(Map M, keytype k);
 
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
-        M mungkin sudah beranggotakan v dengan key k */
+		M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 void Insert(Map *M, keytype k, valuetype v);
 
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
-        element dengan key k mungkin anggota / bukan anggota dari M */
+		element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 void Delete(Map *M, keytype k);
 

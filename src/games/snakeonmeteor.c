@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include "snakeonmeteor.h"
 
-void displayBoard(List snake, POINT food, POINT meteor)
+void displayBoard(ListDP snake, POINT food, POINT meteor)
 {
     int x, y;
-    address current;
+    addressLDP current;
     printf("\n-------------------------------\n");
     for (y = 0; y < 5; y++)
     {
@@ -32,7 +32,7 @@ void displayBoard(List snake, POINT food, POINT meteor)
             }
             else
             {
-                if (current != Nil)
+                if (current != NilLDP)
                 {
                     if (current == snake.First)
                     {
@@ -61,13 +61,13 @@ void displayBoard(List snake, POINT food, POINT meteor)
     printf("\n__________________________________________\n");
 }
 
-POINT Food(List L)
+POINT Food(ListDP L)
 {
     POINT P;
     srand(time(NULL));
     P.x = rand() % 5;
     P.y = rand() % 5;
-    while (Search(L, P) != Nil)
+    while (Search(L, P) != NilLDP)
     {
         P.x = rand() % 5;
         P.y = rand() % 5;
@@ -89,10 +89,9 @@ POINT Meteor(POINT Food)
     return P;
 }
 
-void move(List snake, char input, boolean *reinput)
+void move(ListDP snake, char input, POINT food, POINT meteor)
 {
-    address P = First(snake);
-    *reinput = false;
+    addressLDP P = First(snake);
     POINT Temp;
     if (input == 'w')
     {
@@ -115,9 +114,10 @@ void move(List snake, char input, boolean *reinput)
         Temp.y = Pos(P).y % 5;
     }
 
-    if (Search(snake, Temp) == Nil)
+    if (Search(snake, Temp) == NilLDP)
     {
-        address Q;
+        printf("Anda terkena meteor!\n");
+        addressLDP Q;
         P = Last(snake);
         while (P != First(snake))
         {
@@ -133,7 +133,7 @@ void move(List snake, char input, boolean *reinput)
 
 void SnakeOfMeteor()
 {
-    List snake;
+    ListDP snake;
     POINT temp;
     struct tm *ptr;
     time_t t;
@@ -146,7 +146,7 @@ void SnakeOfMeteor()
     printf("\n__________________________________________\n");
     srand(time(NULL));
     InsVLast(&snake, 0, MakePOINT((rand() * ptr->tm_sec) % 5, rand() % 5));
-    address current = snake.First;
+    addressLDP current = snake.First;
     int x = current->pos.x;
     int y = current->pos.y;
     if (x == 0)
@@ -203,6 +203,7 @@ void SnakeOfMeteor()
     int turn = 1;
     boolean GameOver = false;
     boolean isMeteorOnHead = false;
+    boolean isMeteorOnBody = false;
     while (!GameOver)
     {
         printf("TURN %d\n", turn);
@@ -210,7 +211,7 @@ void SnakeOfMeteor()
         STARTSTDIN();
         printf("\n");
         boolean cekInput = false;
-        address P = First(snake);
+        addressLDP P = First(snake);
         POINT TempP;
         if (IsWordEqual(currentWord, "w"))
         {
@@ -232,7 +233,7 @@ void SnakeOfMeteor()
             TempP.x = (Pos(P).x + 1) % 5;
             TempP.y = Pos(P).y % 5;
         }
-        while (((!IsWordEqual(currentWord, "a") && !IsWordEqual(currentWord, "w") && !IsWordEqual(currentWord, "s") && !IsWordEqual(currentWord, "d")) || currentWord.Length != 1) || ((Search(snake, TempP) != Nil)) || (((IsWordEqual(currentWord, "a") && (prevMeteor.x == snake.First->pos.x - 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "d") && (prevMeteor.x == snake.First->pos.x + 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "s") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y + 1))) || ((IsWordEqual(currentWord, "w") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y - 1)))))
+        while (((!IsWordEqual(currentWord, "a") && !IsWordEqual(currentWord, "w") && !IsWordEqual(currentWord, "s") && !IsWordEqual(currentWord, "d")) || currentWord.Length != 1) || ((Search(snake, TempP) != NilLDP)) || (((IsWordEqual(currentWord, "a") && (prevMeteor.x == snake.First->pos.x - 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "d") && (prevMeteor.x == snake.First->pos.x + 1) && (prevMeteor.y == snake.First->pos.y))) || ((IsWordEqual(currentWord, "s") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y + 1))) || ((IsWordEqual(currentWord, "w") && (prevMeteor.x == snake.First->pos.x) && (prevMeteor.y == snake.First->pos.y - 1)))))
         {
             if (cekInput)
             {
@@ -268,7 +269,7 @@ void SnakeOfMeteor()
             }
             else
             {
-                if ((Search(snake, TempP) != Nil))
+                if ((Search(snake, TempP) != NilLDP))
                 {
                     printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\nSilahkan input command yang lain\n");
                     printf("Silahkan masukkan command anda: ");
@@ -286,7 +287,7 @@ void SnakeOfMeteor()
             }
         }
         temp = GetLastPos(snake);
-        move(snake, currentWord.TabWord[0], &GameOver);
+        move(snake, currentWord.TabWord[0], food, meteor);
         if (Pos(First(snake)).x == food.x && Pos(First(snake)).y == food.y)
         {
             InsVLast(&snake, lenSnake, temp);
@@ -300,7 +301,7 @@ void SnakeOfMeteor()
         {
             displayBoard(snake, food, meteor);
         }
-        if (Search(snake, meteor) != Nil)
+        if (Search(snake, meteor) != NilLDP)
         {
             if (Pos(First(snake)).x == meteor.x && Pos(First(snake)).y == meteor.y)
             {
@@ -317,10 +318,5 @@ void SnakeOfMeteor()
         printf("\nKepala snake terkena meteor\n");
     }
     printf("===== GAME OVER =====\n");
-    printf("\nGame berakhir. Skor: %d\n", lenSnake * 2);
-}
-
-int main()
-{
-    SnakeOfMeteor();
+    printf("\nGame berakhir. Skor: %d\n", (lenSnake)*2);
 }

@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include "listdp.h"
 
-boolean IsLDPEmpty(ListDP L)
+boolean IsEmptyListdp(ListDP L)
 {
     return (First(L) == NilLDP && Last(L) == NilLDP);
 }
 
-void CreateEmpty(ListDP *L)
+void CreateEmptyListdp(ListDP *L)
 {
     First(*L) = NilLDP;
     Last(*L) = NilLDP;
 }
-addressLDP Alokasi(infotypeLdp X, POINT Y)
+addressLDP AlokasiListdp(infotypeLdp X, POINT Y)
 {
     addressLDP P = (addressLDP)malloc(sizeof(ElmtListDP));
     if (P != NilLDP)
@@ -25,7 +25,7 @@ addressLDP Alokasi(infotypeLdp X, POINT Y)
     return P;
 }
 
-void Dealokasi(addressLDP P)
+void DealokasiListdp(addressLDP P)
 {
     free(P);
 }
@@ -57,10 +57,10 @@ addressLDP Search(ListDP L, POINT Y)
 
 void InsVLast(ListDP *L, infotypeLdp X, POINT Y)
 {
-    addressLDP P = Alokasi(X, Y);
+    addressLDP P = AlokasiListdp(X, Y);
     if (P != NilLDP)
     {
-        if (!IsLDPEmpty(*L))
+        if (!IsEmptyListdp(*L))
         {
             Next(Last(*L)) = P;
             Prev(P) = Last(*L);
@@ -136,14 +136,14 @@ void DelP(ListDP *L, POINT X)
             Next(Prev(P)) = Next(P);
             Prev(Next(P)) = Prev(P);
         }
-        Dealokasi(P);
+        DealokasiListdp(P);
     }
 }
 
-void PrintForward(ListDP L)
+void PrintForwardListdp(ListDP L)
 {
     addressLDP P = First(L);
-    if (IsLDPEmpty(L))
+    if (IsEmptyListdp(L))
     {
         printf("[]");
     }
@@ -154,11 +154,11 @@ void PrintForward(ListDP L)
         {
             if (P != Last(L))
             {
-                printf("%d %d,", P->pos.x, P->pos.y);
+                printf("%d,", P->info);
             }
             else
             {
-                printf("%d %d", P->pos.x, P->pos.y);
+                printf("%d", P->info);
             }
             P = Next(P);
         }
@@ -166,10 +166,10 @@ void PrintForward(ListDP L)
     }
 }
 
-void PrintBackward(ListDP L)
+void PrintBackwardListdp(ListDP L)
 {
     addressLDP P = Last(L);
-    if (IsLDPEmpty(L))
+    if (IsEmptyListdp(L))
     {
         printf("[]");
     }

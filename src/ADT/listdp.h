@@ -42,21 +42,21 @@ typedef struct
 
 /* PROTOTYPE */
 /****************** TEST ListDP KOSONG ******************/
-boolean IsLDPEmpty(ListDP L);
+boolean IsEmptyListdp(ListDP L);
 /* Mengirim true jika ListDP kosong. Lihat definisi di atas. */
 
 /****************** PEMBUATAN ListDP KOSONG ******************/
-void CreateEmpty(ListDP *L);
+void CreateEmptyListdp(ListDP *L);
 /* I.S. L sembarang  */
 /* F.S. Terbentuk ListDP kosong. Lihat definisi di atas. */
 
 /****************** Manajemen Memori ******************/
-addressLDP Alokasi(infotypeLdp X, POINT Y);
+addressLDP AlokasiListdp(infotypeLdp X, POINT Y);
 /* Mengirimkan addressLDP hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka addressLDP tidak nil. */
 /* Misalnya: menghasilkan P, maka Info(P)=X, Next(P)=Nil, Prev(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil. */
-void Dealokasi(addressLDP P);
+void DealokasiListdp(addressLDP P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian addressLDP P */
@@ -93,14 +93,14 @@ void DelP(ListDP *L, POINT X);
 /* Jika tidak ada elemen ListDP dengan Info(P)=X, maka ListDP tetap */
 /* ListDP mungkin menjadi kosong karena penghapusan */
 /****************** PROSES SEMUA ELEMEN ListDP ******************/
-void PrintForward(ListDP L);
+void PrintForwardListdp(ListDP L);
 /* I.S. ListDP mungkin kosong */
 /* F.S. Jika ListDP tidak kosong, isi ListDP dicetak dari elemen pertama */
 /* ke elemen terakhir secara horizontal ke kanan: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika ListDP kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-void PrintBackward(ListDP L);
+void PrintBackwardListdp(ListDP L);
 /* I.S. ListDP mungkin kosong */
 /* F.S. Jika ListDP tidak kosong, isi ListDP dicetak dari elemen terakhir */
 /* ke elemen pertama secara horizontal ke kanan: [en,en-1,...,e2,e1] */

@@ -1,7 +1,7 @@
 #include "resetscoreboard.h"
 #include <stdio.h>
 
-void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom)
+void reset_scoreboard(Set *S)
 {
     int i, input;
     Word trash;
@@ -10,11 +10,9 @@ void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom)
 
     printf("DAFTAR SCOREBOARD:\n");
     printf("0. ALL\n");
-    printf("1. RNG\n");
-    printf("2. Diner Dash\n");
-    printf("3. HANGMAN\n");
-    printf("4. TOWER OF HANOI\n");
-    printf("5. SNAKE ON METEOR\n");
+    for (i = 0; i < S->Count; i++) {
+        printf("%d. %s\n", i+1, S->Elements[i].game);
+    }
 
     // pilih nomor
     printf("Scoreboard yang ingin dihapus: ");
@@ -22,38 +20,22 @@ void reset_scoreboard(Map *SBrng, Map *SBdd, Map *SBhm, Map *SBtoh, Map *SBsom)
     input = (currentWord.TabWord[0] - 48);
 
     // panggil prosedur sesuai input
-    switch (input)
-    {
-    case 0:
-        printf("Apakah Anda yakin ingin melakukan RESET ALL SCOREBOARD (YA / TIDAK)? ");
+    if (input == 0) {
+        printf("Apakah Anda yakin ingin melakukan RESET SCOREBOARD (YA / TIDAK)? ");
         STARTSTDIN();
-        RSB("RNG", SBrng, true, currentWord);
-        RSB("Diner Dash", SBdd, true, currentWord);
-        RSB("HANGMAN", SBhm, true, currentWord);
-        RSB("TOWER OF HANOI", SBtoh, true, currentWord);
-        RSB("SNAKE ON METEOR", SBsom, true, currentWord);
-        break;
-    case 1:
-        RSB("RNG", SBrng, false, trash);
-        break;
-    case 2:
-        RSB("Diner Dash", SBdd, false, trash);
-        break;
-    case 3:
-        RSB("HANGMAN", SBhm, false, trash);
-        break;
-    case 4:
-        RSB("TOWER OF HANOI", SBtoh, false, trash);
-        break;
-    case 5:
-        RSB("SNAKE ON METEOR", SBsom, false, trash);
-        break;
-    default:
+        for (i = 0; i < S->Count; i++) {
+            RSB(S->Elements[i].game, &S->Elements[i].M, true, currentWord);
+        }
+    }
+    else if (input > 0 && input <= S->Count) {
+        RSB(S->Elements[i-1].game, &S->Elements[i-1].M, false, trash);
+    }
+    else {
         printf("Scoreboard tidak tersedia. Mohon periksa masukan Anda.\n");
     }
 }
 
-void RSB(char *game, Map *SBGame, boolean isALL, Word answer)
+void RSB(char *game, MapV2 *SBGame, boolean isALL, Word answer)
 {
     int i, j, len;
     Word confirm;
@@ -85,7 +67,7 @@ void RSB(char *game, Map *SBGame, boolean isALL, Word answer)
 
         printf("Scoreboard ");
         printf("%s", game);
-        if (IsMapV2Empty(*SBGame))
+        if (IsMapEmptyV2(*SBGame))
         {
             printf(" berhasil di-reset.\n");
         }

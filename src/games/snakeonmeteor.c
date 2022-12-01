@@ -139,7 +139,7 @@ void SnakeOfMeteor()
     time_t t;
     t = time(NULL);
     ptr = localtime(&t);
-    CreateEmpty(&snake);
+    CreateEmptyListdp(&snake);
     printf("\nSelamat datang di snake on meteor!\n");
     printf("\nMengenerate peta, snake dan makanan . . .\n");
     printf("\nBerhasil digenerate!\n");

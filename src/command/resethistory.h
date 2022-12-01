@@ -8,5 +8,7 @@
 #define _RESET_HISTORY_
 
 void RESETHISTORY(StackW *history);
+// I.S. history terdefinisi, mungkin kosong
+// F.S. history menjadi kosong
 
 #endif

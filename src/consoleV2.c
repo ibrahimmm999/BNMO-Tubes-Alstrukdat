@@ -25,6 +25,7 @@ void MAINMENU()
     StackW history;
     Map SBrng, SBdd, SBhm, SBtoh, SBsom;
     Queue queueGame;
+    Word x;
     CreateQueue(&queueGame);
     boolean cek = true;
     while (cek)
@@ -37,12 +38,12 @@ void MAINMENU()
         printf("::::::::::::::::::::::::::\n\n");
         printf("ENTER COMMAND: ");
         STARTSTDIN();
-        if (IsWordEqual(currentWord, "START"))
+        if (IsWordEqual(currentWord, "START") && currentWord.Length == 5)
         {
             STARTGAME(&arrGame, &history);
             cek = false;
         }
-        else if (IsWordEqual(accessIndexWord(currentWord, 1), "LOAD"))
+        else if (IsWordEqual(accessIndexWord(currentWord, 1), "LOAD") && accessIndexWord(currentWord, 1).Length == 4)
         {
             if (currentWord.Length == 4)
             {
@@ -108,15 +109,15 @@ void MAINMENU()
         printf("::::::::::::::::::::::::::\n\n");
         printf("ENTER COMMAND: ");
         STARTSTDIN();
-        if (IsWordEqual(currentWord, "QUIT"))
+        if (IsWordEqual(currentWord, "QUIT") && currentWord.Length == 4)
         {
             quit(&cek);
         }
-        else if (IsWordEqual(currentWord, "HELP"))
+        else if (IsWordEqual(currentWord, "HELP") && currentWord.Length == 4)
         {
             DISPLAYHELP();
         }
-        else if (IsWordEqual(currentWord, "RESET HISTORY"))
+        else if (IsWordEqual(currentWord, "RESET HISTORY") && currentWord.Length == 13)
         {
             RESETHISTORY(&history);
         }
@@ -125,55 +126,95 @@ void MAINMENU()
             if (currentWord.Length > 8 && accessIndexWord(currentWord, 3).Length == 0)
             {
 
-                Word x = accessIndexWord(currentWord, 2);
-                HISTORY(history, WordToInt(x));
+                x = accessIndexWord(currentWord, 2);
+                int c;
+                int i = 0;
+                boolean valid = true;
+                while(valid == true && i < x.Length)
+                {
+                    c = x.TabWord[i];
+                    if(c < 48 || c > 57)
+                    {
+                        valid = false;
+                    }
+                    i++;
+                }
+                if(valid == true)
+                {
+                    HISTORY(history, WordToInt(x));
+                }
+                else
+                {
+                    printf("Masukkan command yang valid (n harus berupa integer)\n");
+                }
             }
             else
             {
                 printf("Masukkan command yang valid\n");
             }
         }
-        else if (IsWordEqual(currentWord, "PLAY GAME"))
+        else if (IsWordEqual(currentWord, "PLAY GAME") && currentWord.Length == 9)
         {
             PLAYGAME(&queueGame, &history);
         }
-        else if (IsWordEqual(currentWord, "QUEUE GAME"))
+        else if (IsWordEqual(currentWord, "QUEUE GAME") && currentWord.Length == 10)
         {
             QUEUEGAME(&queueGame, arrGame);
         }
-        else if (IsWordEqual(currentWord, "LIST GAME"))
+        else if (IsWordEqual(currentWord, "LIST GAME") && currentWord.Length == 9)
         {
             LISTGAME(arrGame);
         }
-        else if (IsWordEqual(currentWord, "CREATE GAME"))
+        else if (IsWordEqual(currentWord, "CREATE GAME") && currentWord.Length == 11)
         {
             CREATEGAME(&arrGame);
         }
-        else if (IsWordEqual(currentWord, "DELETE GAME"))
+        else if (IsWordEqual(currentWord, "DELETE GAME") && currentWord.Length == 11)
         {
             DELETEGAME(&arrGame, queueGame);
         }
-        else if (IsWordEqual(currentWord, "SCOREBOARD"))
+        else if (IsWordEqual(currentWord, "SCOREBOARD") && currentWord.Length == 10)
         {
             scoreboard(SBrng, SBdd, SBhm, SBtoh, SBsom);
         }
-        else if (IsWordEqual(currentWord, "RESET SCOREBOARD"))
+        else if (IsWordEqual(currentWord, "RESET SCOREBOARD") && currentWord.Length == 16)
         {
             reset_scoreboard(&SBrng, &SBdd, &SBhm, &SBtoh, &SBsom);
         }
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {
-            if (currentWord.Length > 9)
+            if (currentWord.Length > 9 && accessIndexWord(currentWord, 3).Length == 0)
             {
-                Word x = accessIndexWord(currentWord, 2);
-                SKIPGAME(&queueGame, &history, WordToInt(x));
+                x = accessIndexWord(currentWord, 2);
+                int c;
+                int i = 0;
+                boolean valid = true;
+                while(valid == true && i < x.Length)
+                {
+                    c = x.TabWord[i];
+                    if(c < 48 || c > 57)
+                    {
+                        valid = false;
+                    }
+                    i++;
+                }
+                if(valid == true)
+                {
+                    SKIPGAME(&queueGame, &history, WordToInt(x));
+                }
+                else
+                {
+                    printf("Masukkan command yang valid (n harus berupa integer)\n");
+                }
+                // Word x = accessIndexWord(currentWord, 2);
+                // SKIPGAME(&queueGame, &history, WordToInt(x));
             }
             else
             {
                 printf("Masukkan command yang valid\n");
             }
         }
-        else if (IsWordEqual(accessIndexWord(currentWord, 1), "SAVE"))
+        else if (IsWordEqual(accessIndexWord(currentWord, 1), "SAVE") && accessIndexWord(currentWord, 1).Length == 4)
         {
             Word x = accessIndexWord(currentWord, 2);
             save(wordToString(x, true), arrGame, history, SBrng, SBdd, SBhm, SBtoh, SBsom);

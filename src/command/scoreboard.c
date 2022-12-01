@@ -9,23 +9,24 @@ void PrintSpace(int n)
     }
 }
 
-void PrintSB(char *game, Map SBGame)
+void PrintSB(char *game, MapV2 SBGame)
 {
     Word temp;
     char *nama;
     int skor, i;
 
     // header
-    printf("**** SCOREBOARD GAME ");
+    printf("***** SCOREBOARD GAME ");
     printf("%s", game);
-    printf(" ****\n");
-    printf("|      NAMA       |  SKOR  |\n");
-    printf("|__________________________|\n");
+    printf(" *****\n");
+    printf(".______________________________.\n");
+    printf("|        NAMA         |  SKOR  |\n");
+    printf("|==============================|\n");
 
     // isi
-    if (IsMapV2Empty(SBGame))
+    if (IsMapEmptyV2(SBGame))
     {
-        printf("     Scoreboard Kosong      \n");
+        printf("|      Scoreboard Kosong       |\n");
     }
     else
     {
@@ -36,7 +37,7 @@ void PrintSB(char *game, Map SBGame)
             skor = VScore(SBGame, i);
 
             printf("| %s", nama);
-            PrintSpace(16 - temp.Length);
+            PrintSpace(20 - temp.Length);
 
             printf("| %d", skor);
             if (skor < 10)
@@ -55,27 +56,27 @@ void PrintSB(char *game, Map SBGame)
             printf("|\n");
         }
     }
+    printf("|______________________________|\n");
 }
 
-void scoreboard(Map SBrng, Map SBdd, Map SBhm, Map SBtoh, Map SBsom)
+void scoreboard(Set SetOfSB)
 {
-    PrintSB("RNG", SBrng);
-    PrintSB("Diner Dash", SBdd);
-    PrintSB("HANGMAN", SBhm);
-    PrintSB("TOWER OF HANOI", SBtoh);
-    PrintSB("SNAKE ON METEOR", SBsom);
+    int i;
+    for (i = 0; i < SetOfSB.Count; i++) {
+        PrintSB(SetOfSB.Elements[i].game, SetOfSB.Elements[i].M);
+    }
 }
 
-void InsertScoreboard(char *nama, int skor, Map *SBGame)
+void InsertScoreboard(char *nama, int skor, MapV2 *SBGame)
 {
     if (!NameExist(*SBGame, nama))
     {
         int i, j;
-        valuetype el;
+        valuetypeMapV2 el;
         el.name = nama;
         el.score = skor;
 
-        if (IsMapV2Empty(*SBGame))
+        if (IsMapEmptyV2(*SBGame))
         {
             InsertMapV2(SBGame, 0, el);
         }
@@ -91,8 +92,21 @@ void InsertScoreboard(char *nama, int skor, Map *SBGame)
                 i--;
             }
 
-            // InsertMapV2 di posisi yang sesuai
+            // insert di posisi yang sesuai
             InsertMapV2(SBGame, i, el);
         }
     }
+    else {
+        printf("Nama sudah digunakan, mohon gunakan nama lain.\n");
+    }
+}
+
+void CreateScoreboard (Set *SetOfSB, char* game) {
+    MapV2 M;
+    CreateEmptyMapV2(&M);
+    
+    infotypeSetV2 val;
+    val.game = game;
+    val.M = M;
+    InsertSet(SetOfSB, val);
 }

@@ -159,7 +159,7 @@ void MAINMENU()
         }
         else if (IsWordEqual(currentWord, "RESET SCOREBOARD"))
         {
-            reset_scoreboard(SBrng, SBdd, SBhm, SBtoh, SBsom);
+            reset_scoreboard(&SBrng, &SBdd, &SBhm, &SBtoh, &SBsom);
         }
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {

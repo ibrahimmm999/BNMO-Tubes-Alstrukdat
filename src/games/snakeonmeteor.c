@@ -317,6 +317,7 @@ void SnakeOfMeteor()
         printf("\nKepala snake terkena meteor\n");
     }
     printf("===== GAME OVER =====\n");
+    printf("\nGame berakhir. Skor: %d\n", lenSnake * 2);
 }
 
 int main()

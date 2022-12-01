@@ -10,6 +10,7 @@
 #include "../games/guntingbatuk.h"
 #include "../games/TowerOfHanoi.h"
 #include "../games/snakeonmeteor.h"
+#include "../games/guessthepeterparker.h"
 
 #ifndef PLAYGAME_H
 #define PLAYGAME_H

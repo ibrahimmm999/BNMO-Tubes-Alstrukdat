@@ -1,5 +1,5 @@
-#ifndef SNAKEOFMETEOR_H
-#define SNAKEOFMETEOR_H
+#ifndef SNAKEONMETEOR_H
+#define SNAKEONMETEOR_H
 
 #include "../ADT/listdp.h"
 #include "../ADT/mesinkata.h"
@@ -17,6 +17,6 @@ void move(ListDP snake, char input, POINT food, POINT meteor);
 
 void FirstRandSnake(ListDP *L);
 
-void SnakeOfMeteor();
+void SnakeOnMeteor();
 
 #endif

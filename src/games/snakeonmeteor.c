@@ -131,7 +131,7 @@ void move(ListDP snake, char input, POINT food, POINT meteor)
     }
 }
 
-void SnakeOfMeteor()
+void SnakeOnMeteor()
 {
     ListDP snake;
     POINT temp;
@@ -310,6 +310,13 @@ void SnakeOfMeteor()
             }
             DelP(&snake, meteor);
             lenSnake--;
+        }
+        POINT cekTop = MakePOINT(snake.First->pos.x % 5, (snake.First->pos.y + 4) % 5);
+        POINT cekLeft = MakePOINT((snake.First->pos.x + 4) % 5, snake.First->pos.y % 5);
+        POINT cekRight = MakePOINT(snake.First->pos.x % 5, (snake.First->pos.y + 1) % 5);
+        POINT cekBottom = MakePOINT((snake.First->pos.x + 1) % 5, snake.First->pos.y % 5);
+        if ((Search(snake, cekTop) != NULL) && (Search(snake, cekLeft) != NULL) && (Search(snake, cekRight) != NULL) && (Search(snake, cekBottom) != NULL))
+        {
         }
         turn++;
     }

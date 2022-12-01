@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include "../ADT/array.h"
 
-#define MaxScore 
+/* Main menu hangman */
+void hangman();
 
 /* Fungsi utama untuk memainkan hangman */
-void hangman();
+void hangman_game(Arr guessWords);
 
 /* Memainkan satu ronde hangman*/
 void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet);
@@ -32,6 +33,9 @@ boolean IsAlphabetExist(char c, Word currentGuess);
 
 /* Mencetak string dengan spasi setelah setiap karakter */
 void printStringWithSpace(char* str, int len);
+
+/* Menambah kata tebakan dan menyimpan ke file hangman.txt*/
+void save_hangman(char *file_name, Arr list_game);
 
 /* Mengambil daftar kata tebakan dari file txt dan menyimpan
    daftar kata pada array */

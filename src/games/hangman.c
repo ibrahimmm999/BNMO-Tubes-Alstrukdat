@@ -2,10 +2,33 @@
 #include <stdio.h>
 
 void hangman(){
+    boolean valid = false;
+    printf("\n\nSelamat datang di\n");
     displayHangmanTextArt();
-    Set guessedAlphabet;
     Arr guessWords;
     generateWordList(&guessWords);
+    while (!valid){
+        printf("\n\n1. PLAY\n2. TAMBAH KATA\n3. QUIT\n");
+        printf("Masukkan pilihan Anda (1/2/3): ");
+        STARTSTDIN();
+        if (IsWordEqual(currentWord, "1")){
+            hangman_game(guessWords);
+            valid = true;
+        } else if (IsWordEqual(currentWord, "2")){
+            printf("Masukkan kata yang ingin ditambahkan: ");
+            STARTSTDIN();
+            SetEl(&guessWords, NbElmt(guessWords), currentWord);
+        } else if (IsWordEqual(currentWord, "3")){
+            valid = true;
+        } else {
+            printf("Masukan tidak valid\n");
+        }
+    }
+    save_hangman("../../data/hangman.txt", guessWords);
+}
+
+void hangman_game(Arr guessWords){
+    Set guessedAlphabet;
     int chance = 10;
     int idx = 0;
     int score = 0;
@@ -25,7 +48,7 @@ void hangman(){
         }
         CreateSet(&guessedAlphabet);
     }
-    printf("GAME OVER.\nSkor kamu: %d", score);
+    printf("GAME OVER.\nSkor kamu: %d\n\n", score);
 }
 
 void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
@@ -135,6 +158,48 @@ void printStringWithSpace(char* str, int len){
         printf("%c ", str[i]);
     }
     printf("\n");
+}
+
+void save_hangman(char *file_name, Arr list_game)
+{
+    FILE *fp = NULL;
+    fp = fopen(file_name, "w+");
+
+    if (fp != NULL)
+    {
+        int i, j, len, wordlen;
+        char *temp;
+
+        len = NbElmt(list_game);
+        fprintf(fp, "%d\n", len);
+        for (i = 0; i < len; i++)
+        {
+            wordlen = GetElmt(list_game, i).Length;
+            char *temp = malloc((wordlen) * sizeof(char));
+            for (j = 0; j < wordlen; j++)
+            {
+                temp[j] = GetElmt(list_game, i).TabWord[j];
+            }
+
+            temp[j] = '\0';
+            if (i == len - 1)
+            {
+                fprintf(fp, "%s", temp);
+            }
+            else
+            {
+
+                fprintf(fp, "%s\n", temp);
+            }
+        }
+
+        printf("File berhasil disimpan\n\n");
+        fclose(fp);
+    }
+    else
+    {
+        printf("File gagal disimpan.\n");
+    }
 }
 
 void generateWordList(Arr *word){

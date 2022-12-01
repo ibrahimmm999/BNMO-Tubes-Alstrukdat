@@ -1,7 +1,6 @@
-#include <stdio.h>
 #include "mapV2.h"
 
-void CreateEmptyMapV2(Map *M)
+void CreateEmptyMapV2(MapV2 *M)
 {
     M->Count = NilMapV2;
     int i;
@@ -13,12 +12,12 @@ void CreateEmptyMapV2(Map *M)
     }
 }
 
-boolean IsMapV2Empty(Map M)
+boolean IsMapEmptyV2(MapV2 M)
 {
     return (M.Count == NilMapV2);
 }
 
-boolean IsMapV2Full(Map M)
+boolean IsMapFullV2(MapV2 M)
 {
     return (M.Count == MaxElMapV2);
 }
@@ -42,7 +41,7 @@ boolean IsMapV2Full(Map M)
     }
 } */
 
-char *VName(Map M, keytype k)
+char *VName(MapV2 M, keytypeV2 k)
 {
     if (IsMemberMapV2(M, k))
     {
@@ -54,7 +53,7 @@ char *VName(Map M, keytype k)
     }
 }
 
-int VScore(Map M, keytype k)
+int VScore(MapV2 M, keytypeV2 k)
 {
     if (IsMemberMapV2(M, k))
     {
@@ -66,7 +65,7 @@ int VScore(Map M, keytype k)
     }
 }
 
-void InsertMapV2(Map *M, keytype k, valuetype v)
+void InsertMapV2(MapV2 *M, keytypeV2 k, valuetypeMapV2 v)
 {
     M->Elements[k].Key = k;
     M->Elements[k].Value.name = v.name;
@@ -96,7 +95,7 @@ void InsertMapV2(Map *M, keytype k, valuetype v)
     }
 } */
 
-boolean IsMemberMapV2(Map M, keytype k)
+boolean IsMemberMapV2(MapV2 M, keytypeV2 k)
 {
     int i = 0;
     boolean found = false;
@@ -114,7 +113,7 @@ boolean IsMemberMapV2(Map M, keytype k)
     return found;
 }
 
-boolean NameExist(Map M, char *name)
+boolean NameExist(MapV2 M, char* name)
 {
     int i = 0;
     boolean found = false;

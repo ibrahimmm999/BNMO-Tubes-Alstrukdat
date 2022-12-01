@@ -1,80 +1,62 @@
 #include "hangman.h"
 #include <stdio.h>
 
-void hangman()
-{
+void hangman(){
     boolean valid = false;
     printf("\n\nSelamat datang di\n");
     displayHangmanTextArt();
     Arr guessWords;
     generateWordList(&guessWords);
-    while (!valid)
-    {
+    while (!valid){
         printf("\n\n1. PLAY\n2. TAMBAH KATA\n3. QUIT\n");
         printf("Masukkan pilihan Anda (1/2/3): ");
         STARTSTDIN();
-        if (IsWordEqual(currentWord, "1"))
-        {
+        if (IsWordEqual(currentWord, "1")){
             hangman_game(guessWords);
             valid = true;
-        }
-        else if (IsWordEqual(currentWord, "2"))
-        {
+        } else if (IsWordEqual(currentWord, "2")){
             printf("Masukkan kata yang ingin ditambahkan: ");
             STARTSTDIN();
-            if (!isWordExist(guessWords, currentWord))
-            {
+            charUpper(&currentWord);
+            if (!isWordExist(guessWords, currentWord)){
                 SetEl(&guessWords, NbElmt(guessWords), currentWord);
                 printf("Kata berhasil ditambah\n");
-            }
-            else
-            {
+            } else {
                 printf("Kata sudah tersedia di list kata\n\n");
             }
-        }
-        else if (IsWordEqual(currentWord, "3"))
-        {
+        } else if (IsWordEqual(currentWord, "3")){
             valid = true;
-        }
-        else
-        {
+        } else {
             printf("Masukan tidak valid\n");
         }
     }
     save_hangman("../../data/hangman.txt", guessWords);
 }
 
-boolean isWordExist(Arr guessWords, Word w)
-{
-    for (int i = 0; i < NbElmt(guessWords); i++)
-    {
-        if (IsWordEqual(w, guessWords.A[i].TabWord))
-        {
+boolean isWordExist(Arr guessWords, Word w){
+    for (int i=0;i<NbElmt(guessWords);i++){
+        if (IsWordEqual(w, guessWords.A[i].TabWord)){
             return true;
         }
     }
     return false;
 }
 
-void hangman_game(Arr guessWords)
-{
+void hangman_game(Arr guessWords){
     Set guessedAlphabet;
     int chance = 10;
     int idx = 0;
     int score = 0;
     CreateSet(&guessedAlphabet);
-    while (chance > 0)
-    {
+    while (chance > 0){
         Word currentGuess = guessWords.A[idx];
         charUpper(&currentGuess);
         playHangman(&chance, currentGuess, &guessedAlphabet);
-        if (chance != 0)
-        {
+        if (chance != 0){
             score += currentGuess.Length;
         }
         idx++;
-        if (idx == NbElmt(guessWords))
-        {
+        if (idx == NbElmt(guessWords)){
             printf("Selamat! Kamu berhasil menebak semua kata pada game ini\n");
             winMessage();
             chance = 0;
@@ -84,17 +66,14 @@ void hangman_game(Arr guessWords)
     printf("GAME OVER.\nSkor kamu: %d\n\n", score);
 }
 
-void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet)
-{
+void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet){
     boolean win = false;
-    char *guessTemp = (char *)malloc(sizeof(currentGuess.TabWord));
-    for (int i = 0; i < currentGuess.Length; i++)
-    {
+    char *guessTemp = (char *) malloc(sizeof(currentGuess.TabWord));
+    for (int i=0;i<currentGuess.Length;i++){
         guessTemp[i] = '_';
     }
 
-    while (!win && *chance > 0)
-    {
+    while (!win && *chance > 0){
         printf("Tebakan sebelumnya: ");
         TulisIsiSet(*guessedAlphabet);
         printf("Kata: ");
@@ -104,127 +83,93 @@ void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet)
         printf("Masukkan tebakan: ");
         STARTSTDIN();
 
-        if (currentWord.Length == 1)
-        {
+        if (currentWord.Length == 1){
             charLower(&currentWord);
-            if (IsMemberSet(*guessedAlphabet, currentWord))
-            {
+            if (IsMemberSet(*guessedAlphabet, currentWord)){
                 printf("Kamu sudah pernah menebak huruf %c\n\n", currentWord.TabWord[0]);
                 (*chance)--;
                 hangmanPics(*chance);
-            }
-            else
-            {
+            } else {
                 charUpper(&currentWord);
-                if (!IsAlphabetExist(currentWord.TabWord[0], currentGuess))
-                {
+                if (!IsAlphabetExist(currentWord.TabWord[0], currentGuess)){
                     printf("Tebakan kamu salah!\n\n");
                     charLower(&currentWord);
                     Insert(guessedAlphabet, currentWord);
                     (*chance)--;
                     hangmanPics(*chance);
-                }
-                else
-                {
+                } else {
                     printf("Selamat, tebakan kamu benar!\n\n");
                     charLower(&currentWord);
                     Insert(guessedAlphabet, currentWord);
                     underscoreToAlphabet(currentWord.TabWord[0], guessTemp, currentGuess);
-                    if (IsRoundFinished(guessTemp, currentGuess))
-                    {
+                    if (IsRoundFinished(guessTemp, currentGuess)){
                         win = true;
-                    }
-                    else
-                    {
+                    } else {
                         win = false;
                         hangmanPics(*chance);
                     }
                 }
             }
-        }
-        else if (currentWord.Length == 0)
-        {
+        } else if (currentWord.Length == 0){
             printf("Input tidak boleh kosong\n\n");
-        }
-        else
-        {
+        } else {
             printf("Anda hanya bisa menebak satu huruf per tebakan\n\n");
             (*chance)--;
             hangmanPics(*chance);
         }
     }
-    if (win)
-    {
+    if (win){
         printf("Selamat! Anda berhasil menebak %s. Kamu mendapat %d poin\n\n", currentGuess.TabWord, currentGuess.Length);
     }
-    if (*chance == 0)
-    {
+    if (*chance == 0){
         printf("Kesempatan habis!\n");
     }
 }
 
-void charUpper(Word *w)
-{
-    for (int i = 0; i < (*w).Length; i++)
-    {
-        if ((*w).TabWord[i] >= 'a' && (*w).TabWord[i] <= 'z')
-        {
+void charUpper(Word *w){
+    for (int i=0; i<(*w).Length; i++){
+        if ((*w).TabWord[i] >= 'a' && (*w).TabWord[i] <= 'z'){
             (*w).TabWord[i] -= 32;
         }
     }
 }
 
-void charLower(Word *w)
-{
-    if ((*w).TabWord[0] >= 'A' && (*w).TabWord[0] <= 'Z')
-    {
+void charLower(Word *w){
+    if ((*w).TabWord[0] >= 'A' && (*w).TabWord[0] <= 'Z'){
         (*w).TabWord[0] += 32;
     }
 }
 
-boolean IsRoundFinished(char *guessTemp, Word currentGuess)
-{
-    for (int i = 0; i < currentGuess.Length; i++)
-    {
-        if ('_' == guessTemp[i])
-        {
+boolean IsRoundFinished(char* guessTemp, Word currentGuess){
+    for (int i=0; i<currentGuess.Length; i++){
+        if ('_' == guessTemp[i]){
             return false;
         }
     }
     return true;
 }
 
-void underscoreToAlphabet(char c, char *guessTemp, Word currentGuess)
-{
-    for (int i = 0; i < currentGuess.Length; i++)
-    {
-        if (c == currentGuess.TabWord[i])
-        {
+void underscoreToAlphabet(char c, char *guessTemp, Word currentGuess){
+    for (int i=0; i<currentGuess.Length; i++){
+        if (c == currentGuess.TabWord[i]){
             guessTemp[i] = c;
-        }
-        else if (c - 32 == currentGuess.TabWord[i])
-        {
+        } else if (c-32 == currentGuess.TabWord[i]){
             guessTemp[i] = c - 32;
         }
     }
 }
 
-boolean IsAlphabetExist(char c, Word currentGuess)
-{
-    for (int i = 0; i < currentGuess.Length; i++)
-    {
-        if ((c == currentGuess.TabWord[i]) || (c - 32 == currentGuess.TabWord[i]))
-        {
+boolean IsAlphabetExist(char c, Word currentGuess){
+    for (int i=0; i<currentGuess.Length;i++){
+        if ((c == currentGuess.TabWord[i]) || (c-32 == currentGuess.TabWord[i])){
             return true;
         }
     }
     return false;
 }
 
-void printStringWithSpace(char *str, int len)
-{
-    for (int i = 0; i < len; i++)
-    {
+void printStringWithSpace(char* str, int len){
+    for (int i=0; i<len;i++){
         printf("%c ", str[i]);
     }
     printf("\n");
@@ -264,8 +209,7 @@ void save_hangman(char *file_name, Arr list_game)
     fclose(fp);
 }
 
-void generateWordList(Arr *word)
-{
+void generateWordList(Arr *word){
     FILE *p;
     p = fopen("../../data/hangman.txt", "r");
     MakeEmpty(word);
@@ -273,16 +217,14 @@ void generateWordList(Arr *word)
 
     int lenOfArr = currentWord.TabWord[0] - 48;
 
-    for (int i = 0; i < lenOfArr; i++)
-    {
+    for (int i=0;i<lenOfArr;i++){
         ADVWORD();
         SetEl(word, i, currentWord);
     }
     fclose(p);
 }
 
-void displayHangmanTextArt()
-{
+void displayHangmanTextArt(){
     printf(" _                                             \n");
     printf("| |                                            \n");
     printf("| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n");
@@ -294,15 +236,11 @@ void displayHangmanTextArt()
     printf("\n\n");
 }
 
-void hangmanPics(int chance)
-{
-    if (chance == 9)
-    {
+void hangmanPics(int chance){
+    if (chance == 9){
         printf("\n\n\n\n\n\n");
         printf("=========\n");
-    }
-    else if (chance == 8)
-    {
+    } else if (chance == 8){
         printf("\n");
         printf("       |\n");
         printf("       |\n");
@@ -310,9 +248,7 @@ void hangmanPics(int chance)
         printf("       |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 7)
-    {
+    } else if (chance == 7){
         printf("   +---+\n");
         printf("       |\n");
         printf("       |\n");
@@ -320,9 +256,7 @@ void hangmanPics(int chance)
         printf("       |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 6)
-    {
+    } else if (chance == 6){
         printf("   +---+\n");
         printf("   |   |\n");
         printf("       |\n");
@@ -330,9 +264,7 @@ void hangmanPics(int chance)
         printf("       |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 5)
-    {
+    } else if (chance == 5){
         printf("   +---+\n");
         printf("   |   |\n");
         printf("   O   |\n");
@@ -340,9 +272,7 @@ void hangmanPics(int chance)
         printf("       |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 4)
-    {
+    } else if (chance == 4){
         printf("   +---+\n");
         printf("   |   |\n");
         printf("   O   |\n");
@@ -350,9 +280,7 @@ void hangmanPics(int chance)
         printf("       |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 3)
-    {
+    } else if (chance == 3){
         printf("   +---+\n");
         printf("   |   |\n");
         printf("   O   |\n");
@@ -360,9 +288,7 @@ void hangmanPics(int chance)
         printf("       |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 2)
-    {
+    } else if (chance == 2){
         printf("   +---+\n");
         printf("   |   |\n");
         printf("   O   |\n");
@@ -370,9 +296,7 @@ void hangmanPics(int chance)
         printf("       |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 1)
-    {
+    } else if (chance == 1){
         printf("   +---+\n");
         printf("   |   |\n");
         printf("   O   |\n");
@@ -380,9 +304,7 @@ void hangmanPics(int chance)
         printf("  /    |\n");
         printf("       |\n");
         printf("=========\n");
-    }
-    else if (chance == 0)
-    {
+    } else if (chance == 0){
         printf("   +---+\n");
         printf("   |   |\n");
         printf("   O   |\n");
@@ -402,8 +324,7 @@ void hangmanPics(int chance)
     }
 }
 
-void winMessage()
-{
+void winMessage(){
     printf("                               _       \n");
     printf("                              (_)      \n");
     printf("  _   _  ___  _   _  __      ___ _ __  \n");
@@ -415,8 +336,7 @@ void winMessage()
 }
 
 // gcc hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman
-int main()
-{
+int main(){
     hangman();
     return 0;
 }

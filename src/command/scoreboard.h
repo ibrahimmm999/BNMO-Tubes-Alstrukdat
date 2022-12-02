@@ -21,7 +21,7 @@ void PrintSB(char *game, MapV2 SBGame);
 /*
 Prosedur untuk memanggil prosedur yang menampilkan nama dan skor untuk semua game.
 */
-void scoreboard(Set S);
+void scoreboard(Set SB);
 
 /*
 Prosedur memasukkan/menyimpan nama dan skor pemain yang telah
@@ -39,6 +39,12 @@ void InsertScoreboard (char *nama, int skor, MapV2 *SBGame);
 Prosedur membuat Scoreboard Game (Map) baru di dalam sebuah Set of Scoreboards
 Jika game sudah terdaftar dalam set, maka proses tidak dilakukan
 */
-void CreateScoreboard (Set *SetOfSB, char* game);
+void CreateScoreboard (Set *SB, char* game);
+
+/*
+Prosedur menghapus scoreboard dari daftar scoreboard.
+Scoreboard yang dapat dihapus hanya scoreboard game buatan pemain.
+*/
+void DeleteScoreboard (Set *SB, char *game);
 
 #endif

@@ -52,7 +52,7 @@ void InsertSet(Set *S, infotypeSetV2 Elmt);
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void DeleteSet(Set *S, infotypeSetV2 Elmt);
+void DeleteSet(Set *S, char* game);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */

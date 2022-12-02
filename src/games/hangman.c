@@ -3,10 +3,85 @@
 
 void hangman()
 {
+    boolean valid = false;
+    printf("\n\nSelamat datang di\n");
     displayHangmanTextArt();
-    Set guessedAlphabet;
     Arr guessWords;
     generateWordList(&guessWords);
+    while (!valid)
+    {
+        printf("\n\n1. PLAY\n2. TAMBAH KATA\n3. QUIT\n");
+        printf("Masukkan pilihan Anda (1/2/3): ");
+        STARTSTDIN();
+        if (IsWordEqual(currentWord, "1"))
+        {
+            hangman_game(guessWords);
+            valid = true;
+        }
+        else if (IsWordEqual(currentWord, "2"))
+        {
+            printf("Masukkan kata yang ingin ditambahkan: ");
+            STARTSTDIN();
+            if (isInputValid(currentWord))
+            {
+                charUpper(&currentWord);
+                if (!isWordExist(guessWords, currentWord))
+                {
+                    SetEl(&guessWords, NbElmt(guessWords), currentWord);
+                    printf("Kata berhasil ditambah\n");
+                }
+                else
+                {
+                    printf("Kata sudah tersedia di list kata\n\n");
+                }
+            }
+            else
+            {
+                printf("Masukan harus hanya berupa huruf saja\n");
+            }
+        }
+        else if (IsWordEqual(currentWord, "3"))
+        {
+            valid = true;
+        }
+        else
+        {
+            printf("Masukan tidak valid\n");
+        }
+    }
+    save_hangman("../../data/hangman.txt", guessWords);
+}
+
+boolean isInputValid(Word w)
+{
+    boolean valid = true;
+    int i = 0;
+    while (valid && i < w.Length)
+    {
+        if (w.TabWord[i] < 65 || w.TabWord[i] > 122 || (w.TabWord[i] > 90 && w.TabWord[i] < 97))
+        {
+            valid = false;
+        }
+        i++;
+    }
+    return valid;
+}
+
+boolean isWordExist(Arr guessWords, Word w)
+{
+    for (int i = 0; i < NbElmt(guessWords); i++)
+    {
+        if (IsWordEqual(w, guessWords.A[i].TabWord))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void hangman_game(Arr guessWords)
+{
+    Set guessedAlphabet;
     int chance = 10;
     int idx = 0;
     int score = 0;
@@ -21,7 +96,7 @@ void hangman()
             score += currentGuess.Length;
         }
         idx++;
-        if (idx == NbElmt(guessWords))
+        if (idx == NbElmt(guessWords) && chance != 0)
         {
             printf("Selamat! Kamu berhasil menebak semua kata pada game ini\n");
             winMessage();
@@ -29,7 +104,7 @@ void hangman()
         }
         CreateSet(&guessedAlphabet);
     }
-    printf("GAME OVER.\nSkor kamu: %d", score);
+    printf("GAME OVER.\nSkor kamu: %d\n", score);
 }
 
 void playHangman(int *chance, Word currentGuess, Set *guessedAlphabet)
@@ -178,6 +253,38 @@ void printStringWithSpace(char *str, int len)
     printf("\n");
 }
 
+void save_hangman(char *file_name, Arr list_game)
+{
+    FILE *fp;
+    fp = fopen(file_name, "w");
+    int i, j, len, wordlen;
+    char *temp;
+
+    len = NbElmt(list_game);
+    fprintf(fp, "%d\n", len);
+    for (i = 0; i < len; i++)
+    {
+        wordlen = GetElmt(list_game, i).Length;
+        char *temp = malloc((wordlen) * sizeof(char));
+        for (j = 0; j < wordlen; j++)
+        {
+            temp[j] = GetElmt(list_game, i).TabWord[j];
+        }
+
+        temp[j] = '\0';
+        if (i == len - 1)
+        {
+            fprintf(fp, "%s", temp);
+        }
+        else
+        {
+            fprintf(fp, "%s\n", temp);
+        }
+    }
+    printf("File berhasil disimpan\n\n");
+    fclose(fp);
+}
+
 void generateWordList(Arr *word)
 {
     FILE *p;
@@ -185,7 +292,7 @@ void generateWordList(Arr *word)
     MakeEmpty(word);
     STARTWORD("../../data/hangman.txt");
 
-    int lenOfArr = currentWord.TabWord[0] - 48;
+    int lenOfArr = WordToInt(currentWord);
 
     for (int i = 0; i < lenOfArr; i++)
     {
@@ -327,9 +434,3 @@ void winMessage()
     printf("   __/ |                               \n");
     printf("  |___/                                \n");
 }
-
-// gcc hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman
-// int main(){
-//     hangman();
-//     return 0;
-// }

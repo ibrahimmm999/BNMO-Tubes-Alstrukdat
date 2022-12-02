@@ -22,7 +22,7 @@ boolean IsMapFullV2(MapV2 M)
     return (M.Count == MaxElMapV2);
 }
 
-/* valuetype Value(Map M, keytype k) {
+valuetypeMapV2 ValueMapV2(MapV2 M, keytypeV2 k) {
     int i = 0;
     boolean found = false;
     if (IsMemberMapV2(M, k)) {
@@ -36,10 +36,7 @@ boolean IsMapFullV2(MapV2 M)
         }
         return M.Elements[i].Value;
     }
-    else {
-        return Undefined;
-    }
-} */
+}
 
 char *VName(MapV2 M, keytypeV2 k)
 {
@@ -73,7 +70,7 @@ void InsertMapV2(MapV2 *M, keytypeV2 k, valuetypeMapV2 v)
     M->Count++;
 }
 
-/* void Delete(Map *M, keytype k) {
+void DeleteMapV2(MapV2 *M, keytypeV2 k) {
     int i = 0;
     boolean found = false;
     if (IsMemberMapV2(*M, k)) {
@@ -86,14 +83,14 @@ void InsertMapV2(MapV2 *M, keytypeV2 k, valuetypeMapV2 v)
             }
         }
         while (i < M->Count) {
-            M->Elements[i].Key = M->Elements[i+1].Key;
+            M->Elements[i].Key = M->Elements[i].Key;
             M->Elements[i].Value.name = M->Elements[i+1].Value.name;
             M->Elements[i].Value.score = M->Elements[i+1].Value.score;
             i++;
         }
         M->Count--;
     }
-} */
+}
 
 boolean IsMemberMapV2(MapV2 M, keytypeV2 k)
 {

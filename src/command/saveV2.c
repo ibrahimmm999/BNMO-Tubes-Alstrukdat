@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "saveV2.h"
 
-void save(char *file_name, Arr list_game, StackW history, MapV2 SBrng, MapV2 SBdd, MapV2 SBhm, MapV2 SBtoh, MapV2 SBsom)
+void save(char *file_name, Arr list_game, StackW history, Set scoreboard)
 {
     FILE *fp = NULL;
     Word info;
@@ -65,11 +65,9 @@ void save(char *file_name, Arr list_game, StackW history, MapV2 SBrng, MapV2 SBd
         }
 
         // ------------ scoreboard ------------
-        SaveSB(SBrng, fp);
-        SaveSB(SBdd, fp);
-        SaveSB(SBhm, fp);
-        SaveSB(SBtoh, fp);
-        SaveSB(SBsom, fp);
+        for (i = 0; i < scoreboard.Count, i++) {
+            SaveSB(scoreboard.Elements[i].M, fp);
+        }
 
         printf("File %s.txt berhasil disimpan\n", file_name);
         fclose(fp);

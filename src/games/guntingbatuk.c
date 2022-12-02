@@ -38,7 +38,7 @@ void gbk()
 
     int playerwin = 0;
     int i;
-    printf("Mau bermain? ");
+    printf("Mau bermain gunting batu kertas?\n");
     printf("Ketik 1 untuk bermain\n");
     printf("Ketik 2 untuk keluar\n");
     printf("ENTER CHOICE : ");    
@@ -51,7 +51,7 @@ void gbk()
     {
         srand(time(NULL));
         int x = rand() % 3;
-        printf("Keluarkan pilihanmu..");
+        printf("Keluarkan pilihanmu..\n");
         ADVWORD();
         if (x == 0 && IsWordEqual(currentWord, "gunting")){
             printf("yah seri\n");
@@ -87,6 +87,10 @@ void gbk()
         {
             printf("kamu menang\n");
         }
+        else{
+            printf("yang beneng dorrr kalo mau main\n");
+        }
+        printf("\n");
         printf("Ketik satu untuk main lagi\n");
         ADVWORD();
     }

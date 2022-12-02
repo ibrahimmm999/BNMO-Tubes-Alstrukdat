@@ -131,9 +131,10 @@ void move(ListDP snake, char input, POINT food, POINT meteor)
     }
 }
 
-void SnakeOnMeteor()
+void SnakeOnMeteor(int *score)
 {
     ListDP snake;
+    *score = 0;
     POINT temp, temp1, temp2, temp3, temp4;
     struct tm *ptr;
     time_t t;
@@ -356,29 +357,27 @@ void SnakeOnMeteor()
     }
     if (isMeteorOnHead)
     {
-        int score = 0;
         printf("\nKepala snake terkena meteor\n");
         addressLDP addr = First(snake);
         while (addr != Last(snake))
         {
-            score++;
+            *score++;
             addr = Next(addr);
         }
-        score *= 2;
-        printf("\nGame berakhir. Skor: %d\n", score);
+        *score *= 2;
+        printf("\nGame berakhir. Skor: %d\n", *score);
     }
     else
     {
         addressLDP addr = First(snake);
-        int score = 0;
         while (addr != NilLDP)
         {
-            score++;
+            *score++;
             addr = Next(addr);
         }
-        score--;
-        score *= 2;
-        printf("\nGame berakhir. Skor: %d\n", score);
+        *score--;
+        *score *= 2;
+        printf("\nGame berakhir. Skor: %d\n", *score);
     }
     printf("===== GAME OVER =====\n");
 }

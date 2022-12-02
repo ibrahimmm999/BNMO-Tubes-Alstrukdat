@@ -30,7 +30,7 @@ void reset_scoreboard(SetV2 *SB)
             RSB(SB->Elements[i].game, &SB->Elements[i].M, true, currentWord);
         }
     }
-    else if (input > 0 && input <= S->Count)
+    else if (input > 0 && input <= SB->Count)
     {
         RSB(SB->Elements[i - 1].game, &SB->Elements[i - 1].M, false, trash);
     }

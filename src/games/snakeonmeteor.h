@@ -17,6 +17,6 @@ void move(ListDP snake, char input, POINT food, POINT meteor);
 
 void FirstRandSnake(ListDP *L);
 
-void SnakeOnMeteor();
+void SnakeOnMeteor(int *score);
 
 #endif

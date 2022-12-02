@@ -8,6 +8,9 @@
 /* Main menu hangman */
 void hangman();
 
+/* Mengecek jika kata sudah ada di list kata */
+boolean isWordExist(Arr guessWords, Word w);
+
 /* Fungsi utama untuk memainkan hangman */
 void hangman_game(Arr guessWords);
 

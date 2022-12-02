@@ -156,12 +156,12 @@ void MAINMENU()
                 printf("Masukkan command yang valid\n");
             }
         }
-        /*
+
         else if (IsWordEqual(currentWord, "PLAY GAME") && currentWord.Length == 9)
         {
             PLAYGAME(&queueGame, &history, &setScoreboard);
-    }
-        */
+        }
+
         else if (IsWordEqual(currentWord, "QUEUE GAME") && currentWord.Length == 10)
         {
             QUEUEGAME(&queueGame, arrGame);
@@ -186,7 +186,7 @@ void MAINMENU()
         {
             reset_scoreboard(&setScoreboard);
         }
-        /*
+
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {
             if (currentWord.Length > 9 && accessIndexWord(currentWord, 3).Length == 0)
@@ -215,12 +215,12 @@ void MAINMENU()
                 // Word x = accessIndexWord(currentWord, 2);
                 // SKIPGAME(&queueGame, &history, WordToInt(x));
             }
-        else
-        {
-            printf("Masukkan command yang valid\n");
+            else
+            {
+                printf("Masukkan command yang valid\n");
+            }
         }
-    }
-        */
+
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SAVE") && accessIndexWord(currentWord, 1).Length == 4)
         {
             Word x = accessIndexWord(currentWord, 2);

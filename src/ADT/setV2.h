@@ -13,15 +13,16 @@ Digunakan untuk implementasi scoreboard dan reset scoreboard
 #define MaxElsetV2 30
 
 typedef int addressSetV2;
-typedef struct {
-        char* game;
+typedef struct
+{
+        char *game;
         MapV2 M;
 } infotypeSetV2;
 
 typedef struct
 {
-    infotypeSetV2 Elements[MaxElsetV2];
-    addressSetV2 Count;
+        infotypeSetV2 Elements[MaxElsetV2];
+        addressSetV2 Count;
 } Set;
 
 /* Definisi Set S kosong : S.Count = Nil */
@@ -52,13 +53,13 @@ void InsertSet(Set *S, infotypeSetV2 Elmt);
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void DeleteSet(Set *S, char* game);
+void DeleteSet(Set *S, char *game);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */
 /* F.S. Elmt bukan anggota dari S */
 
-boolean IsMemberOfSet(Set S, char* game);
+boolean IsMemberOfSet(Set S, char *game);
 /* Mengembalikan true jika Elmt adalah member dari S */
 
 #endif

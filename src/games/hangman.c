@@ -74,7 +74,7 @@ void hangman_game(Arr guessWords)
             score += currentGuess.Length;
         }
         idx++;
-        if (idx == NbElmt(guessWords))
+        if (idx == NbElmt(guessWords) && chance != 0)
         {
             printf("Selamat! Kamu berhasil menebak semua kata pada game ini\n");
             winMessage();
@@ -234,7 +234,7 @@ void printStringWithSpace(char* str, int len)
 void save_hangman(char *file_name, Arr list_game)
 {
     FILE *fp;
-    fp = fopen(file_name, "w+");
+    fp = fopen(file_name, "w");
     int i, j, len, wordlen;
     char *temp;
 

@@ -1,5 +1,5 @@
-#ifndef map_H
-#define map_H
+#ifndef mapV2_H
+#define mapV2_H
 #include <stdio.h>
 #include "../boolean.h"
 
@@ -50,12 +50,12 @@ boolean IsMapFullV2(MapV2 M);
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-// valuetype Value(Map M, keytype k);
+valuetypeMapV2 ValueMapV2(MapV2 M, keytypeV2 k);
 /* Mengembalikan nilai value dengan key k pada M */
-/* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
 char *VName(MapV2 M, keytypeV2 k);
 /* Mengembalikan nilai value name dengan key k pada M */
+/* Jika tidak ada key k pada M, akan mengembalikan string kosong ("") */
 
 int VScore(MapV2 M, keytypeV2 k);
 /* Mengembalikan nilai value score dengan key k pada M */
@@ -67,7 +67,7 @@ void InsertMapV2(MapV2 *M, keytypeV2 k, valuetypeMapV2 v);
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-// void Delete(Map *M, keytype k);
+void DeleteMapV2(MapV2 *M, keytypeV2 k);
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */

@@ -47,4 +47,9 @@ Scoreboard yang dapat dihapus hanya scoreboard game buatan pemain.
 */
 void DeleteScoreboard (Set *SB, char *game);
 
+/*
+Prosedur menampilkan nama-nama pemain yang terdaftar pada scoreboard suatu game.
+*/
+void ShowNamesSB(MapV2 SBGame);
+
 #endif

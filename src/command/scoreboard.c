@@ -119,12 +119,12 @@ void CreateScoreboard(SetV2 *SB, char *game)
     infotypeSetV2 val;
     val.game = game;
     val.M = M;
-    InsertSet(SB, val);
+    InsertSetV2(SB, val);
 }
 
 void DeleteScoreboard(SetV2 *SB, char *game)
 {
-    DeleteSet(SB, game);
+    DeleteSetV2(SB, game);
 }
 
 void ShowNamesSB(MapV2 SBGame)

@@ -22,9 +22,9 @@ void RNG(int *score)
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     printf("Tebakan: ");
     STARTSTDIN();
-    while (WordToInt(currentWord) != x && score != 0)
+    while (WordToInt(currentWord) != x && *score != 0)
     {
-        score--;
+        *score--;
         if (WordToInt(currentWord) > x)
         {
             printf("Lebih kecil\n");
@@ -37,7 +37,7 @@ void RNG(int *score)
         STARTSTDIN();
     }
     printf("\nYa, X adalah %d.\n", x);
-    printf("\nSkor anda adalah %d\n", score);
+    printf("\nSkor anda adalah %d\n", *score);
 }
 /*
 int main()

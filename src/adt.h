@@ -18,4 +18,4 @@
 #include "./command/history.h"
 #include "./command/resethistory.h"
 #include "./command/scoreboard.h"
-//#include "./command/resetscoreboard.h"
+#include "./command/resetscoreboard.h"

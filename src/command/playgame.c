@@ -31,7 +31,7 @@ void playCurrentGame(Queue *queueGame, StackW *history, Word currentGame)
     }
     else if (IsWordEqual(currentGame, "SNAKE ON METEOR"))
     {
-        SnakeOnMeteor();
+        SnakeOnMeteor(score);
         addToHistory(history, currentGame);
     }
     else if (IsWordEqual(currentGame, "HANGMAN"))

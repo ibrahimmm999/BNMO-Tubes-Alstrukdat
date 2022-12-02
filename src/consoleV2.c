@@ -180,7 +180,7 @@ void MAINMENU()
         }
         else if (IsWordEqual(currentWord, "RESET SCOREBOARD") && currentWord.Length == 16)
         {
-            // reset_scoreboard(&setScoreboard);
+            reset_scoreboard(&setScoreboard);
         }
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {

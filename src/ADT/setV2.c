@@ -1,6 +1,6 @@
 #include "setV2.h"
 
-void CreateEmptySet(Set *S)
+void CreateEmptySet(SetV2 *S)
 {
     int i;
     S->Count = 0;
@@ -11,17 +11,17 @@ void CreateEmptySet(Set *S)
     }
 }
 
-boolean IsEmptySet(Set S)
+boolean IsEmptySet(SetV2 S)
 {
     return (S.Count == 0);
 }
 
-boolean IsFullSet(Set S)
+boolean IsFullSet(SetV2 S)
 {
     return (S.Count == MaxElsetV2);
 }
 
-void InsertSet(Set *S, infotypeSetV2 Elmt)
+void InsertSetV2(SetV2 *S, infotypeSetV2 Elmt)
 {
     if (!IsMemberOfSet(*S, Elmt.game))
     {
@@ -31,7 +31,7 @@ void InsertSet(Set *S, infotypeSetV2 Elmt)
     }
 }
 
-void DeleteSet(Set *S, char *game)
+void DeleteSetV2(SetV2 *S, char *game)
 {
     int i = 0;
     boolean found = false;
@@ -57,7 +57,7 @@ void DeleteSet(Set *S, char *game)
     }
 }
 
-boolean IsMemberOfSet(Set S, char *game)
+boolean IsMemberOfSet(SetV2 S, char *game)
 {
     int i = 0;
     boolean found = false;

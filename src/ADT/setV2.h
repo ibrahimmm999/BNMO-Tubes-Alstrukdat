@@ -47,13 +47,13 @@ boolean IsFullSet(SetV2 S);
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void InsertSet(SetV2 *S, infotypeSetV2 Elmt);
+void InsertSetV2(SetV2 *S, infotypeSetV2 Elmt);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void DeleteSet(SetV2 *S, char *game);
+void DeleteSetV2(SetV2 *S, char *game);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */

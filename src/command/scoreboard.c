@@ -68,7 +68,7 @@ void scoreboard(Set SB)
     }
 }
 
-void InsertScoreboard(char *nama, int skor, MapV2 *SBGame)
+void InsertScoreboard(char *nama, int skor, MapV2 *SBGame, int *valid)
 {
     if (!NameExist(*SBGame, nama))
     {
@@ -96,10 +96,17 @@ void InsertScoreboard(char *nama, int skor, MapV2 *SBGame)
             // insert di posisi yang sesuai
             InsertMapV2(SBGame, i, el);
         }
+        *valid = 1;
     }
     else
     {
         printf("Nama sudah digunakan, mohon gunakan nama lain.\n");
+        printf("Tampilkan daftar nama pada scoreboard (YA / TIDAK)? ");
+        STARTSTDIN();
+        if (IsWordEqual(currentWord, "YA")) {
+            ShowNamesSB(*SBGame);
+        }
+        *valid = 0;
     }
 }
 
@@ -118,3 +125,29 @@ void DeleteScoreboard (Set *SB, char *game) {
     DeleteSet(SB, game);
 }
 
+void ShowNamesSB(MapV2 SBGame) {
+    // header
+    printf(".______________________.\n");
+    printf("| NAMA PADA SCOREBOARD |\n");
+    printf("|======================|\n");
+    
+    // isi
+    if (IsMapEmptyV2(SBGame)) {
+        printf("|    Tidak Ada Nama    |\n");
+        
+    }
+    else {
+        Word temp;
+        char *nama;
+        int i;
+        for (i = 0; i < SBGame.Count; i++) {
+            nama = VName(SBGame, i);
+            temp = stringToWord(nama);
+            
+            printf("| %s", nama);
+            PrintSpace(21 - temp.Length);
+            printf("|\n");
+        }
+    }
+    printf("|______________________|\n");
+}

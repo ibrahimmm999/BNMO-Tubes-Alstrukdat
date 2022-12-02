@@ -22,16 +22,24 @@ void hangman()
         {
             printf("Masukkan kata yang ingin ditambahkan: ");
             STARTSTDIN();
-            charUpper(&currentWord);
-            if (!isWordExist(guessWords, currentWord))
+            if (isInputValid(currentWord))
             {
-                SetEl(&guessWords, NbElmt(guessWords), currentWord);
-                printf("Kata berhasil ditambah\n");
-            } 
-            else 
-            {
-                printf("Kata sudah tersedia di list kata\n\n");
+                charUpper(&currentWord);
+                if (!isWordExist(guessWords, currentWord))
+                {
+                    SetEl(&guessWords, NbElmt(guessWords), currentWord);
+                    printf("Kata berhasil ditambah\n");
+                } 
+                else 
+                {
+                    printf("Kata sudah tersedia di list kata\n\n");
+                }
             }
+            else
+            {
+                printf("Masukan harus hanya berupa huruf saja\n");
+            }
+            
         } 
         else if (IsWordEqual(currentWord, "3"))
         {
@@ -43,6 +51,21 @@ void hangman()
         }
     }
     save_hangman("../../data/hangman.txt", guessWords);
+}
+
+boolean isInputValid(Word w)
+{
+    boolean valid = true;
+    int i = 0;
+    while (valid && i < w.Length)
+    {
+        if (w.TabWord[i] < 65 || w.TabWord[i] > 122 || (w.TabWord[i] > 90 && w.TabWord[i] <97))
+        {
+            valid = false;
+        }
+        i++;
+    }
+    return valid;
 }
 
 boolean isWordExist(Arr guessWords, Word w)
@@ -270,7 +293,7 @@ void generateWordList(Arr *word)
     MakeEmpty(word);
     STARTWORD("../../data/hangman.txt");
 
-    int lenOfArr = currentWord.TabWord[0] - 48;
+    int lenOfArr = WordToInt(currentWord);
 
     for (int i=0;i<lenOfArr;i++)
     {

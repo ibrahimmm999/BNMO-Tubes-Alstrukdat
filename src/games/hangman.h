@@ -8,6 +8,9 @@
 /* Main menu hangman */
 void hangman();
 
+/* Mengecek apakah input hanya terdiri dari huruf saja */
+boolean isInputValid(Word w);
+
 /* Mengecek jika kata sudah ada di list kata */
 boolean isWordExist(Arr guessWords, Word w);
 

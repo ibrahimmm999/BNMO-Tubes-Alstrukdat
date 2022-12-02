@@ -1,7 +1,7 @@
 #include "resetscoreboard.h"
 #include <stdio.h>
 
-void reset_scoreboard(Set *S)
+void reset_scoreboard(Set *SB)
 {
     int i, input;
     Word trash;
@@ -10,8 +10,8 @@ void reset_scoreboard(Set *S)
 
     printf("DAFTAR SCOREBOARD:\n");
     printf("0. ALL\n");
-    for (i = 0; i < S->Count; i++) {
-        printf("%d. %s\n", i+1, S->Elements[i].game);
+    for (i = 0; i < SB->Count; i++) {
+        printf("%d. %s\n", i+1, SB->Elements[i].game);
     }
 
     // pilih nomor
@@ -23,12 +23,12 @@ void reset_scoreboard(Set *S)
     if (input == 0) {
         printf("Apakah Anda yakin ingin melakukan RESET SCOREBOARD (YA / TIDAK)? ");
         STARTSTDIN();
-        for (i = 0; i < S->Count; i++) {
-            RSB(S->Elements[i].game, &S->Elements[i].M, true, currentWord);
+        for (i = 0; i < SB->Count; i++) {
+            RSB(SB->Elements[i].game, &SB->Elements[i].M, true, currentWord);
         }
     }
     else if (input > 0 && input <= S->Count) {
-        RSB(S->Elements[i-1].game, &S->Elements[i-1].M, false, trash);
+        RSB(SB->Elements[i-1].game, &SB->Elements[i-1].M, false, trash);
     }
     else {
         printf("Scoreboard tidak tersedia. Mohon periksa masukan Anda.\n");

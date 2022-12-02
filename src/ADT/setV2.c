@@ -19,7 +19,8 @@ boolean IsFullSet(Set S) {
 
 void InsertSet(Set *S, infotypeSetV2 Elmt) {
     if (!IsMemberOfSet(*S, Elmt.game)) {
-        S->Elements[S->Count] = Elmt;
+        S->Elements[S->Count].game = Elmt.game;
+        S->Elements[S->Count].M = Elmt.M;
         S->Count++;
     }
 }

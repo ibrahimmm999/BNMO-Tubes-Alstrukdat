@@ -342,9 +342,6 @@ void TowerOfHanoi(float *score)
         }
         while (!isWin(C, disk))
         {
-            printf("%d\n", InfoTop(A));
-            printf("%d\n", InfoTop(B));
-            printf("%d\n", InfoTop(C));
             DisplayTower(A, B, C, disk);
             printf("Masukkan menara yang disknya ingin dipindahkan: ");
             ADVWORD();

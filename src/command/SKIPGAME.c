@@ -37,50 +37,8 @@ void SKIPGAME(Queue *queueGame, StackW *history, int numSkip)
                 printf("Loading ");
                 displayCurrentGame(currentGame);
                 printf(" ...\n");
-                if (IsWordEqual(currentGame, "RNG"))
-                {
-                    RNG();
-                    addToHistory(history, currentGame);
-                }
-                else if (IsWordEqual(currentGame, "Diner DASH"))
-                {
-                    dinerDash();
-                    addToHistory(history, currentGame);
-                }
-                else if (IsWordEqual(currentGame, "tictactoe"))
-                {
-                    tictactoe();
-                    addToHistory(history, currentGame);
-                }
-                else if (IsWordEqual(currentGame, "gbk"))
-                {
-                    gbk();
-                    addToHistory(history, currentGame);
-                }
-                else if (IsWordEqual(currentGame, "TOWER OF HANOI"))
-                {
-                    TowerOfHanoi();
-                    addToHistory(history, currentGame);
-                }
-                else if (IsWordEqual(currentGame, "SNAKE ON METEOR"))
-                {
-                    SnakeOnMeteor();
-                    addToHistory(history, currentGame);
-                }
-                else if (IsWordEqual(currentGame, "HANGMAN"))
-                {
-                    hangman();
-                    addToHistory(history, currentGame);
-                }
-                else if (IsWordEqual(currentGame, "Guess the Peter Parker"))
-                {
-                    addToHistory(history, currentGame);
-                }
-                else
-                {
-                    printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.", wordToString(currentGame, false));
-                    addToHistory(history, currentGame);
-                }
+
+                playCurrentGame(queueGame, history, currentGame);
             }
         }
     }

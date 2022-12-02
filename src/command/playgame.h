@@ -15,6 +15,7 @@
 #ifndef PLAYGAME_H
 #define PLAYGAME_H
 
+void playCurrentGame(Queue *queueGame, StackW *history, Word currentGame);
 void PLAYGAME(Queue *queueGame, StackW *history);
 void displayCurrentGame(Word CurrentGame);
 

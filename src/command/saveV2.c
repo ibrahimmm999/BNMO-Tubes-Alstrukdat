@@ -65,7 +65,8 @@ void save(char *file_name, Arr list_game, StackW history, Set scoreboard)
         }
 
         // ------------ scoreboard ------------
-        for (i = 0; i < scoreboard.Count, i++) {
+        for (i = 0; i < scoreboard.Count; i++)
+        {
             SaveSB(scoreboard.Elements[i].M, fp);
         }
 

@@ -32,4 +32,6 @@ int main()
     {
         printf("%c", Get(testList, i));
     }
+
+    return 0;
 }

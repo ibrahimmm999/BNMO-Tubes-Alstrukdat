@@ -44,4 +44,6 @@ int main()
 
     DealokasiListdp(P);
     DealokasiListdp(Q);
+
+    return 0;
 }

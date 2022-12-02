@@ -8,6 +8,7 @@
         "array.h": "c",
         "stdio.h": "c",
         "guntingbatuk.h": "c",
-        "history.h": "c"
+        "history.h": "c",
+        "*.tcc": "c"
     }
 }

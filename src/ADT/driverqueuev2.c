@@ -29,4 +29,6 @@ int main()
     displayQueue(test);
     dequeue(&test, &testWord);
     displayQueue(test);
+
+    return 0;
 }

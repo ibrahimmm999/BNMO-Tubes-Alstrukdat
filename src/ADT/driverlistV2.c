@@ -31,7 +31,7 @@ int main()
     at.TabWord[0] = 'a';
     at.TabWord[1] = 't';
 
-    if(IsBlank(testList) == 1)
+    if (IsBlank(testList) == 1)
     {
         printf("testList kosong\n");
     }
@@ -42,7 +42,7 @@ int main()
     printf("testList setelah ditambah pada (idx == 0) dan (idx == 1)\n");
     CetakList(testList, LengthV2(testList));
 
-    if(IsBlank(testList) == 0)
+    if (IsBlank(testList) == 0)
     {
         printf("testList tidak kosong\n");
     }
@@ -51,13 +51,13 @@ int main()
     get2 = GetV2(testList, 5);
 
     printf("Get (idx == 1): ");
-    for(i = 0; i < get.Length; i++)
+    for (i = 0; i < get.Length; i++)
     {
         printf("%c", get.TabWord[i]);
     }
 
     printf("\nGet (idx == 5): ");
-    for(i = 0; i < get2.Length; i++)
+    for (i = 0; i < get2.Length; i++)
     {
         printf("%c", get2.TabWord[i]);
     }
@@ -112,6 +112,8 @@ int main()
     DeleteAll(&testList);
     printf("\ntestList setelah DeleteAll:\n");
     CetakList(testList, LengthV2(testList));
+
+    return 0;
 
     /* Set(&testList, 0, 't');
     Set(&testList, 1, 'e');

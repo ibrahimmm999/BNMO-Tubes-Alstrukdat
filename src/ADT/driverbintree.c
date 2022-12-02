@@ -42,21 +42,21 @@ int main()
     Pohon = AlokNode(satu);
     Left(Pohon) = AlokNode(dua);
     Left(Left(Pohon)) = AlokNode(tiga);
-    
+
     printf("Pohon:");
     PrintPreorder(Pohon);
     printf("\n");
     printf("NbDaun: %d\n", NbDaun(Pohon));
     printf("Level elemen berinfo 'Tiga': %d\n", Level(Pohon, tiga));
     printf("Tinggi: %d\n", Tinggi(Pohon));
-    printf("Pohon kosong? %d\n", IsTreeEmpty(Pohon)); //0
-    printf("Pohon berelemen satu? %d\n", IsTreeOneElmt(Pohon)); //0
-    printf("Ada elemen '20' di pohon? %d\n", SearchTree(Pohon, dua)); // 1
+    printf("Pohon kosong? %d\n", IsTreeEmpty(Pohon));                    // 0
+    printf("Pohon berelemen satu? %d\n", IsTreeOneElmt(Pohon));          // 0
+    printf("Ada elemen '20' di pohon? %d\n", SearchTree(Pohon, dua));    // 1
     printf("Ada elemen 'Lima' di pohon? %d\n", SearchTree(Pohon, lima)); // 0
-    
+
     Right(Pohon) = AlokNode(empat);
     Right(Left(Pohon)) = AlokNode(lima);
-    
+
     PrintPreorder(Pohon);
     printf("\nNbDaun: %d\n", NbDaun(Pohon));
 
@@ -82,7 +82,8 @@ int main()
     AddDaunTerkiri(&Pohon, tiga);
     AddDaunTerkiri(&Pohon, tiga);
     PrintPreorder(Pohon);
-    printf("\nIs it skew left? %d\n", IsSkewLeft(Pohon)); //1
+    printf("\nIs it skew left? %d\n", IsSkewLeft(Pohon)); // 1
     // PrintPreorder(Pohon);
-    
-}   
+
+    return 0;
+}

@@ -1,7 +1,8 @@
 #include "set.h"
 
 // gcc set.c mesinkarakter.c mesinkata.c driverset.c -o main
-int main(){
+int main()
+{
     Set test;
     Word testWord, testWord2;
 
@@ -21,22 +22,24 @@ int main(){
     CreateSet(&test);
     printf("%d\n", IsEmpty(test)); // 1
     Insert(&test, testWord);
-    printf("%d\n", IsEmpty(test)); // 0
-    printf("%d\n", IsMember(test, testWord)); // 1
+    printf("%d\n", IsEmpty(test));             // 0
+    printf("%d\n", IsMember(test, testWord));  // 1
     printf("%d\n", IsMember(test, testWord2)); // 0
     Insert(&test, testWord2);
-    printf("%d\n", IsEmpty(test)); // 0
+    printf("%d\n", IsEmpty(test));             // 0
     printf("%d\n", IsMember(test, testWord2)); // 1
     Delete(&test, testWord);
-    printf("%d\n", IsEmpty(test)); // 0
-    printf("%d\n", IsMember(test, testWord)); // 0
+    printf("%d\n", IsEmpty(test));             // 0
+    printf("%d\n", IsMember(test, testWord));  // 0
     printf("%d\n", IsMember(test, testWord2)); // 1
     Delete(&test, testWord);
-    printf("%d\n", IsEmpty(test)); // 0 
-    printf("%d\n", IsMember(test, testWord)); // 0
+    printf("%d\n", IsEmpty(test));             // 0
+    printf("%d\n", IsMember(test, testWord));  // 0
     printf("%d\n", IsMember(test, testWord2)); // 1
     Delete(&test, testWord2);
-    printf("%d\n", IsEmpty(test)); // 1
-    printf("%d\n", IsMember(test, testWord)); // 0
+    printf("%d\n", IsEmpty(test));             // 1
+    printf("%d\n", IsMember(test, testWord));  // 0
     printf("%d\n", IsMember(test, testWord2)); // 0
+
+    return 0;
 }

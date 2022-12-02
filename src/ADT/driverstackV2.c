@@ -29,7 +29,7 @@ int main()
     CreateEmptyStack(&reverse1);
     CreateEmptyStack(&reverse2);
 
-    if(IsStackEmpty)
+    if (IsStackEmptyV2)
     {
         printf("Stack masih kosong.\n");
     }
@@ -40,7 +40,7 @@ int main()
     printf("Length IniStack: %d\n", lengthStack(IniStack));
     PushStack(&IniStack, Z);
     printf("Length IniStack: %d\n", lengthStack(IniStack));
-    printf("IniStack penuh? %d\n", IsStackFull(IniStack)); //0
+    printf("IniStack penuh? %d\n", IsStackFull(IniStack)); // 0
 
     printf("IniStack:\n");
     CetakStack(IniStack, 10);
@@ -61,10 +61,9 @@ int main()
     CetakStack(IniStack, 4);
 
     PopAllStack(&IniStack);
-    if(IsStackEmpty)
+    if (IsStackEmptyV2)
     {
         printf("Kini Stack kosong setelah di-PopAll.\n");
     }
     return 0;
 }
-

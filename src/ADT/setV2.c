@@ -18,18 +18,18 @@ boolean IsFullSet(Set S) {
 }
 
 void InsertSet(Set *S, infotypeSetV2 Elmt) {
-    if (!IsMemberSet(*S, Elmt.game)) {
+    if (!IsMemberOfSet(*S, Elmt.game)) {
         S->Elements[S->Count] = Elmt;
         S->Count++;
     }
 }
 
-void DeleteSet(Set *S, infotypeSetV2 Elmt) {
+void DeleteSet(Set *S, char* game) {
     int i = 0;
     boolean found = false;
-    if (IsMemberSet(*S, Elmt.game)) {
+    if (IsMemberOfSet(*S, game)) {
         while (i < S->Count && !found) {
-            if (S->Elements[i].game == Elmt.game) {
+            if (S->Elements[i].game == game) {
                 found = true;
             }
             else {

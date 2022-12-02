@@ -1,5 +1,5 @@
-#ifndef set_H
-#define set_H
+#ifndef setV2_H
+#define setV2_H
 #include <stdio.h>
 #include "../boolean.h"
 #include "mapV2.h"

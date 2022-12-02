@@ -418,12 +418,27 @@ void TowerOfHanoi()
         }
         printf("Selamat Anda Menyelesaikan Tower of Hanoi dengan %d langkah\n", steps);
         float skorMax = (pow(2, disk)) - 1;
-        float skor = skorMax * 100 / steps;
+        float skor = skorMax * 10 / steps;
+        if (disk==1 || disk==2 || disk==3){
+            skor=skor-1;
+        }
         printf("Anda mendapatkan skor sebesar %f\n", skor);
-        break;
-    }
-}
+        break; 
+    } 
+} 
 
 // int main(){
 //     TowerOfHanoi();
 // }
+
+
+
+
+
+
+
+
+
+
+
+

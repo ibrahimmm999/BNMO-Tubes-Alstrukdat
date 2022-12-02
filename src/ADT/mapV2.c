@@ -113,7 +113,7 @@ boolean IsMemberMapV2(MapV2 M, keytypeV2 k)
     return found;
 }
 
-boolean NameExist(MapV2 M, char* name)
+boolean NameExist(MapV2 M, char *name)
 {
     int i = 0;
     boolean found = false;

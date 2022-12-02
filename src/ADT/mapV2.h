@@ -26,7 +26,7 @@ typedef struct
 {
         infotypeMapV2 Elements[MaxElMapV2];
         addressMapV2 Count;
-} Map;
+} MapV2;
 
 /* Definisi Map M kosong : M.Count = Nil */
 /* M.Count = jumlah element Map */
@@ -76,7 +76,7 @@ void InsertMapV2(MapV2 *M, keytypeV2 k, valuetypeMapV2 v);
 boolean IsMemberMapV2(MapV2 M, keytypeV2 k);
 /* Mengembalikan true jika k adalah member dari M */
 
-boolean NameExist(MapV2 M, char* name);
+boolean NameExist(MapV2 M, char *name);
 /* Mengembalikan true jika nama adalah member dari M */
 
 #endif

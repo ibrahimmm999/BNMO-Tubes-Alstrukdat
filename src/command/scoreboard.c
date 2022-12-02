@@ -62,7 +62,8 @@ void PrintSB(char *game, MapV2 SBGame)
 void scoreboard(Set SetOfSB)
 {
     int i;
-    for (i = 0; i < SetOfSB.Count; i++) {
+    for (i = 0; i < SetOfSB.Count; i++)
+    {
         PrintSB(SetOfSB.Elements[i].game, SetOfSB.Elements[i].M);
     }
 }
@@ -96,15 +97,17 @@ void InsertScoreboard(char *nama, int skor, MapV2 *SBGame)
             InsertMapV2(SBGame, i, el);
         }
     }
-    else {
+    else
+    {
         printf("Nama sudah digunakan, mohon gunakan nama lain.\n");
     }
 }
 
-void CreateScoreboard (Set *SetOfSB, char* game) {
+void CreateScoreboard(Set *SetOfSB, char *game)
+{
     MapV2 M;
     CreateEmptyMapV2(&M);
-    
+
     infotypeSetV2 val;
     val.game = game;
     val.M = M;

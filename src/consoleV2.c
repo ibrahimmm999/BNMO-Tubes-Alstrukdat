@@ -23,7 +23,8 @@ void MAINMENU()
 {
     Arr arrGame;
     StackW history;
-    Map SBrng, SBdd, SBhm, SBtoh, SBsom;
+    MapV2 SBrng, SBdd, SBhm, SBtoh, SBsom;
+    Set setScoreboard;
     Queue queueGame;
     Word x;
     CreateQueue(&queueGame);
@@ -130,16 +131,16 @@ void MAINMENU()
                 int c;
                 int i = 0;
                 boolean valid = true;
-                while(valid == true && i < x.Length)
+                while (valid == true && i < x.Length)
                 {
                     c = x.TabWord[i];
-                    if(c < 48 || c > 57)
+                    if (c < 48 || c > 57)
                     {
                         valid = false;
                     }
                     i++;
                 }
-                if(valid == true)
+                if (valid == true)
                 {
                     HISTORY(history, WordToInt(x));
                 }
@@ -175,11 +176,11 @@ void MAINMENU()
         }
         else if (IsWordEqual(currentWord, "SCOREBOARD") && currentWord.Length == 10)
         {
-            scoreboard(SBrng, SBdd, SBhm, SBtoh, SBsom);
+            scoreboard(setScoreboard);
         }
         else if (IsWordEqual(currentWord, "RESET SCOREBOARD") && currentWord.Length == 16)
         {
-            reset_scoreboard(&SBrng, &SBdd, &SBhm, &SBtoh, &SBsom);
+            reset_scoreboard(&setScoreboard);
         }
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {
@@ -189,16 +190,16 @@ void MAINMENU()
                 int c;
                 int i = 0;
                 boolean valid = true;
-                while(valid == true && i < x.Length)
+                while (valid == true && i < x.Length)
                 {
                     c = x.TabWord[i];
-                    if(c < 48 || c > 57)
+                    if (c < 48 || c > 57)
                     {
                         valid = false;
                     }
                     i++;
                 }
-                if(valid == true)
+                if (valid == true)
                 {
                     SKIPGAME(&queueGame, &history, WordToInt(x));
                 }

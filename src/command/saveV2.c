@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "saveV2.h"
 
-void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, Map SBhm, Map SBtoh, Map SBsom)
+void save(char *file_name, Arr list_game, StackW history, MapV2 SBrng, MapV2 SBdd, MapV2 SBhm, MapV2 SBtoh, MapV2 SBsom)
 {
     FILE *fp = NULL;
     Word info;
@@ -80,7 +80,7 @@ void save(char *file_name, Arr list_game, StackW history, Map SBrng, Map SBdd, M
     }
 }
 
-void SaveSB(Map SBGame, FILE *fp)
+void SaveSB(MapV2 SBGame, FILE *fp)
 {
     int i;
     fprintf(fp, "%d\n", SBGame.Count);

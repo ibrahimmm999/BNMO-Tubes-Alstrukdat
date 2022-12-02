@@ -3,14 +3,15 @@
 
 void playCurrentGame(Queue *queueGame, StackW *history, Word currentGame)
 {
+    int *score = 0;
     if (IsWordEqual(currentGame, "RNG"))
     {
-        RNG();
+        RNG(score);
         addToHistory(history, currentGame);
     }
     else if (IsWordEqual(currentGame, "Diner DASH"))
     {
-        dinerDash();
+        dinerDash(score);
         addToHistory(history, currentGame);
     }
     else if (IsWordEqual(currentGame, "tictactoe"))
@@ -40,6 +41,7 @@ void playCurrentGame(Queue *queueGame, StackW *history, Word currentGame)
     }
     else if (IsWordEqual(currentGame, "Guess the Peter Parker"))
     {
+        GPP(score);
         addToHistory(history, currentGame);
     }
     else

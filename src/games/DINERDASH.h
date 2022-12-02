@@ -15,7 +15,7 @@ PQElType addQueue(int i);
 
 void dequeueAt(PrioQueue *pq, int idx, PQElType *val);
 
-void dinerDash();
+void dinerDash(int *saldo);
 // -	Terdapat 2 command yang dapat dilakukan pada game, yaitu COOK dan SERVE
 // -	COOK merupakan command yang bertujuan untuk memasak makanan
 // -	SERVE merupakan command yang bertujuan untuk menyajikan makanan kepada pelanggan.

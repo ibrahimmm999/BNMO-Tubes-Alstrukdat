@@ -3,7 +3,7 @@
 
 #include "dinerdash.h"
 
-void dinerDash()
+void dinerDash(int *saldo)
 {
 
     char input[100];
@@ -12,7 +12,7 @@ void dinerDash()
     char skip[] = "SKIP";
     int queue = 0;
     int served = 0;
-    int saldo = 0;
+    *saldo = 0;
     int i;
     printf("\nWELCOME TO DINER DASH!\n\n");
     PQElType order[20];
@@ -31,7 +31,7 @@ void dinerDash()
         enqueuePQ(&queuePesanan, order[i]);
     }
 
-    printf("SALDO: %d\n\n", saldo);
+    printf("SALDO: %d\n\n", *saldo);
     printOrders(queuePesanan);
     printCooking(cookQ);
     printServing(serveQ);
@@ -116,7 +116,7 @@ void dinerDash()
                             dequeuePQ(&queuePesanan, &servableFood);
                             dequeueAt(&serveQ, i - 1, &servableFood);
                             printf("Makanan M%d telah disajikan\n", servableFood.foodId);
-                            saldo += servableFood.price;
+                            *saldo += servableFood.price;
                         }
 
                         else
@@ -147,7 +147,7 @@ void dinerDash()
         }
 
         printf("\n \n");
-        printf("SALDO: %d\n\n", saldo);
+        printf("SALDO: %d\n\n", *saldo);
         printOrders(queuePesanan);
         printCooking(cookQ);
         printServing(serveQ);
@@ -184,5 +184,5 @@ void dinerDash()
         }
     }
     printf("========== GAME OVER ==========\n");
-    printf("SKOR AKHIR : %d\n", saldo);
+    printf("SKOR AKHIR : %d\n", *saldo);
 }

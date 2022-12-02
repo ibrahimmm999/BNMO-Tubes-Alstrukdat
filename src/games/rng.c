@@ -1,6 +1,6 @@
 #include "rng.h"
 
-void RNG()
+void RNG(int *score)
 {
     srand(time(NULL));
     int x = rand();
@@ -18,7 +18,7 @@ void RNG()
     {
         x /= 10;
     }
-    int score = 100;
+    *score = 100;
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     printf("Tebakan: ");
     STARTSTDIN();

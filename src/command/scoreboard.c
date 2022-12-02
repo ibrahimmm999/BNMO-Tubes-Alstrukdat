@@ -59,7 +59,7 @@ void PrintSB(char *game, MapV2 SBGame)
     printf("|______________________________|\n");
 }
 
-void scoreboard(Set SB)
+void scoreboard(SetV2 SB)
 {
     int i;
     for (i = 0; i < SB.Count; i++)
@@ -103,14 +103,15 @@ void InsertScoreboard(char *nama, int skor, MapV2 *SBGame, int *valid)
         printf("Nama sudah digunakan, mohon gunakan nama lain.\n");
         printf("Tampilkan daftar nama pada scoreboard (YA / TIDAK)? ");
         STARTSTDIN();
-        if (IsWordEqual(currentWord, "YA")) {
+        if (IsWordEqual(currentWord, "YA"))
+        {
             ShowNamesSB(*SBGame);
         }
         *valid = 0;
     }
 }
 
-void CreateScoreboard(Set *SB, char *game)
+void CreateScoreboard(SetV2 *SB, char *game)
 {
     MapV2 M;
     CreateEmptyMapV2(&M);
@@ -121,29 +122,33 @@ void CreateScoreboard(Set *SB, char *game)
     InsertSet(SB, val);
 }
 
-void DeleteScoreboard (Set *SB, char *game) {
+void DeleteScoreboard(SetV2 *SB, char *game)
+{
     DeleteSet(SB, game);
 }
 
-void ShowNamesSB(MapV2 SBGame) {
+void ShowNamesSB(MapV2 SBGame)
+{
     // header
     printf(".______________________.\n");
     printf("| NAMA PADA SCOREBOARD |\n");
     printf("|======================|\n");
-    
+
     // isi
-    if (IsMapEmptyV2(SBGame)) {
+    if (IsMapEmptyV2(SBGame))
+    {
         printf("|    Tidak Ada Nama    |\n");
-        
     }
-    else {
+    else
+    {
         Word temp;
         char *nama;
         int i;
-        for (i = 0; i < SBGame.Count; i++) {
+        for (i = 0; i < SBGame.Count; i++)
+        {
             nama = VName(SBGame, i);
             temp = stringToWord(nama);
-            
+
             printf("| %s", nama);
             PrintSpace(21 - temp.Length);
             printf("|\n");

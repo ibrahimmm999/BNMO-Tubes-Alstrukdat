@@ -10,7 +10,7 @@ Prosedur untuk menyimpan state game (list game, history, scoreboard yang dimilik
 I.S. game belum disimpan
 F.S. state game disimpan pada suatu file. Jika file sudah ada sebelumnya, make file akan dioverwrite
 */
-void save(char *file_name, Arr list_game, StackW history, Set scoreboard);
+void save(char *file_name, Arr list_game, StackW history, SetV2 scoreboard);
 
 /*
 Prosedur simpan scoreboard ke dalam file

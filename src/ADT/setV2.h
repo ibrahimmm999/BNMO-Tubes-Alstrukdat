@@ -23,7 +23,7 @@ typedef struct
 {
         infotypeSetV2 Elements[MaxElsetV2];
         addressSetV2 Count;
-} Set;
+} SetV2;
 
 /* Definisi Set S kosong : S.Count = Nil */
 /* S.Count = jumlah element Set */
@@ -32,34 +32,34 @@ typedef struct
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmptySet(Set *S);
+void CreateEmptySet(SetV2 *S);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 /* Ciri Set kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmptySet(Set S);
+boolean IsEmptySet(SetV2 S);
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 
-boolean IsFullSet(Set S);
+boolean IsFullSet(SetV2 S);
 /* Mengirim true jika Set S penuh */
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void InsertSet(Set *S, infotypeSetV2 Elmt);
+void InsertSet(SetV2 *S, infotypeSetV2 Elmt);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void DeleteSet(Set *S, char *game);
+void DeleteSet(SetV2 *S, char *game);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */
 /* F.S. Elmt bukan anggota dari S */
 
-boolean IsMemberOfSet(Set S, char *game);
+boolean IsMemberOfSet(SetV2 S, char *game);
 /* Mengembalikan true jika Elmt adalah member dari S */
 
 #endif

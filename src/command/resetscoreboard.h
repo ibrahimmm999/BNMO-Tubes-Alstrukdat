@@ -4,13 +4,12 @@
 #ifndef RESETSCOREBOARD_H
 #define RESETSCOREBOARD_H
 
-
 /*
 Prosedur Menampilkan daftar scoreboard dan meminta masukan berupa nomor
 scoreboard yang ingin di-reset.
 Reset dilakukan dengan memanggil prosedur lain (RSB) sesuai dengan nomor yang dimasukkan.
 */
-void reset_scoreboard(Set *SB);
+void reset_scoreboard(SetV2 *SB);
 
 /*
 Prosedur untuk menghapus (reset) semua informasi

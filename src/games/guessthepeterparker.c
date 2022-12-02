@@ -690,37 +690,37 @@ void GPP(int *score)
         if (i == 1)
         {
             FamTree = AlokNode(currentWord);
-            SetV2(&list, i - 1, currentWord);
+            SetListV2(&list, i - 1, currentWord);
         }
         else if (i == 2)
         {
             Left(FamTree) = AlokNode(currentWord);
-            SetV2(&list, i - 1, currentWord);
+            SetListV2(&list, i - 1, currentWord);
         }
         else if (i == 3)
         {
             Right(FamTree) = AlokNode(currentWord);
-            SetV2(&list, i - 1, currentWord);
+            SetListV2(&list, i - 1, currentWord);
         }
         else if (i == 4)
         {
             Right(Left(FamTree)) = AlokNode(currentWord);
-            SetV2(&list, i - 1, currentWord);
+            SetListV2(&list, i - 1, currentWord);
         }
         else if (i == 5)
         {
             Left(Left(FamTree)) = AlokNode(currentWord);
-            SetV2(&list, i - 1, currentWord);
+            SetListV2(&list, i - 1, currentWord);
         }
         else if (i == 6)
         {
             Left(Right(FamTree)) = AlokNode(currentWord);
-            SetV2(&list, i - 1, currentWord);
+            SetListV2(&list, i - 1, currentWord);
         }
         else
         {
             Right(Right(FamTree)) = AlokNode(currentWord);
-            SetV2(&list, i - 1, currentWord);
+            SetListV2(&list, i - 1, currentWord);
         }
         i++;
     }

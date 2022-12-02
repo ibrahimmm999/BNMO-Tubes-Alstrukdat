@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "saveV2.h"
 
-void save(char *file_name, Arr list_game, StackW history, Set scoreboard)
+void save(char *file_name, Arr list_game, StackW history, SetV2 scoreboard)
 {
     FILE *fp = NULL;
     Word info;

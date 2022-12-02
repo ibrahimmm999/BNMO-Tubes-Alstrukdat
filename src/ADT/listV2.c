@@ -25,7 +25,7 @@ ElType GetV2(ListV2 L, IdxType i)
     return (L.A[i]);
 }
 
-void SetV2(ListV2 *L, IdxType i, ElType v)
+void SetListV2(ListV2 *L, IdxType i, ElType v)
 {
     int j;
     int len = v.Length;

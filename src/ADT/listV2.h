@@ -46,7 +46,7 @@ ElType GetV2(ListV2 L, IdxType i);
 /* Mengirimkan elemen list yang ke-i */
 
 /* *** Selektor SET : Mengubah nilai list dan elemen list *** */
-void SetV2(ListV2 *L, IdxType i, ElType v);
+void SetListV2(ListV2 *L, IdxType i, ElType v);
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 

@@ -1,6 +1,6 @@
 #include "../ADT/array.h"
 #include "../ADT/stackV2.h"
-#include "../ADT/mapV2.h"
+#include "../ADT/setV2.h"
 
 #ifndef SAVEV2_H
 #define SAVEV2_H
@@ -10,7 +10,7 @@ Prosedur untuk menyimpan state game (list game, history, scoreboard yang dimilik
 I.S. game belum disimpan
 F.S. state game disimpan pada suatu file. Jika file sudah ada sebelumnya, make file akan dioverwrite
 */
-void save(char *file_name, Arr list_game, StackW history, MapV2 SBrng, MapV2 SBdd, MapV2 SBhm, MapV2 SBtoh, MapV2 SBsom);
+void save(char *file_name, Arr list_game, StackW history, Set scoreboard);
 
 /*
 Prosedur simpan scoreboard ke dalam file

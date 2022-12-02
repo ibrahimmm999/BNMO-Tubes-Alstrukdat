@@ -23,8 +23,8 @@ void MAINMENU()
 {
     Arr arrGame;
     StackW history;
-    MapV2 SBrng, SBdd, SBhm, SBtoh, SBsom;
     SetV2 setScoreboard;
+    MapV2 SBGame;
     Queue queueGame;
     Word x;
     CreateQueue(&queueGame);
@@ -78,7 +78,7 @@ void MAINMENU()
                 }
                 else
                 {
-                    LOAD(wordToString(x, true), &arrGame, &history);
+                    LOAD(wordToString(x, true), &arrGame, &history, &setScoreboard);
                     fclose(p);
                     cek = false;
                 }
@@ -102,6 +102,8 @@ void MAINMENU()
         printf("::  QUEUE GAME          ::\n");
         printf("::  PLAY GAME           ::\n");
         printf("::  SKIPGAME <n>        ::\n");
+        printf("::  SCOREBOARD          ::\n");
+        printf("::  RESET SCOREBOARD    ::\n");
         printf("::  HISTORY <n>         ::\n");
         printf("::  RESET HISTORY       ::\n");
         printf("::  HELP                ::\n");
@@ -154,10 +156,12 @@ void MAINMENU()
                 printf("Masukkan command yang valid\n");
             }
         }
+        /*
         else if (IsWordEqual(currentWord, "PLAY GAME") && currentWord.Length == 9)
         {
-            PLAYGAME(&queueGame, &history);
-        }
+            PLAYGAME(&queueGame, &history, &setScoreboard);
+    }
+        */
         else if (IsWordEqual(currentWord, "QUEUE GAME") && currentWord.Length == 10)
         {
             QUEUEGAME(&queueGame, arrGame);
@@ -182,6 +186,7 @@ void MAINMENU()
         {
             reset_scoreboard(&setScoreboard);
         }
+        /*
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SKIPGAME") && accessIndexWord(currentWord, 1).Length == 8)
         {
             if (currentWord.Length > 9 && accessIndexWord(currentWord, 3).Length == 0)
@@ -201,7 +206,7 @@ void MAINMENU()
                 }
                 if (valid == true)
                 {
-                    SKIPGAME(&queueGame, &history, WordToInt(x));
+                    SKIPGAME(&queueGame, &history, WordToInt(x), &SBGame);
                 }
                 else
                 {
@@ -210,11 +215,12 @@ void MAINMENU()
                 // Word x = accessIndexWord(currentWord, 2);
                 // SKIPGAME(&queueGame, &history, WordToInt(x));
             }
-            else
-            {
-                printf("Masukkan command yang valid\n");
-            }
+        else
+        {
+            printf("Masukkan command yang valid\n");
         }
+    }
+        */
         else if (IsWordEqual(accessIndexWord(currentWord, 1), "SAVE") && accessIndexWord(currentWord, 1).Length == 4)
         {
             Word x = accessIndexWord(currentWord, 2);

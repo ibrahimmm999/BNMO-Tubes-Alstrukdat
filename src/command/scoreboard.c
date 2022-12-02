@@ -62,14 +62,17 @@ void PrintSB(char *game, MapV2 SBGame)
 void scoreboard(SetV2 SB)
 {
     int i;
+    printf("%d\n", SB.Count);
     for (i = 0; i < SB.Count; i++)
     {
+        printf("%d", i);
         PrintSB(SB.Elements[i].game, SB.Elements[i].M);
     }
 }
 
 void InsertScoreboard(char *nama, int skor, MapV2 *SBGame, int *valid)
 {
+
     if (!NameExist(*SBGame, nama))
     {
         int i, j;

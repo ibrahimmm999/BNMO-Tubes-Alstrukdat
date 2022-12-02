@@ -8,6 +8,6 @@
 #ifndef START_H
 #define START_H
 
-void STARTGAME();
+void STARTGAME(Arr *arrgame, StackW *history);
 
 #endif

@@ -1,6 +1,6 @@
 #include "rng.h"
 
-void RNG(int *score)
+void RNG(int *skor)
 {
     srand(time(NULL));
     int x = rand();
@@ -18,13 +18,13 @@ void RNG(int *score)
     {
         x /= 10;
     }
-    *score = 100;
+    (*skor) += 100;
     printf("RNG Telah dimulai. Uji keberuntungan Anda dengan menebak X.\n");
     printf("Tebakan: ");
     STARTSTDIN();
-    while (WordToInt(currentWord) != x && *score != 0)
+    while (WordToInt(currentWord) != x && (*skor) != 0)
     {
-        *score--;
+        (*skor)--;
         if (WordToInt(currentWord) > x)
         {
             printf("Lebih kecil\n");
@@ -37,7 +37,7 @@ void RNG(int *score)
         STARTSTDIN();
     }
     printf("\nYa, X adalah %d.\n", x);
-    printf("\nSkor anda adalah %d\n", *score);
+    printf("\nSkor anda adalah %d\n", *skor);
 }
 /*
 int main()

@@ -1,6 +1,6 @@
 #include "SKIPGAME.h"
 
-void SKIPGAME(Queue *queueGame, StackW *history, int numSkip)
+void SKIPGAME(Queue *queueGame, StackW *history, int numSkip, MapV2 *SBGame)
 {
     /* Kamus */
     int i = 0;
@@ -38,7 +38,7 @@ void SKIPGAME(Queue *queueGame, StackW *history, int numSkip)
                 displayCurrentGame(currentGame);
                 printf(" ...\n");
 
-                playCurrentGame(queueGame, history, currentGame);
+                playCurrentGame(queueGame, history, currentGame, SBGame);
             }
         }
     }

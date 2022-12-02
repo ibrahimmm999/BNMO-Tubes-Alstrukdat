@@ -312,7 +312,7 @@ void Pindah(Stack *A, Stack *B)
     }
 }
 
-void TowerOfHanoi()
+void TowerOfHanoi(float *score)
 {
     Stack A, B, C;
     int steps = 0;
@@ -418,11 +418,11 @@ void TowerOfHanoi()
         }
         printf("Selamat Anda Menyelesaikan Tower of Hanoi dengan %d langkah\n", steps);
         float skorMax = (pow(2, disk)) - 1;
-        float skor = skorMax * 10 / steps;
-        if (disk==1 || disk==2 || disk==3){
-            skor=skor-1;
-        }
-        printf("Anda mendapatkan skor sebesar %f\n", skor);
+        *score= skorMax * 10 / steps;
+        if (disk==1 || disk==2 || disk==3){ 
+            *score=*score-1;
+        } 
+        printf("Anda mendapatkan score sebesar %f\n", *score);
         break; 
     } 
 } 

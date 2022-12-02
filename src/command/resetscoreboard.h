@@ -10,7 +10,7 @@ Prosedur Menampilkan daftar scoreboard dan meminta masukan berupa nomor
 scoreboard yang ingin di-reset.
 Reset dilakukan dengan memanggil prosedur lain (RSB) sesuai dengan nomor yang dimasukkan.
 */
-void reset_scoreboard(Set *SetOfSB);
+void reset_scoreboard(Set *SB);
 
 /*
 Prosedur untuk menghapus (reset) semua informasi

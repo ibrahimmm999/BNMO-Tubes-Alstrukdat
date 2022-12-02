@@ -3,7 +3,6 @@ Driver ADT setV2
 gcc driversetV2.c setV2.c mapV2.c -o setV2
 */
 #include "setV2.h"
-#include <string.h>     // untuk tes insert element di set
 
 int main() {
     Set S;

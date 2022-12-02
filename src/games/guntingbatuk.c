@@ -38,44 +38,60 @@ void gbk()
 
     int playerwin = 0;
     int i;
+    printf("Mau bermain gunting batu kertas?\n");
+    printf("Ketik 1 untuk bermain\n");
+    printf("Ketik 2 untuk keluar\n");
+    printf("ENTER CHOICE : ");    
     STARTSTDIN();
-    srand(time(NULL));
-    int x = rand() % 3;
-
-    if (x == 0 && IsWordEqual(currentWord, "gunting"))
+    while (IsWordStr(currentWord, "2"))
     {
-        printf("yah seri\n");
+        break;
     }
-    else if (x == 0 && IsWordEqual(currentWord, "kertas"))
+    while (IsWordStr(currentWord, "1"))
     {
+        srand(time(NULL));
+        int x = rand() % 3;
+        printf("Keluarkan pilihanmu..\n");
+        ADVWORD();
+        if (x == 0 && IsWordEqual(currentWord, "gunting")){
+            printf("yah seri\n");
+        }
+        else if (x == 0 && IsWordEqual(currentWord, "kertas")){
         printf("kamu kalah\n");
-    }
-    else if (x == 0 && IsWordEqual(currentWord, "batu"))
-    {
-        printf("kamu menang\n");
-    }
-    else if (x == 1 && IsWordEqual(currentWord, "kertas"))
-    {
-        printf("yah seri\n");
-    }
-    else if (x == 1 && IsWordEqual(currentWord, "batu"))
-    {
-        printf("kamu kalah\n");
-    }
-    else if (x == 1 && IsWordEqual(currentWord, "gunting"))
-    {
-        printf("kamu menang\n");
-    }
-    else if (x == 2 && IsWordEqual(currentWord, "batu"))
-    {
-        printf("yah seri\n");
-    }
-    else if (x == 2 && IsWordEqual(currentWord, "gunting"))
-    {
-        printf("kamu kalah\n");
-    }
-    else if (x == 2 && IsWordEqual(currentWord, "kertas"))
-    {
-        printf("kamu menang\n");
+        }
+        else if (x == 0 && IsWordEqual(currentWord, "batu"))
+        {
+            printf("kamu menang\n");
+        }
+        else if (x == 1 && IsWordEqual(currentWord, "kertas"))
+        {
+            printf("yah seri\n");
+        }
+        else if (x == 1 && IsWordEqual(currentWord, "batu"))
+        {
+            printf("kamu kalah\n");
+        }
+        else if (x == 1 && IsWordEqual(currentWord, "gunting"))
+        {
+            printf("kamu menang\n");
+        }
+        else if (x == 2 && IsWordEqual(currentWord, "batu"))
+        {
+            printf("yah seri\n");
+        }
+        else if (x == 2 && IsWordEqual(currentWord, "gunting"))
+        {
+            printf("kamu kalah\n");
+        }
+        else if (x == 2 && IsWordEqual(currentWord, "kertas"))
+        {
+            printf("kamu menang\n");
+        }
+        else{
+            printf("yang beneng dorrr kalo mau main\n");
+        }
+        printf("\n");
+        printf("Ketik satu untuk main lagi\n");
+        ADVWORD();
     }
 }

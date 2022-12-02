@@ -434,3 +434,5 @@ void winMessage()
     printf("   __/ |                               \n");
     printf("  |___/                                \n");
 }
+
+// gcc driverhangman.c hangman.c ../ADT/array.c ../ADT/mesinkarakter.c ../ADT/mesinkata.c ../ADT/set.c -o hangman

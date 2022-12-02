@@ -354,7 +354,7 @@ void TowerOfHanoi()
                 ADVWORD();
                 if (IsWordStr(currentWord, "A"))
                 {
-                    printf("Invalid Command!\n");
+                    printf("Input Invalid!\n");
                 }
                 else if (IsWordStr(currentWord, "B"))
                 {
@@ -366,7 +366,7 @@ void TowerOfHanoi()
                 }
                 else
                 {
-                    printf("Invalid Command!\n");
+                    printf("Input Invalid!\n");
                 }
             }
             else if (IsWordStr(currentWord, "B"))
@@ -375,7 +375,7 @@ void TowerOfHanoi()
                 ADVWORD();
                 if (IsWordStr(currentWord, "B"))
                 {
-                    printf("Invalid Command!\n");
+                    printf("Input Invalid!\n");
                 }
                 else if (IsWordStr(currentWord, "A"))
                 {
@@ -387,40 +387,57 @@ void TowerOfHanoi()
                 }
                 else
                 {
-                    printf("Invalid Command!\n");
+                    printf("Input Invalid!\n");
                 }
-            }
+            } 
             else if (IsWordStr(currentWord, "C"))
             {
-                printf("Dipindahkan ke Menara: ");
-                ADVWORD();
-                if (IsWordStr(currentWord, "C"))
-                {
-                    printf("Invalid Command!\n");
-                }
-                else if (IsWordStr(currentWord, "A"))
-                {
-                    Pindah(&C, &A);
-                }
+                printf("Dipindahkan ke Menara: ");  
+                ADVWORD(); 
+                if (IsWordStr(currentWord, "C")) 
+                { 
+                    printf("Input Invalid!\n"); 
+                } 
+                else if (IsWordStr(currentWord, "A")) 
+                { 
+                    Pindah(&C, &A); 
+                } 
                 else if (IsWordStr(currentWord, "B"))
                 {
                     Pindah(&C, &B);
+                } 
+                else 
+                {   
+                    printf("Input Invalid!\n");
                 }
-                else
-                {
-                    printf("Invalid Command!\n");
-                }
+            }
+            else{
+                printf("Input invalid!");
             }
             steps++;
         }
         printf("Selamat Anda Menyelesaikan Tower of Hanoi dengan %d langkah\n", steps);
         float skorMax = (pow(2, disk)) - 1;
-        float skor = skorMax * 100 / steps;
+        float skor = skorMax * 10 / steps;
+        if (disk==1 || disk==2 || disk==3){
+            skor=skor-1;
+        }
         printf("Anda mendapatkan skor sebesar %f\n", skor);
-        break;
-    }
-}
+        break; 
+    } 
+} 
 
 // int main(){
 //     TowerOfHanoi();
 // }
+
+
+
+
+
+
+
+
+
+
+

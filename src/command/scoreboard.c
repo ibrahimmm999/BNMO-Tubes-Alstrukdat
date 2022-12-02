@@ -59,12 +59,12 @@ void PrintSB(char *game, MapV2 SBGame)
     printf("|______________________________|\n");
 }
 
-void scoreboard(Set SetOfSB)
+void scoreboard(Set SB)
 {
     int i;
-    for (i = 0; i < SetOfSB.Count; i++)
+    for (i = 0; i < SB.Count; i++)
     {
-        PrintSB(SetOfSB.Elements[i].game, SetOfSB.Elements[i].M);
+        PrintSB(SB.Elements[i].game, SB.Elements[i].M);
     }
 }
 
@@ -103,7 +103,7 @@ void InsertScoreboard(char *nama, int skor, MapV2 *SBGame)
     }
 }
 
-void CreateScoreboard(Set *SetOfSB, char *game)
+void CreateScoreboard(Set *SB, char *game)
 {
     MapV2 M;
     CreateEmptyMapV2(&M);
@@ -111,5 +111,10 @@ void CreateScoreboard(Set *SetOfSB, char *game)
     infotypeSetV2 val;
     val.game = game;
     val.M = M;
-    InsertSet(SetOfSB, val);
+    InsertSet(SB, val);
 }
+
+void DeleteScoreboard (Set *SB, char *game) {
+    DeleteSet(SB, game);
+}
+
